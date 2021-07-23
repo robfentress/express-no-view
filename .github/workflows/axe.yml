@@ -19,4 +19,4 @@ jobs:
     - name: Run axe
       run: |
         npm install -g @axe-core/cli -g
-        axe http://localhost:3000 --exit
+        axe http://localhost:3000 --tags cat.text-alternatives --exit
