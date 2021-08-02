@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Structuring Things</title>
+    <title>Structuring Things | Accessibility Examples</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -15,7 +15,6 @@
         }
 
         div.work::before {
-
             content: "\2022";
             /* Add content: \2022 is the CSS Code/unicode for a bullet */
             color: #861f41;
@@ -130,6 +129,7 @@
             <ul class="nav">
                 <li class="nav-item"><a href="#" class="nav-link active">
                         <span class="bi bi-house" aria-hidden="true"></span>
+                        <span class="sr-only">Home</span>
                     </a>
                 </li>
                 <li class="nav-item"><a href="#" class="nav-link">Canvas Course</a></li>
@@ -142,6 +142,12 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
+                <div role="search">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" title="search">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Go</button>
+                    </div>
+                </div>
                 <nav class="nav nav-pills flex-column">
                     <a class="nav-link" href="#">Fundamentally Accessible</a>
                     <a class="nav-link" href="#">Accessible UX</a>
@@ -193,7 +199,8 @@
                                 href="http://www.thelatinlibrary.com/cicero/fin1.shtml#10" target="_blank"
                                 title="opens in new window">de
                                 Finibus Bonorum et Malorum
-                                <span class="bi bi-box-arrow-up-right"></span></a></cite> by Cicero</figcaption>
+                                <span class="bi bi-box-arrow-up-right" aria-hidden="true"></span></a></cite> by Cicero
+                    </figcaption>
                 </figure>
                 <p>While there are reasons why designers do this, it does make it harder for those testing out
                     designs
@@ -201,25 +208,28 @@
                     screen
                     reading software to make sense of things.</p>
                 <p>If I were creating an example, I'd edit that text to use the English translation, like so:</p>
-                <blockquote class="blockquote"> <del>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                <blockquote class="blockquote"> <del><span class="sr-only">begin deleted text</span> Sed ut perspiciatis
+                        unde omnis iste natus error sit voluptatem
                         accusantium doloremque
                         laudantium,
                         totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
                         vitae
                         dicta
                         sunt
-                        explicabo.</del> <ins>But I must explain to you how all this mistaken idea of denouncing
+                        explicabo.<span class="sr-only">end deleted text</span></del> <ins><span class="sr-only">begin
+                            inserted text</span>But I must explain to you how all this mistaken idea of denouncing
                         pleasure
                         and
                         praising pain was born and I will give you a complete account of the system, and expound the
                         actual
-                        teachings of the great explorer of the truth, the master-builder of human happiness.</ins>
+                        teachings of the great explorer of the truth, the master-builder of human happiness.<span
+                            class="sr-only">end inserted text</span></ins>
                 </blockquote>
                 <p>Much better, don't you think?</p>
                 <p>You can see the complete version of Cicero's classic work in Latin and English as PDF and EPUB
                     files
                     below:</p>
-                <div class="container">
+                <!-- <div class="container">
                     <div class="row work">
                         <div class="col-5"><cite lang="la">de
                                 Finibus Bonorum et Malorum</cite> (Latin)</div>
@@ -239,30 +249,35 @@
                             <a href="english.epub">EPUB</a>
                         </div>
                     </div>
-                </div>
-                <!-- <ul class="container">
-                        <li class="row bg-light">
-                            <div class="col-4"><cite lang="la">de
+                </div> -->
+                <ul>
+                    <li>
+                        <div class="container-md">
+                            <div class="col-6"><cite lang="la">de
                                     Finibus Bonorum et Malorum</cite> (Latin)</div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <a href="latin.pdf">PDF</a>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <a href="latin.epub">EPUB</a>
                             </div>
-                        </li>
-                        <li class="row">
-                            <div class="col-4"><cite>On the Ends of Good and Evil</cite> (English)</div>
-                            <div class="col-2">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="container-md">
+                            <div class="col-6"><cite>On the Ends of Good and Evil</cite> (English)</div>
+                            <div class="col-3">
                                 <a href="english.pdf">PDF</a>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <a href="english.epub">EPUB</a>
                             </div>
-                        </li>
-                    </ul> -->
+                        </div>
+                    </li>
+                </ul>
                 <h2>Who is affected?</h2>
-                <p>While poor coding can affect all visitors to your site to some degree or another, some accessibility
+                <p>While poor coding can affect all visitors to your site to <em>some</em> degree or another, some
+                    accessibility
                     issues can make it almost impossible for people with certain kinds of disabilities to access needed
                     information and functionality. This table shows who is most affected by certain accessibility
                     issues.</p>
@@ -316,6 +331,7 @@
                     </tbody>
                 </table>
                 <hr>
+                <h2>Level A Success Criteria Under Perceivable</h2>
                 <ol>
                     <li><b>Perceivable:</b> Information and user interface components must be presentable to users in
                         ways they can perceive.
@@ -372,6 +388,7 @@
                         </ol>
                     </li>
                 </ol>
+                <h3>Compliance</h3>
                 <table class="table table-sm table-bordered table-striped table-irregular">
                     <caption>Compliance with Level A Perceivable Success Criteria</caption>
                     <col>
