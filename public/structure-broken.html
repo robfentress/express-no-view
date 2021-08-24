@@ -79,9 +79,9 @@
             color: rgba(255, 255, 255, .8);
         }
 
-        .nav-link {
+        /* .nav-link {
             border-bottom: 1px solid rgba(255, 255, 255, .8);
-        }
+        } */
 
         .navbar-dark .navbar-toggler {
             color: rgba(255, 255, 255, .8);
@@ -133,13 +133,13 @@
 
         /* Table column sizing
 ================================== */
-        .Rtable--2cols>.Rtable-cell {
+        /* .Rtable--2cols>.Rtable-cell {
             width: 50%;
         }
 
         .Rtable--3cols>.Rtable-cell {
             width: 33.33%;
-        }
+        } */
 
         .Rtable--4cols>.Rtable-cell {
             width: 25%;
@@ -148,6 +148,7 @@
 
         .Rtable--4cols>.Rtable-cell-6 {
             width: 45%;
+            margin-left: 1rem;
         }
 
         .Rtable--4cols>.Rtable-cell-6::before {
@@ -162,6 +163,7 @@
             display: inline-block;
             /* Needed to add space between the bullet and the text */
             width: 1rem;
+
             /* Also needed for space (tweak if needed) */
             margin-left: -1rem;
             /* Also needed for space (tweak if needed) */
@@ -171,70 +173,77 @@
             width: 10%;
         }
 
-        .Rtable--5cols>.Rtable-cell {
+        /* .Rtable--5cols>.Rtable-cell {
             width: 20%;
         }
 
         .Rtable--6cols>.Rtable-cell {
             width: 16.6%;
-        }
-
-        .css-table {
-            display: table;
-            border-collapse: collapse;
-        }
-
-        .css-row {
-            display: table-row;
-        }
-
-        .css-cell {
-            display: table-cell;
-        }
+        } */
 
         /* .container {
             width: 1199px;
         } */
 
-        .main {
+        .layout-table {
+            width: 1320px;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        .layout-table>tbody>tr>th,
+        .layout-table>tbody>tr>td,
+        .layout-table>tr>th,
+        .layout-table>tr>td {
+            border: 5px solid white;
+        }
+
+        .site-header,
+        .site-search {
+            background-color: #861f41;
+            padding: 1rem;
+        }
+
+        .site-header .nav-link,
+        .site-header .navbar-brand {
+            color: white;
+        }
+
+        .site-header .navbar-brand:hover {
+            text-decoration: underline;
+        }
+
+        .wrapper {
             background-color: #9D987B;
         }
 
-        .main-table {
-            width: 1320px;
-            border-collapse: collapse;
-            /* border: 10px solid white; */
-        }
-
-        .main-table th,
-        .main-table td {
-            border: 5px solid white;
-            padding: .5rem;
-
-        }
-
-        .main-content {
+        .main {
             background-color: white;
             background-color: #F5F5EC;
+            padding: 1rem;
         }
 
         .lessons-heading {
             background-color: #45677B;
             color: white;
+            padding: 1rem;
         }
 
         .lessons-menu {
-            background-color: #8CA3B0;
+            background-color: #aac5d4;
+            margin-left: 0;
+            margin-right: 0;
         }
 
         .lessons-menu .nav-link {
             color: #003767;
+            border-bottom: 1px solid white;
         }
 
-        /* .bg-maroon {
-            width: 1199px;
-            background-color: #861f41;
-        } */
+        .breadcrumb-menu {
+            background-color: #aac5d4;
+            padding: 1rem;
+        }
 
         .col1 {
             width: 1000px;
@@ -243,9 +252,32 @@
         /* .col2 {
             width: 300px;
         } */
+        .quote {
+            margin: 0;
+            background: #eee;
+            background: #fff;
+            padding: 1em;
+            border-radius: 1em;
+            border-left: 1rem solid rgb(229, 225, 230);
+        }
+
+        .quote figcaption,
+        .quote blockquote {
+            margin: 1em;
+        }
+
+        .quote blockquote {
+            text-indent: -0.5em;
+        }
+
+        .quote blockquote::before {
+            content: open-quote;
+        }
+
+        .quote blockquote::after {
+            content: close-quote;
+        }
     </style>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"
-        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -257,44 +289,37 @@
 </head>
 
 <body>
-    <header class="container-fluid bg-dark">
-        <div class="skippy visually-hidden-focusable overflow-hidden">
-            <div class="container-xl">
-                <a class="d-inline-flex p-2 m-1" href="#main">Skip to main content</a>
-            </div>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-dark " aria-label="Site">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <svg class="bi me-2" width="40" height="32" focusable="false" aria-hidden="true">
-                        <use xlink:href="images/bootstrap-icons.svg#code-square" />
-                    </svg><span class="fs-4">A11yEx</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class=" me-auto mb-2 mb-lg-0">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a href="#" class="nav-link mx-2">Canvas Course</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link mx-2">Deque University</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link mx-2">How to Meet
-                                    WCAG</a></li>
+    <div class="container-fluid wrapper">
+        <table class="layout-table">
+            <tr>
+                <td class="col1 site-header">
+
+                    <div class="d-flex flex-row align-items-center">
+                        <a class="navbar-brand" href="#">
+                            <span class="fs-4">A11yEx</span>
+                        </a>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" aria-current="page">Lessons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
                         </ul>
                     </div>
+                </td>
+                <th class="col2 site-search">
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-light" type="submit">Go</button>
                     </form>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container-fluid main">
-        <table align="center" class="main-table">
+                </th>
+            </tr>
             <tr>
-                <td class="lessons-menu col1">
+                <td class="col1 breadcrumb-menu">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb" style="margin:0">
                             <li class="breadcrumb-item" aria-current="page"><a href="#">Home</a></li>
@@ -303,10 +328,10 @@
                         </ol>
                     </nav>
                 </td>
-                <th class="lessons-heading col2">Lessons</th>
+                <th class="col2 lessons-heading">Lessons</th>
             </tr>
             <tr>
-                <td class="main-content col1">
+                <td class="col1 main">
                     <h1>Structuring Things</h1>
                     <h2 lang="es">¡Enseñame!</h2>
                     <p>Teach me something, <span lang="es">por favor</span>!</p>
@@ -314,25 +339,7 @@
                             ipsum</i>
                         is
                         actually a bastardized version of the following?</p>
-                    <div dir="rtl"><span>
-                            6<br>
-                            Test Cycle Closure
-                        </span><span>
-                            5<br>
-                            Test Execution
-                        </span><span>
-                            4<br>
-                            Test Environment Setup
-                        </span><span>
-                            3<br>
-                            Test Case Development
-                        </span><span>2<br>
-                            Test Planning</span><span>
-                            1<br>
-                            Requirement Analysis
-                        </span>
-                    </div>
-                    <figure>
+                    <figure class="quote">
                         <blockquote lang="la" class="blockquote">Sed ut perspiciatis unde omnis iste natus error sit
                             voluptatem
                             accusantium
@@ -360,25 +367,31 @@
                         screen
                         reading software to make sense of things.</p>
                     <p>If I were creating an example, I'd edit that text to use the English translation, like so:</p>
-                    <blockquote class="blockquote"> <del><span class="visually-hidden">begin deleted text</span> Sed ut
-                            perspiciatis
-                            unde omnis iste natus error sit voluptatem
-                            accusantium doloremque
-                            laudantium,
-                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
-                            vitae
-                            dicta
-                            sunt
-                            explicabo.<span class="visually-hidden">end deleted text</span></del> <ins><span
-                                class="visually-hidden">begin
-                                inserted text</span>But I must explain to you how all this mistaken idea of denouncing
-                            pleasure
-                            and
-                            praising pain was born and I will give you a complete account of the system, and expound the
-                            actual
-                            teachings of the great explorer of the truth, the master-builder of human happiness.<span
-                                class="visually-hidden">end inserted text</span></ins>
-                    </blockquote>
+                    <div class="quote">
+                        <blockquote cite="http://www.thelatinlibrary.com/cicero/fin1.shtml#10"> <del><span
+                                    class="visually-hidden">begin deleted text</span> Sed ut
+                                perspiciatis
+                                unde omnis iste natus error sit voluptatem
+                                accusantium doloremque
+                                laudantium,
+                                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
+                                beatae
+                                vitae
+                                dicta
+                                sunt
+                                explicabo.<span class="visually-hidden">end deleted text</span></del> <ins><span
+                                    class="visually-hidden">begin
+                                    inserted text</span>But I must explain to you how all this mistaken idea of
+                                denouncing
+                                pleasure
+                                and
+                                praising pain was born and I will give you a complete account of the system, and expound
+                                the
+                                actual
+                                teachings of the great explorer of the truth, the master-builder of human
+                                happiness.<span class="visually-hidden">end inserted text</span></ins>
+                        </blockquote>
+                    </div>
                     <p>Much better, don't you think?</p>
                     <h3>Download Cicero</h3>
                     <p>You can download the complete version of Cicero's classic work in Latin and English in <b>
@@ -672,6 +685,27 @@
                             </ol>
                         </li>
                     </ol>
+
+                    <h3>Test Cycle</h3>
+                    <p>It can be useful to consider accessibility at all phases of the Software Testing Life Cycle.</p>
+                    <p dir="rtl"><span>
+                            6<br>
+                            Test Cycle Closure
+                        </span><span>
+                            5<br>
+                            Test Execution
+                        </span><span>
+                            4<br>
+                            Test Environment Setup
+                        </span><span>
+                            3<br>
+                            Test Case Development
+                        </span><span>2<br>
+                            Test Planning</span><span>
+                            1<br>
+                            Requirement Analysis
+                        </span>
+                    </p>
                     <h3>Compliance</h3>
                     <div id="complianceDesc" class="visually-hidden">First row contains Guidelines. Second contains
                         Success
@@ -790,7 +824,7 @@
                             class="video-container iframe" allowfullscreen></iframe>
                     </div>
                 </td>
-                <td valign="top" class="lessons-menu col2">
+                <td valign="top" class="col2 lessons-menu">
                     <ul class="nav flex-column" aria-label="Lessons">
                         <li class="nav-item"><a class="nav-link" href="#">Fundamentally
                                 Accessible</a></li>
