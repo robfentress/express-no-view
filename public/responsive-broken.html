@@ -327,6 +327,19 @@
         thead {
             font-weight: bold;
         }
+
+        .rotate90 {
+            transform: rotate(90deg);
+        }
+
+        .orientation-list .list-group {
+            border-radius: 0;
+        }
+
+        .orientation-list .list-group-item:first-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -342,7 +355,6 @@
 <body>
     <div class="container-fluid wrapper">
         <table class="layout-table" role="presentation">
-            <caption class="footer">© 2021 Virginia Tech</caption>
             <tr>
                 <td class="col1 site-header">
 
@@ -363,13 +375,13 @@
                         </ul>
                     </div>
                 </td>
-                <th class="col2 site-search">
+                <td class="col2 site-search">
                     <form class="d-flex">
                         <input accesskey="s" class="form-control me-2" type="search" placeholder="Search"
                             aria-label="Search" id="search">
                         <button class="btn btn-light" type="submit" id="search">Go</button>
                     </form>
-                </th>
+                </td>
             </tr>
             <tr>
                 <td class="col1 breadcrumb-menu">
@@ -381,38 +393,107 @@
                         </ol>
                     </nav>
                 </td>
-                <th class="col2 lessons-heading">Lessons</th>
+                <td class="col2 lessons-heading">Lessons</td>
             </tr>
             <tr>
                 <td class="col1 main">
                     <h1>Imagine Responsiveness</h1>
-
-                    <p>If I were creating an example, I'd edit that text to use the English translation, like so:</p>
-                    <div class="quote">
-                        <blockquote cite="http://www.thelatinlibrary.com/cicero/fin1.shtml#10"> <del><span
-                                    class="visually-hidden">begin deleted text</span> Sed ut
-                                perspiciatis
-                                unde omnis iste natus error sit voluptatem
-                                accusantium doloremque
-                                laudantium,
-                                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                                beatae
-                                vitae
-                                dicta
-                                sunt
-                                explicabo.<span class="visually-hidden">end deleted text</span></del> <ins><span
-                                    class="visually-hidden">begin
-                                    inserted text</span>But I must explain to you how all this mistaken idea of
-                                denouncing
-                                pleasure
-                                and
-                                praising pain was born and I will give you a complete account of the system, and expound
-                                the
-                                actual
-                                teachings of the great explorer of the truth, the master-builder of human
-                                happiness.<span class="visually-hidden">end inserted text</span></ins>
-                        </blockquote>
+                    <h2>Screen orientation</h2>
+                    <p>Some of the pages on this site only display correctly on mobile devices when they are in a
+                        particular orientation. Beside each page listed below, you'll see one or more smartphone icons.
+                        When you
+                        see the icon in the upright position, it signals support for portait mode. When rotated 90
+                        degrees, it means landscape mode works too.</p>
+                    <div class="d-flex orientation-list">
+                        <div>
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="#">Fundamentally
+                                        Accessible</a></li>
+                                <li class="list-group-item"><a href="#">Accessible
+                                        UX</a></li>
+                                <li class="list-group-item">
+                                    <a href="#">Structuring
+                                        Things</a>
+                                </li>
+                                <li class="list-group-item"><a href="#">Imagine
+                                        Responsiveness</a>
+                                </li>
+                                <li class="list-group-item"><a href="#">Accessible
+                                        UX</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <svg class="bi" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                </li>
+                                <li class="list-group-item">
+                                    <svg class="bi" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                </li>
+                                <li class="list-group-item">
+                                    <svg class="bi" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                </li>
+                                <li class="list-group-item">
+                                    <svg class="bi" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                    &nbsp;
+                                </li>
+                                <li class="list-group-item">
+                                    <svg class="bi" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <svg class="bi rotate90" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                </li>
+                                <li class="list-group-item">
+                                    <svg class="bi rotate90" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                </li>
+                                <li class="list-group-item">
+                                    <svg class="bi rotate90" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                </li>
+                                <li class="list-group-item">
+                                    <!-- <svg class="bi" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg> -->
+                                    &nbsp;
+                                </li>
+                                <li class="list-group-item">
+                                    <svg class="bi rotate90" width="1em" height="1em" fill="currentColor" role="img"
+                                        aria-label="Orientation">
+                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
+                                    </svg>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+
                 </td>
                 <td valign="top" class="col2 lessons-menu">
                     <ul class="nav flex-column" aria-label="Lessons">
@@ -430,6 +511,11 @@
                         <li class="nav-item"><a class="nav-link" href="#">Accessible
                                 UX</a></li>
                     </ul>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="footer">
+                    © 2021 Virginia Tech
                 </td>
             </tr>
         </table>
