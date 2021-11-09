@@ -31,17 +31,10 @@
         .nav-link,
         .list-group-item-action {
             color: #003C71;
-            /* text-decoration: none; */
         }
 
         .list-group-item-action+.active {
-            background-color: #003C71;
-
             border-color: #861f41;
-        }
-
-        a>.bi {
-            text-decoration: none;
         }
 
         .nav-link:hover {
@@ -64,30 +57,6 @@
             background-color: #c64600;
         }
 
-        div.list {
-            margin-top: 0;
-            margin-bottom: 1rem;
-            padding-right: 2rem;
-            padding-left: 2em;
-        }
-
-        div.list div.item::before {
-            position: absolute;
-
-            content: "\2022";
-            /* Add content: \2022 is the CSS Code/unicode for a bullet */
-            color: #861f41;
-            /* Change the color */
-            font-weight: bold;
-            /* If you want it to be bold */
-            display: inline-block;
-            /* Needed to add space between the bullet and the text */
-            width: 1rem;
-            /* Also needed for space (tweak if needed) */
-            margin-left: -1rem;
-            /* Also needed for space (tweak if needed) */
-        }
-
         .form-control {
             border-color: #909290;
         }
@@ -104,117 +73,6 @@
         .skippy a {
             color: white;
         }
-
-        .download-list li::marker {
-            color: #861f41;
-        }
-
-        [dir="rtl"] {
-            text-align: center;
-        }
-
-        [dir="rtl"]>span {
-            display: inline-block;
-            width: 16.6%;
-            text-align: left;
-            padding: .5em;
-            margin: 0;
-            vertical-align: top;
-            ;
-        }
-
-
-        /* Variables
-================================== */
-        /* Tables
-================================== */
-        .Rtable {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 0 3em 0;
-            padding: 0;
-        }
-
-        .Rtable-cell {
-            box-sizing: border-box;
-            flex-grow: 1;
-            width: 100%;
-            padding: 0.8em 1.2em;
-            overflow: hidden;
-            list-style: none;
-
-        }
-
-        .Rtable--3cols {
-            border: solid 3px white;
-        }
-
-        .Rtable--4cols {
-            width: 70%;
-        }
-
-        /* Table column sizing
-================================== */
-        .Rtable--2cols>.Rtable-cell {
-            width: 50%;
-        }
-
-        .Rtable--3cols>.Rtable-cell {
-            width: 33.33%;
-            border: solid 3px white;
-            /* background: rgba(112, 128, 144, 0.2); */
-            background: rgb(229, 225, 230)
-        }
-
-        .Rtable--4cols>.Rtable-cell {
-            width: 25%;
-            border-bottom: 1px solid gray;
-            box-sizing: border-box;
-            flex-grow: 1;
-            width: 100%;
-            padding: 0.8em 1.2em;
-            overflow: hidden;
-            list-style: none;
-        }
-
-        .Rtable--4cols>.Rtable-cell-6 {
-            width: 45%;
-            margin-left: 1rem;
-        }
-
-        .Rtable--4cols>.Rtable-cell-6::before {
-            position: absolute;
-
-            content: "\2022";
-            /* Add content: \2022 is the CSS Code/unicode for a bullet */
-            color: #861f41;
-            /* Change the color */
-            font-weight: bold;
-            /* If you want it to be bold */
-            display: inline-block;
-            /* Needed to add space between the bullet and the text */
-            width: 1rem;
-
-            /* Also needed for space (tweak if needed) */
-            margin-left: -1rem;
-            /* Also needed for space (tweak if needed) */
-        }
-
-        .Rtable--4cols>.Rtable-cell-2 {
-            width: 10%;
-        }
-
-        /* .Rtable--5cols>.Rtable-cell {
-            width: 20%;
-        }
-
-        .Rtable--6cols>.Rtable-cell {
-            width: 16.6%;
-        } */
-
-        /* .container {
-            width: 1199px;
-        } */
 
         .layout-table {
             width: 950px;
@@ -251,7 +109,6 @@
         }
 
         .main {
-            background-color: white;
             background-color: #F5F5EC;
             padding: 1rem;
         }
@@ -289,39 +146,6 @@
             width: 700px;
         }
 
-        /* .col2 {
-            width: 300px;
-        } */
-        .quote {
-            margin: 0 0 1rem;
-            background: #fff;
-            padding: 1em;
-            border-radius: 1em;
-            border-left: 1rem solid rgb(229, 225, 230);
-        }
-
-        .quote figcaption,
-        .quote .blockquote {
-            margin: 1em;
-        }
-
-        .quote .blockquote {
-            text-indent: -0.5em;
-        }
-
-        .quote .blockquote::before {
-            content: open-quote;
-        }
-
-        .quote .blockquote::after {
-            content: close-quote;
-        }
-
-        caption {
-            color: #677078;
-            text-align: center;
-        }
-
         .footer {
             text-align: center;
             background-color: #212529;
@@ -332,16 +156,6 @@
 
         button[type="submit"].btn-light:focus {
             box-shadow: none;
-        }
-
-        li.current::after {
-            content: " \21E6";
-            /* Hexadecimal for Unicode Leftwards white arrow*/
-            display: inline;
-        }
-
-        thead {
-            font-weight: bold;
         }
 
         .rotate90 {
@@ -454,16 +268,21 @@
         .adjusted-caption {
             top: -3em;
         }
+        @media (orientation: portrait) {
+            html {
+                transform: rotate(-90deg);
+                transform-origin: left top;
+                width: 100vh;
+                overflow-x: hidden;
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="stylesheets/highlight/a11y-dark.css" type="text/css" />
-    <script src="javascripts/highlight/highlight.min.js"></script>
-    <script>
-        hljs.highlightAll();
-        screen.lockOrientation('landscape');
-    </script>
 </head>
 
 <body onload="drawPieChart()">
@@ -499,11 +318,13 @@
             </tr>
             <tr>
                 <td class="col1 breadcrumb-menu">
+                    <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Lessons</a></li>
                             <li class="breadcrumb-item" aria-current="page">Imagine Responsiveness</li>
                         </ol>
+                    </nav>
                 </td>
                 <td class="col2 lessons-heading">Lessons</td>
             </tr>
@@ -513,11 +334,16 @@
                     <h2>What do you think of?</h2>
                     <p>When you try to picture responsiveness, which of the following first comes to mind?</p>
                     <p class="fw-bold">This:
-                    <div class="mb-3"><img src="images/first_responders.jpeg" alt="Picture of first responders at the site of a train collision" class="border"></div></p>
+                    <div class="mb-3"><img src="images/first_responders.jpeg"
+                            alt="Picture of first responders at the site of a train collision" class="border"></div>
+                    </p>
                     <p class="fw-bold">Or this:</p>
-                    <div class="mb-3"><img src="images/media_query.png" alt="Formatted code showing media queries" class="border"></div>
-                    <p>As a web developer, you should be thinking in terms of the latter, by <em>responding</em> to different viewport sizes using media queries.</p>
-                    <h2 class="mt-5"><a href="https://dequeuniversity.com/rules/axe/4.3/list">Appropriate Nesting</a></h2>
+                    <div class="mb-3"><img src="images/media_query.png" alt="Formatted code showing media queries"
+                            class="border"></div>
+                    <p>As a web developer, you should be thinking in terms of the latter, by <em>responding</em> to
+                        different viewport sizes using media queries.</p>
+                    <h2 class="mt-5"><a href="https://dequeuniversity.com/rules/axe/4.3/list">Appropriate Nesting</a>
+                    </h2>
                     <p>It is important that elements be nested appropriately. For instance, only certain kinds of
                         elements are allowed as children of <code>ul</code> elements. The following figures
                         show correct and incorrect ways of creating nested lists. Elements outlined in red are not
@@ -576,7 +402,8 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <figcaption class="figure-caption position-relative adjusted-caption" id="cap1">Figure 1: Nested Lists
+                            <figcaption class="figure-caption position-relative adjusted-caption" id="cap1">Figure 1:
+                                Nested Lists
                                 Example</figcaption>
                         </figure>
                         <figure class="figure float-end" role="figure" aria-labelledby="cap2">
@@ -625,7 +452,8 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <figcaption class="figure-caption position-relative adjusted-caption" id="cap2">Figure 2: Nested Lists
+                            <figcaption class="figure-caption position-relative adjusted-caption" id="cap2">Figure 2:
+                                Nested Lists
                                 Non-Example</figcaption>
                         </figure>
                     </div>
@@ -742,7 +570,9 @@
                         </div>
                     </div>
                     <h2 class="mt-5">Screen Readers</h2>
-<p>Based on the <a href="https://webaim.org/projects/screenreadersurvey9/">most recent WebAIM Screen Reader User Survey</a>, there are only four major screen readers for desktop operating systems, with the rest seeing very minimal usage.</p>
+                    <p>Based on the <a href="https://webaim.org/projects/screenreadersurvey9/">most recent WebAIM Screen
+                            Reader User Survey</a>, there are only four major screen readers for desktop operating
+                        systems, with the rest seeing very minimal usage.</p>
                     <figure class="figure" role="figure" aria-labelledby="cap4">
                         <canvas id="pie" width="600" height="500" class="bg-white border" role="img" alt="pie chart">
                             <table>
@@ -779,7 +609,8 @@
                                 </tr>
                             </table>
                         </canvas>
-                        <figcaption class="figure-caption" id="cap4">Figure 4: Desktop/Laptop Screen Reader Prevalence</figcaption>
+                        <figcaption class="figure-caption" id="cap4">Figure 4: Desktop/Laptop Screen Reader Prevalence
+                        </figcaption>
                     </figure>
 
                 </td>
@@ -826,7 +657,7 @@
             var canvas = document.getElementById('pie');
             var ctx = canvas.getContext('2d');
             var pad = 20;
-            var x = (canvas.width / 4)+pad;
+            var x = (canvas.width / 4) + pad;
             y = canvas.height / 2;
             var color,
                 startAngle,
@@ -843,10 +674,10 @@
                 ctx.moveTo(x, y);
                 ctx.arc(x, y, y - 100, startAngle, endAngle);
                 ctx.fill();
-                ctx.rect((canvas.width / 2)+(pad*4), y - i * 30, 12, 12);
+                ctx.rect((canvas.width / 2) + (pad * 4), y - i * 30, 12, 12);
                 ctx.fill();
                 ctx.font = "13px sans-serif";
-                ctx.fillText(data[i].label + " - " + data[i].value + " (" + calculatePercent(data[i].value, total) + "%)", (canvas.width / 2)+(pad*5) , y - i * 30 + 10);
+                ctx.fillText(data[i].label + " - " + data[i].value + " (" + calculatePercent(data[i].value, total) + "%)", (canvas.width / 2) + (pad * 5), y - i * 30 + 10);
             }
         };
 
