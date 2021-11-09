@@ -11,7 +11,23 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <style>
-        a,
+        a {
+            color: #861f41;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: underline;
+            color: #861f41;
+        }
+
+        h2 a {
+            color: #C64600;
+
+        }
+
+
         .nav-link,
         .list-group-item-action {
             color: #003C71;
@@ -340,6 +356,104 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
+
+        /* Based on https://www.cssscript.com/clean-tree-diagram/ */
+        .tree,
+        .tree ul,
+        .tree li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .tree {
+            margin: 0 0 1em;
+            text-align: center;
+        }
+
+        .tree,
+        .tree ul {
+            display: table;
+        }
+
+        .tree ul {
+            width: 100%;
+        }
+
+        .tree li {
+            display: table-cell;
+            padding: .5em 0;
+            vertical-align: top;
+            overflow: hidden;
+        }
+
+        .tree li:before {
+            outline: solid 1px #666;
+            content: "";
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .tree li:first-child:before {
+            left: 50%;
+        }
+
+        .tree li:last-child:before {
+            right: 50%;
+        }
+
+        .tree code,
+        .tree span {
+            border: solid .1em #666;
+            background-color: white;
+            border-radius: .2em;
+            display: inline-block;
+            margin: 0 .2em .5em;
+            padding: .2em .6em;
+            position: relative;
+
+        }
+
+        .tree code.incorrect {
+            border-color: red;
+        }
+
+        .tree ul:before,
+        .tree code:before,
+        .tree span:before {
+            outline: solid 1px #666;
+            content: "";
+            height: .5em;
+            left: 50%;
+            position: absolute;
+        }
+
+        .tree ul:before {
+            top: -.5em;
+        }
+
+        .tree code:before,
+        .tree span:before {
+            top: -.55em;
+        }
+
+        .tree>li {
+            margin-top: 0;
+        }
+
+        .tree>li:before,
+        .tree>li:after,
+        .tree>li>code:before,
+        .tree>li>span:before {
+            outline: none;
+        }
+
+        .adjusted-caption {
+            top: -3em;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -352,7 +466,7 @@
     </script>
 </head>
 
-<body>
+<body onload="drawPieChart()">
     <div class="container-fluid wrapper">
         <table class="layout-table" role="presentation">
             <tr>
@@ -398,20 +512,137 @@
             <tr>
                 <td class="col1 main">
                     <h1>Imagine Responsiveness</h1>
-                    <h2>Fails Text Spacing and Text Resizing</h2>
-                    <div style="height:100px">
-                        <p>Some of the pages on this site only display correctly on mobile devices when they are in a
-                            particular orientation. Beside each page listed below, you'll see one or more smartphone
-                            icons.
-                            When you
-                            see the icon in the upright position, it signals support for portait mode. When rotated 90
-                            degrees, it means landscape mode works too.</p>
+                    <h2><a href="https://dequeuniversity.com/rules/axe/4.3/list">Appropriate Nesting</a></h2>
+                    <p>It is important that elements be nested appropriately. For instance, only certain kinds of
+                        elements are allowed as children of <code>ul</code> elements. The following figures
+                        show correct and incorrect ways of creating nested lists. Elements outlined in red are not
+                        allowed children of the parent shown.</p>
+                    <div class="clearfix">
+                        <figure class="figure position-absolute">
+                            <ul class="tree">
+                                <li>
+                                    <code>&lt;ul&gt;</code>
+                                    <ul>
+                                        <li>
+                                            <code>&lt;li&gt;</code>
+                                            <ul>
+                                                <li>
+                                                    <code>&lt;ul&gt;</code>
+                                                    <ul>
+                                                        <li>
+                                                            <code>&lt;li&gt;</code>
+                                                        </li>
+                                                        <li>
+                                                            <code>&lt;li&gt;</code>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <code>&lt;li&gt;</code>
+                                            <ul>
+                                                <li>
+                                                    <code>&lt;ul&gt;</code>
+                                                    <ul>
+                                                        <li>
+                                                            <code>&lt;li&gt;</code>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <code>&lt;li&gt;</code>
+                                            <ul>
+                                                <li>
+                                                    <code>&lt;ul&gt;</code>
+                                                    <ul>
+                                                        <li>
+                                                            <code>&lt;li&gt;</code>
+                                                        </li>
+                                                        <li>
+                                                            <code>&lt;li&gt;</code>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <figcaption class="figure-caption position-relative adjusted-caption">Figure 1: Nested Lists
+                                Example</figcaption>
+                        </figure>
+                        <figure class="figure" style="float:right">
+                            <ul class="tree" role="list">
+                                <li role="listitem">
+                                    <code>&lt;ul&gt;</code>
+                                    <ul role="list">
+                                        <li role="listitem">
+                                            <code>&lt;li&gt;</code>
+                                            <ul role="list">
+                                                <li role="listitem">
+                                                    <code>&lt;ul&gt;</code>
+                                                    <ul role="list">
+                                                        <li role="listitem">
+                                                            <code>&lt;li&gt;</code>
+                                                        </li role="listitem">
+                                                        <li role="listitem">
+                                                            <code>&lt;li&gt;</code>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <code class="incorrect">&lt;ul&gt;</code>
+                                            <ul role="list">
+                                                <li role="listitem">
+                                                    <code>&lt;li&gt;</code>
+                                                </li>
+                                                <li role="listitem">
+                                                    <code>&lt;li&gt;</code>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <code class="incorrect">&lt;ul&gt;</code>
+                                            <ul role="list">
+                                                <li role="listitem">
+                                                    <code>&lt;li&gt;</code>
+                                                </li>
+                                                <li role="listitem">
+                                                    <code>&lt;li&gt;</code>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <figcaption class="figure-caption position-relative adjusted-caption">Figure 2: Nested Lists
+                                Non-Example</figcaption>
+                        </figure>
                     </div>
-                    <h2>Fails Complex Image but Passes Images of Text</h2>
 
-                    <img src="images/wcag20docs.png" alt="Include all of the text in the image" width="650">
-                    <p>How you would actually do this<br>
-                        https://www.w3.org/WAI/standards-guidelines/wcag/docs/</p>
+                    <h2><a href="https://www.w3.org/WAI/standards-guidelines/wcag/docs/">Different documents for
+                            different purposes</a></h2>
+                    <p>
+                        The resources, <a href="http://www.w3.org/WAI/WCAG21/quickref/">How to Meet WCAG 2.0</a>, <a
+                            href="https://www.w3.org/TR/WCAG20/">WCAG 2.0</a>, <a
+                            href="https://www.w3.org/TR/WCAG20-TECHS/">Techniques for WCAG 2.0</a>, and <a
+                            href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/">Understanding WCAG 2.0</a> serve
+                        different
+                        purposes.
+                    </p>
+
+                    <figure class="figure">
+                        <img src="images/wcag20docs.png"
+                            alt="Customizable Quick Reference, How to Meet WCAG 2.0 • Guidelines • Success Criteria • Techniques | WCAG 2.0 • Principles • Guidelines • Success Criteria • Conformance | Instructions for Developers, Techniques for WCAG 2.0 (HTML, css, scripting, ...) • Browser and assistive technology support notes • Examples, code • Resources • Test procedures | Detailed Reference, Understanding WCAG 2.0 • Intent • Benefits to people with disabilities • Example scenarios • Resources • Techniques "
+                            width="650">
+                        <figcaption class="figure-caption">Figure 3: WCAG 2.0 documents. WCAG 2.1 has the same
+                            documents.</figcaption>
+                    </figure>
                     <p>Heading link color is web burnt orange with no hover</p>
                     <p>In-context link is maroon with hover</p>
 
@@ -496,10 +727,6 @@
                                     </svg>
                                 </li>
                                 <li class="list-group-item">
-                                    <!-- <svg class="bi" width="1em" height="1em" fill="currentColor" role="img"
-                                        aria-label="Orientation">
-                                        <use xlink:href="images/bootstrap-icons.svg#phone"></use>
-                                    </svg> -->
                                     &nbsp;
                                 </li>
                                 <li class="list-group-item">
@@ -511,6 +738,46 @@
                             </ul>
                         </div>
                     </div>
+                    <h2>Screen Readers</h2>
+<p>Based on the <a href="https://webaim.org/projects/screenreadersurvey9/">most recent WebAIM Screen Reader User Survey</a>, there are only four major screen readers for desktop operating systems, with the rest seeing very minimal usage.</p>
+                    <figure class="figure">
+                        <canvas id="pie" width="600" height="500" style="border:1px solid black; background-color: white;" role="img">
+                            <table>
+                                <caption>Which of the following is your primary desktop/laptop screen reader?</caption>
+                                <tr>
+                                    <th>Screen Reader</th>
+                                    <th># of respondents</th>
+                                    <th>% of respondents</th>
+                                </tr>
+                                <tr>
+                                    <td>JAWS</td>
+                                    <td>832</td>
+                                    <td>53.75</td>
+                                </tr>
+                                <tr>
+                                    <td>NVDA</td>
+                                    <td>476</td>
+                                    <td>30.75</td>
+                                </tr>
+                                <tr>
+                                    <td>VoiceOver</td>
+                                    <td>100</td>
+                                    <td>6.46</td>
+                                </tr>
+                                <tr>
+                                    <td>ZoomText/Fusion</td>
+                                    <td>72</td>
+                                    <td>4.65</td>
+                                </tr>
+                                <tr>
+                                    <td>Other</td>
+                                    <td>68</td>
+                                    <td>4.39</td>
+                                </tr>
+                            </table>
+                        </canvas>
+                        <figcaption class="figure-caption">Figure 4: Desktop/Laptop Screen Reader Prevalence</figcaption>
+                    </figure>
 
                 </td>
                 <td valign="top" class="col2 lessons-menu">
@@ -538,6 +805,87 @@
             </tr>
         </table>
     </div>
+
+    <script>
+
+        // Based on https://codepen.io/swaroopsm/pen/qIamk
+        var drawPieChart = function () {
+
+
+            var data = [
+                { label: 'JAWS', value: 832 },
+                { label: 'NVDA', value: 476 },
+                { label: 'VoiceOver', value: 100 },
+                { label: 'ZoomText/Fusion', value: 72 },
+                { label: 'Other', value: 68 }
+            ];
+            var colors = ['#FF0000', '#0000FF', '#008800', '#A52A2A', '#800080'];
+            var canvas = document.getElementById('pie');
+            var ctx = canvas.getContext('2d');
+            var pad = 20;
+            var x = (canvas.width / 4)+pad;
+            y = canvas.height / 2;
+            var color,
+                startAngle,
+                endAngle,
+                total = getTotal(data);
+
+            for (var i = 0; i < data.length; i++) {
+                color = colors[i];
+                startAngle = calculateStart(data, i, total);
+                endAngle = calculateEnd(data, i, total);
+
+                ctx.beginPath();
+                ctx.fillStyle = color;
+                ctx.moveTo(x, y);
+                ctx.arc(x, y, y - 100, startAngle, endAngle);
+                ctx.fill();
+                ctx.rect((canvas.width / 2)+(pad*4), y - i * 30, 12, 12);
+                ctx.fill();
+                ctx.font = "13px sans-serif";
+                ctx.fillText(data[i].label + " - " + data[i].value + " (" + calculatePercent(data[i].value, total) + "%)", (canvas.width / 2)+(pad*5) , y - i * 30 + 10);
+            }
+        };
+
+        var calculatePercent = function (value, total) {
+
+            return (value / total * 100).toFixed(2);
+        };
+
+        var getTotal = function (data) {
+            var sum = 0;
+            for (var i = 0; i < data.length; i++) {
+                sum += data[i].value;
+            }
+
+            return sum;
+        };
+
+        var calculateStart = function (data, index, total) {
+            if (index === 0) {
+                return 0;
+            }
+
+            return calculateEnd(data, index - 1, total);
+        };
+
+        var calculateEndAngle = function (data, index, total) {
+            var angle = data[index].value / total * 360;
+            var inc = (index === 0) ? 0 : calculateEndAngle(data, index - 1, total);
+
+            return (angle + inc);
+        };
+
+        var calculateEnd = function (data, index, total) {
+
+            return degreeToRadians(calculateEndAngle(data, index, total));
+        };
+
+        var degreeToRadians = function (angle) {
+            return angle * Math.PI / 180
+        }
+
+    </script>
 </body>
 
 </html>
