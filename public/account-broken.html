@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | VT Alumni Network</title>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css"
+    integrity="sha512-+0Vhbu8sRUlg+R/NKgTv7ahM+szPDF10G6J5PcHb1tOrAaquZIUiKUV3TH16mi6fuH4NjvHqlok6ppBhR6Nxuw=="
+    crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autotab/1.9.2/js/jquery.autotab.min.js"
+    integrity="sha512-wKEDUO5yhx+KCNN/Kz6ksfeK00p/76dfENygq3LktbGl5zKSMpSm3zaBO0KFTKxqc689yf7gNUEViXz3c4jBFA=="
+    crossorigin="anonymous"></script>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="stylesheets/account.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="page-wrap">
+      <header class="page-header">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="h3">
+            <a href="alum.html">
+              VT Alumni Network
+            </a>
+          </div>
+          <div>
+            <form class="d-flex" id="search">
+              <input accesskey="s" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-light" type="submit">Go</button>
+            </form>
+          </div>
+        </div>
+      </header>
+      <nav class="page-nav" aria-label="breadcrumb">
+
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a href="alum.html">Home</a></li>
+          <li class="breadcrumb-item" aria-current="page">Create Account</li>
+        </ol>
+      </nav>
+      <main class="page-main">
+        <div class="content">
+
+          <h1 id="main" tabindex="-1">Create Account</h1>
+          <p><b>Personal Information</b></p>
+          <form name="compForm" method="post">
+            <table id="personalname">
+              <tbody>
+                <tr>
+                  <th>First *</th>
+                  <th>MI</th>
+                  <th>Last *</th>
+                </tr>
+                <tr>
+                  <td><input type="text" name="first" class="req"></td>
+                  <td><input type="text" name="mi" maxlength="1" size="2"></td>
+                  <td><input type="text" name="last" class="req"></td>
+                </tr>
+              </tbody>
+            </table>
+            <table style="width: 100%;" cellpadding="3" cellspacing="0" id="sociallogin">
+              <tbody>
+                <tr>
+                  <th>Social Security #</th>
+                  <th>Login</th>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" name="ss1" maxlength="3" class="number" size="3">
+                    <input type="text" name="ss2" maxlength="2" class="number" size="2">
+                    <input type="text" name="ss3" maxlength="4" class="number" size="4">
+                  </td>
+
+                  <td><input type="text" name="username" placeholder="Username" aria-required="true"></td>
+                </tr>
+                <tr>
+                  <th>Date of Birth</th>
+                  <td><input type="password" name="password" placeholder="Password" aria-required="true"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" id="datepicker" class="hasDatepicker"></td>
+                  <td><input type="password" name="password2" placeholder="Retype Password" aria-required="true"></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+
+            <p><b>How can we reach you?</b></p>
+            <table cellpadding="3" cellspacing="0" id="reach">
+              <tbody>
+                <tr>
+                  <th colspan="2">Address</th>
+                  <th>Contact</th>
+                </tr>
+                <tr>
+                  <td><label for="ShipNameTextBox" class="aligned">Name:</label></td>
+                  <td><input type="text" id="ShipNameTextBox" name="ShipNameTextBox"></td>
+                  <td>
+                    <input type="text" name="company" placeholder="Company">
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="ShipAddressTextBox" class="aligned">Address:</label></td>
+                  <td><input type="text" id="ShipAddressTextBox" name="ShipAddressTextBox"></td>
+                  <td>
+                    <input type="text" name="email" placeholder="Email Address">
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="ShipCityTextBox" class="aligned">City:</label></td>
+                  <td>
+                    <input type="text" id="ShipCityTextBox" name="ShipCityTextBox" size="20">
+                  </td>
+                  <td>
+                    <div role="group" aria-labelledby="phone"> <span id="phone"></span> (
+                      <input title="First 3" type="text" size="3" name="phone1"> ) -
+                      <input title="Next 3" type="text" size="3" name="phone2"> -
+                      <input title="Last 4" type="text" size="4" name="phone3">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="ShipStateTextBox">State:</label></td>
+                  <td colspan="2">
+                    <select id="ShipStateTextBox" name="StateTextBox">
+                      <option value="AL">Alabama</option>
+                      <option value="AK">Alaska</option>
+                      <option value="AZ">Arizona</option>
+                      <option value="AR">Arkansas</option>
+                      <option value="CA">California</option>
+                      <option value="CO">Colorado</option>
+                      <option value="CT">Connecticut</option>
+                      <option value="DE">Delaware</option>
+                      <option value="DC">District Of Columbia</option>
+                      <option value="FL">Florida</option>
+                      <option value="GA">Georgia</option>
+                      <option value="HI">Hawaii</option>
+                      <option value="ID">Idaho</option>
+                      <option value="IL">Illinois</option>
+                      <option value="IN">Indiana</option>
+                      <option value="IA">Iowa</option>
+                      <option value="KS">Kansas</option>
+                      <option value="KY">Kentucky</option>
+                      <option value="LA">Louisiana</option>
+                      <option value="ME">Maine</option>
+                      <option value="MD">Maryland</option>
+                      <option value="MA">Massachusetts</option>
+                      <option value="MI">Michigan</option>
+                      <option value="MN">Minnesota</option>
+                      <option value="MS">Mississippi</option>
+                      <option value="MO">Missouri</option>
+                      <option value="MT">Montana</option>
+                      <option value="NE">Nebraska</option>
+                      <option value="NV">Nevada</option>
+                      <option value="NH">New Hampshire</option>
+                      <option value="NJ">New Jersey</option>
+                      <option value="NM">New Mexico</option>
+                      <option value="NY">New York</option>
+                      <option value="NC">North Carolina</option>
+                      <option value="ND">North Dakota</option>
+                      <option value="OH">Ohio</option>
+                      <option value="OK">Oklahoma</option>
+                      <option value="OR">Oregon</option>
+                      <option value="PA">Pennsylvania</option>
+                      <option value="RI">Rhode Island</option>
+                      <option value="SC">South Carolina</option>
+                      <option value="SD">South Dakota</option>
+                      <option value="TN">Tennessee</option>
+                      <option value="TX">Texas</option>
+                      <option value="UT">Utah</option>
+                      <option value="VT">Vermont</option>
+                      <option value="VA">Virginia</option>
+                      <option value="WA">Washington</option>
+                      <option value="WV">West Virginia</option>
+                      <option value="WI">Wisconsin</option>
+                      <option value="WY">Wyoming</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="ShipZIPTextBox">ZIP:</label></td>
+                  <td colspan="2"><input type="text" id="ShipZIPTextBox" name="ShipZIPTextBox" maxlength="10" size="10">
+                  </td>
+                </tr>
+              </tbody>
+            </table><br>
+            <p><b>Tell us about yourself</b></p>
+            <input type="hidden" name="myDoc">
+            <div id="toolBar1">
+              <select id="formatting">
+                <option selected="">- formatting -</option>
+                <option value="h1">Title 1 &lt;h1&gt;</option>
+                <option value="h2">Title 2 &lt;h2&gt;</option>
+                <option value="h3">Title 3 &lt;h3&gt;</option>
+                <option value="h4">Title 4 &lt;h4&gt;</option>
+                <option value="h5">Title 5 &lt;h5&gt;</option>
+                <option value="h6">Subtitle &lt;h6&gt;</option>
+                <option value="p">Paragraph &lt;p&gt;</option>
+                <option value="pre">Preformatted &lt;pre&gt;</option>
+              </select>
+              <select id="font">
+                <option class="heading" selected="">- font -</option>
+                <option>Arial</option>
+                <option>Arial Black</option>
+                <option>Courier New</option>
+                <option>Times New Roman</option>
+              </select>
+              <select id="fontSize">
+                <option class="heading" selected="">- size -</option>
+                <option value="1">Very small</option>
+                <option value="2">A bit small</option>
+                <option value="3">Normal</option>
+                <option value="4">Medium-large</option>
+                <option value="5">Big</option>
+                <option value="6">Very big</option>
+                <option value="7">Maximum</option>
+              </select>
+              <select id="foreColor">
+                <option class="heading" selected="">- color -</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="black">Black</option>
+              </select>
+              <select id="backColor">
+                <option class="heading" selected="">- background -</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+              </select>
+            </div>
+            <div id="toolBar2">
+              <img class="intLink" id="print" title="Print"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9oEBxcZFmGboiwAAAAIdEVYdENvbW1lbnQA9syWvwAAAuFJREFUOMvtlUtsjFEUx//n3nn0YdpBh1abRpt4LFqtqkc3jRKkNEIsiIRIBBEhJJpKlIVo4m1RRMKKjQiRMJRUqUdKPT71qpIpiRKPaqdF55tv5vvusZjQTjOlseUkd3Xu/3dPzusC/22wtu2wRn+jG5So/OCDh8ycMJDflehMlkJkVK7KUYN+ufzA/RttH76zaVocDptRxzQtNi3mRWuPc+6cKtlXZ/sddP2uu9uXlmYXZ6Qm8v4Tz8lhF1H+zDQXt7S8oLMXtbF4e8QaFHjj3kbP2MzkktHpiTjp9VH6iHiA+whtAsX5brpwueMGdONdf/2A4M7ukDs1JW662+XkqTkeUoqjKtOjm2h53YFL15pSJ04Zc94wdtibr26fXlC2mzRvBccEbz2kiRFD414tKMlEZbVGT33+qCoHgha81SWYsew0r1uzfNylmtpx80pngQQ91LwVk2JGvGnfvZG6YcYRAT16GFtW5kKKfo1EQLtfh5Q2etT0BIWF+aitq4fDbk+ImYo1OxvGF03waFJQvBCkvDffRyEtxQiFFYgAZTHS0zwAGD7fG5TNnYNTp8/FzvGwJOfmgG7GOx0SAKKgQgDMgKBI0NJGMEImpGDk5+WACEwEd0ywblhGUZ4Hw5OdUekRBLT7DTgdEgxACsIznx8zpmWh7k4rkpJcuHDxCul6MDsmmBXDlWCH2+XozSgBnzsNCEE4euYV4pwCpsWYPW0UHDYBKSWu1NYjENDReqtKjwn2+zvtTc1vMSTB/mvev/WEYSlASsLimcOhOBJxw+N3aP/SjefNL5GePZmpu4kG7OPr1+tOfPyUu3BecWYKcwQcDFmwFKAUo90fhKDInBCAmvqnyMgqUEagQwCoHBDc1rjv9pIlD8IbVkz6qYViIBQGTJPx4k0XpIgEZoRN1Da0cij4VfR0ta3WvBXH/rjdCufv6R2zPgPH/e4pxSBCpeatqPrjNiso203/5s/zA171Mv8+w1LOAAAAAElFTkSuQmCC">
+              <img class="intLink" id="undo" title="Undo"
+                src="data:image/gif;base64,R0lGODlhFgAWAOMKADljwliE33mOrpGjuYKl8aezxqPD+7/I19DV3NHa7P///////////////////////yH5BAEKAA8ALAAAAAAWABYAAARR8MlJq7046807TkaYeJJBnES4EeUJvIGapWYAC0CsocQ7SDlWJkAkCA6ToMYWIARGQF3mRQVIEjkkSVLIbSfEwhdRIH4fh/DZMICe3/C4nBQBADs=">
+              <img class="intLink" id="redo" title="Redo"
+                src="data:image/gif;base64,R0lGODlhFgAWAMIHAB1ChDljwl9vj1iE34Kl8aPD+7/I1////yH5BAEKAAcALAAAAAAWABYAAANKeLrc/jDKSesyphi7SiEgsVXZEATDICqBVJjpqWZt9NaEDNbQK1wCQsxlYnxMAImhyDoFAElJasRRvAZVRqqQXUy7Cgx4TC6bswkAOw==">
+              <img class="intLink" id="removeFormat" title="Remove formatting"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAAd0SU1FB9oECQMCKPI8CIIAAAAIdEVYdENvbW1lbnQA9syWvwAAAuhJREFUOMtjYBgFxAB501ZWBvVaL2nHnlmk6mXCJbF69zU+Hz/9fB5O1lx+bg45qhl8/fYr5it3XrP/YWTUvvvk3VeqGXz70TvbJy8+Wv39+2/Hz19/mGwjZzuTYjALuoBv9jImaXHeyD3H7kU8fPj2ICML8z92dlbtMzdeiG3fco7J08foH1kurkm3E9iw54YvKwuTuom+LPt/BgbWf3//sf37/1/c02cCG1lB8f//f95DZx74MTMzshhoSm6szrQ/a6Ir/Z2RkfEjBxuLYFpDiDi6Af///2ckaHBp7+7wmavP5n76+P2ClrLIYl8H9W36auJCbCxM4szMTJac7Kza////R3H1w2cfWAgafPbqs5g7D95++/P1B4+ECK8tAwMDw/1H7159+/7r7ZcvPz4fOHbzEwMDwx8GBgaGnNatfHZx8zqrJ+4VJBh5CQEGOySEua/v3n7hXmqI8WUGBgYGL3vVG7fuPK3i5GD9/fja7ZsMDAzMG/Ze52mZeSj4yu1XEq/ff7W5dvfVAS1lsXc4Db7z8C3r8p7Qjf///2dnZGxlqJuyr3rPqQd/Hhyu7oSpYWScylDQsd3kzvnH738wMDzj5GBN1VIWW4c3KDon7VOvm7S3paB9u5qsU5/x5KUnlY+eexQbkLNsErK61+++VnAJcfkyMTIwffj0QwZbJDKjcETs1Y8evyd48toz8y/ffzv//vPP4veffxpX77z6l5JewHPu8MqTDAwMDLzyrjb/mZm0JcT5Lj+89+Ybm6zz95oMh7s4XbygN3Sluq4Mj5K8iKMgP4f0////fv77//8nLy+7MCcXmyYDAwODS9jM9tcvPypd35pne3ljdjvj26+H2dhYpuENikgfvQeXNmSl3tqepxXsqhXPyc666s+fv1fMdKR3TK72zpix8nTc7bdfhfkEeVbC9KhbK/9iYWHiErbu6MWbY/7//8/4//9/pgOnH6jGVazvFDRtq2VgiBIZrUTIBgCk+ivHvuEKwAAAAABJRU5ErkJggg==">
+
+              <img class="intLink" id="bold" title="Bold"
+                src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAInhI+pa+H9mJy0LhdgtrxzDG5WGFVk6aXqyk6Y9kXvKKNuLbb6zgMFADs=">
+              <img class="intLink" id="italic" title="Italic"
+                src="data:image/gif;base64,R0lGODlhFgAWAKEDAAAAAF9vj5WIbf///yH5BAEAAAMALAAAAAAWABYAAAIjnI+py+0Po5x0gXvruEKHrF2BB1YiCWgbMFIYpsbyTNd2UwAAOw==">
+              <img class="intLink" id="underline" title="Underline"
+                src="data:image/gif;base64,R0lGODlhFgAWAKECAAAAAF9vj////////yH5BAEAAAIALAAAAAAWABYAAAIrlI+py+0Po5zUgAsEzvEeL4Ea15EiJJ5PSqJmuwKBEKgxVuXWtun+DwxCCgA7">
+
+              <img class="intLink" id="justifyLeft" title="Left align"
+                src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIghI+py+0Po5y02ouz3jL4D4JMGELkGYxo+qzl4nKyXAAAOw==">
+              <img class="intLink" id="justifyCenter" title="Center align"
+                src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIfhI+py+0Po5y02ouz3jL4D4JOGI7kaZ5Bqn4sycVbAQA7">
+              <img class="intLink" id="rightAlign" title="Right align"
+                src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIghI+py+0Po5y02ouz3jL4D4JQGDLkGYxouqzl43JyVgAAOw==">
+
+              <img class="intLink" id="numberedList" title="Numbered list"
+                src="data:image/gif;base64,R0lGODlhFgAWAMIGAAAAADljwliE35GjuaezxtHa7P///////yH5BAEAAAcALAAAAAAWABYAAAM2eLrc/jDKSespwjoRFvggCBUBoTFBeq6QIAysQnRHaEOzyaZ07Lu9lUBnC0UGQU1K52s6n5oEADs=">
+              <img class="intLink" id="dottedList" title="Dotted list"
+                src="data:image/gif;base64,R0lGODlhFgAWAMIGAAAAAB1ChF9vj1iE33mOrqezxv///////yH5BAEAAAcALAAAAAAWABYAAAMyeLrc/jDKSesppNhGRlBAKIZRERBbqm6YtnbfMY7lud64UwiuKnigGQliQuWOyKQykgAAOw==">
+              <!-- <img class="intLink" id="quote" title="Quote"
+                src="data:image/gif;base64,R0lGODlhFgAWAIQXAC1NqjFRjkBgmT9nqUJnsk9xrFJ7u2R9qmKBt1iGzHmOrm6Sz4OXw3Odz4Cl2ZSnw6KxyqO306K63bG70bTB0rDI3bvI4P///////////////////////////////////yH5BAEKAB8ALAAAAAAWABYAAAVP4CeOZGmeaKqubEs2CekkErvEI1zZuOgYFlakECEZFi0GgTGKEBATFmJAVXweVOoKEQgABB9IQDCmrLpjETrQQlhHjINrTq/b7/i8fp8PAQA7"> -->
+
+              <!-- <img class="intLink" id="outdent" title="Delete indentation"
+                src="data:image/gif;base64,R0lGODlhFgAWAMIHAAAAADljwliE35GjuaezxtDV3NHa7P///yH5BAEAAAcALAAAAAAWABYAAAM2eLrc/jDKCQG9F2i7u8agQgyK1z2EIBil+TWqEMxhMczsYVJ3e4ahk+sFnAgtxSQDqWw6n5cEADs=">
+              <img class="intLink" id="indent" title="Add indentation"
+                src="data:image/gif;base64,R0lGODlhFgAWAOMIAAAAADljwl9vj1iE35GjuaezxtDV3NHa7P///////////////////////////////yH5BAEAAAgALAAAAAAWABYAAAQ7EMlJq704650B/x8gemMpgugwHJNZXodKsO5oqUOgo5KhBwWESyMQsCRDHu9VOyk5TM9zSpFSr9gsJwIAOw=="> -->
+              <img class="intLink" id="hyperlink" title="Hyperlink"
+                src="data:image/gif;base64,R0lGODlhFgAWAOMKAB1ChDRLY19vj3mOrpGjuaezxrCztb/I19Ha7Pv8/f///////////////////////yH5BAEKAA8ALAAAAAAWABYAAARY8MlJq7046827/2BYIQVhHg9pEgVGIklyDEUBy/RlE4FQF4dCj2AQXAiJQDCWQCAEBwIioEMQBgSAFhDAGghGi9XgHAhMNoSZgJkJei33UESv2+/4vD4TAQA7">
+              <img class="intLink" id="cut" title="Cut"
+                src="data:image/gif;base64,R0lGODlhFgAWAIQSAB1ChBFNsRJTySJYwjljwkxwl19vj1dusYODhl6MnHmOrpqbmpGjuaezxrCztcDCxL/I18rL1P///////////////////////////////////////////////////////yH5BAEAAB8ALAAAAAAWABYAAAVu4CeOZGmeaKqubDs6TNnEbGNApNG0kbGMi5trwcA9GArXh+FAfBAw5UexUDAQESkRsfhJPwaH4YsEGAAJGisRGAQY7UCC9ZAXBB+74LGCRxIEHwAHdWooDgGJcwpxDisQBQRjIgkDCVlfmZqbmiEAOw==">
+              <img class="intLink" id="copy" title="Copy"
+                src="data:image/gif;base64,R0lGODlhFgAWAIQcAB1ChBFNsTRLYyJYwjljwl9vj1iE31iGzF6MnHWX9HOdz5GjuYCl2YKl8ZOt4qezxqK63aK/9KPD+7DI3b/I17LM/MrL1MLY9NHa7OPs++bx/Pv8/f///////////////yH5BAEAAB8ALAAAAAAWABYAAAWG4CeOZGmeaKqubOum1SQ/kPVOW749BeVSus2CgrCxHptLBbOQxCSNCCaF1GUqwQbBd0JGJAyGJJiobE+LnCaDcXAaEoxhQACgNw0FQx9kP+wmaRgYFBQNeAoGihCAJQsCkJAKOhgXEw8BLQYciooHf5o7EA+kC40qBKkAAAGrpy+wsbKzIiEAOw==">
+              <img class="intLink" id="paste" title="Paste"
+                src="data:image/gif;base64,R0lGODlhFgAWAIQUAD04KTRLY2tXQF9vj414WZWIbXmOrpqbmpGjudClFaezxsa0cb/I1+3YitHa7PrkIPHvbuPs+/fvrvv8/f///////////////////////////////////////////////yH5BAEAAB8ALAAAAAAWABYAAAWN4CeOZGmeaKqubGsusPvBSyFJjVDs6nJLB0khR4AkBCmfsCGBQAoCwjF5gwquVykSFbwZE+AwIBV0GhFog2EwIDchjwRiQo9E2Fx4XD5R+B0DDAEnBXBhBhN2DgwDAQFjJYVhCQYRfgoIDGiQJAWTCQMRiwwMfgicnVcAAAMOaK+bLAOrtLUyt7i5uiUhADs=">
+            </div>
+            <div id="textBox" contenteditable="true">
+              <p></p>
+            </div><br>
+            <hr><br>
+            <p><b>Payment Information</b></p>
+            <table style="width: 540px;" cellpadding="3" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td><b>Cardholder Name</b></td>
+                  <td><b>Card Type</b></td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" name="cardFirst" placeholder="First">
+                    <input type="text" name="cardMI" maxlength="1" size="2" placeholder="MI">
+                    <input type="text" name="cardFirst" placeholder="Last">
+                  </td>
+                  <td><input type="radio" id="visa" name="cardType" value="visa"> VISA</td>
+                </tr>
+                <tr>
+                  <td><b>Card Number</b></td>
+                  <td><input type="radio" id="mastercard" name="cardType" value="mastercard"> MasterCard</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" name="card1" maxlength="4" class="ccard" size="4" placeholder="####">
+                    <input type="text" name="card2" maxlength="4" class="ccard" size="4" placeholder="####">
+                    <input type="text" name="card3" maxlength="4" class="ccard" size="4" placeholder="####">
+                    <input type="text" name="card4" maxlength="4" class="ccard" size="4" placeholder="####">
+                  </td>
+                  <td><input type="radio" id="discover" name="cardType" value="discover"> Discover</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <table width="600" cellpadding="3" cellspacing="0">
+              <colgroup>
+                <col style="width: 35%">
+                <col style="width: 65%">
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td><b>Expiration Date</b></td>
+                  <td><b>Do you agree to a monthly payment of $19.99?</b></td>
+                </tr>
+                <tr>
+                  <td><input type="text" name="exp" maxlength="5" size="7" placeholder="MM/YY"></td>
+                  <td>
+                    <label for="yes"><input type="radio" id="yes" name="monthly" value="yes" checked=""> Yes</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>CVC Number</b></td>
+                  <td>
+                    <label for="no"><input type="radio" id="no" name="monthly" value="no"> No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="text" name="code" maxlength="3" size="5" placeholder="###"></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p><input type="submit" value="Submit"></p>
+          </form>
+        </div>
+      </main>
+      <aside class="page-sidebar-head text-white">
+        <h2 class="h6">Site Navigation</h2>
+      </aside>
+      <nav class="page-sidebar">
+        <ul class="nav flex-column" aria-label="Lessons">
+          <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Members</a></li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#" aria-current="page">Create Account</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+      <footer class="page-footer">
+        © 2021 Virginia Tech
+      </footer>
+    </div>
+  </div>
+  <script src="javascripts/account.js"></script>
+</body>
+
+</html>
