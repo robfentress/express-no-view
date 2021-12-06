@@ -48,7 +48,6 @@
         </div>
       </header>
       <nav class="page-nav" aria-label="breadcrumb">
-
         <ol class="breadcrumb m-0">
           <li class="breadcrumb-item"><a href="alum.html">Home</a></li>
           <li class="breadcrumb-item" aria-current="page">Create Account</li>
@@ -57,7 +56,7 @@
       <main class="page-main">
         <div class="content">
 
-          <h1 id="main" tabindex="-1">Create Account</h1>
+          <h1 id="main">Create Account</h1>
           <p><b>Personal Information</b></p>
           <form name="compForm" method="post">
             <table id="personalname">
@@ -358,10 +357,11 @@
           </form>
         </div>
       </main>
-      <aside class="page-sidebar-head text-white">
-        <h2 class="h6">Site Navigation</h2>
-      </aside>
-      <nav class="page-sidebar">
+      <div class="page-sidebar-head text-white" aria-hidden="true">
+        Site Navigation
+      </div>
+      <nav class="page-sidebar" aria-label="site">
+        <h2 class="visually-hidden">Site Navigation</h2>
         <ul class="nav flex-column" aria-label="Lessons">
           <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Members</a></li>
