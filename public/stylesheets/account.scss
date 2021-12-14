@@ -33,7 +33,6 @@ a {
   display: grid;
   grid-template-columns: minmax(10px, 1fr) minmax(10px, 3fr);
   grid-template-rows: min-content min-content 1fr min-content;
-  // gap: 5px;
 
   > * {
     padding: 1rem;
@@ -130,12 +129,15 @@ img.intLink {
 }
 
 #textBox {
-  width: 540px;
+  width: 100%;
   height: 200px;
-  border: 1px #000000 solid;
+  border: 1px #d1d1d1 solid;
   padding: 12px;
   overflow: scroll;
   background-color: white;
+}
+[name="first"], [name="last"] {
+  width: 100%
 }
 
 #textBox #sourceText {
@@ -150,8 +152,6 @@ img.intLink {
 }
 
 
-/* x */
-
 th {
   text-align: left;
 }
@@ -165,7 +165,7 @@ th {
   border: 1px solid red;
 }
 
-select:focus {
+.toolbar select:focus {
   outline: none;
 }
 
@@ -192,11 +192,17 @@ select:focus {
 
 .page-sidebar .nav-link.active {
   border-left: .5rem solid #45677B;
-  // border-right: .5rem solid #45677B;
   padding-left: .5rem;
   padding-right: .5rem;
 }
 .nav-link:hover {
   text-decoration: underline;
   background-color: #bad9e9;
+}
+.editor {
+  background-color: #f8f8f8;
+  border: 1px solid #d1d1d1;
+}
+.toolbar {
+  padding: .25em;
 }

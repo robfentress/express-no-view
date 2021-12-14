@@ -41,11 +41,11 @@ $(document).ready(function () {
     e.preventDefault();
 
   });
-  $('.mainMenu a, .vt-logo-link').click(function (e) {
+  $('.page-header a, .breadcrumb a, .page-sidebar a').click(function (e) {
     alert("Imagine this takes you to a page.");
     e.preventDefault();
-  })
-  $("#datepicker").datepicker({
+  });
+  $('#datepicker').datepicker({
     changeMonth: true,
     changeYear: true
   });
@@ -61,16 +61,10 @@ $(document).ready(function () {
   });
 
 
-  $('#languages a').click(function (e) {
-    e.preventDefault();
-    alert('Imagine this takes you to a version of the page in another language.');
-  });
-
-
   //Timeout after 20 minutes
   window.setTimeout(function () {
     window.location.href = 'account-timeout.html';
-  }, 1200000)
+  }, 1200000000)
 });
 
 
@@ -148,14 +142,6 @@ $(document).ready(function () {
   });
 
 
-  // $("#outdent").on('click', function (e) {
-  //   formatDoc('outdent', e.target[e.target.selectedIndex].value);
-  // });
-  // $("#indent").on('click', function (e) {
-  //   formatDoc('indent', e.target[e.target.selectedIndex].value);
-  // });
-
-
   $("#hyperlink").on('click', function (e) {
     var sLnk = prompt('Write the URL here', 'http:\/\/');
     if (sLnk && sLnk != '' && sLnk != 'http://') {
@@ -200,6 +186,7 @@ $(document).ready(function () {
 
   function validate() {
     var valid = true;
+    var errmsg = '';
     $('.req').removeClass("invalid");
     if (document.compForm["first"].value == "") {
       $('[name="first"]').addClass("invalid");
@@ -221,12 +208,21 @@ $(document).ready(function () {
       $('[name="password2"]').addClass("invalid");
       valid = false;
     }
+    if (document.compForm["password"].value !== document.compForm["password2"].value) {
+      errmsg += '<li>Password fields must match</li>';
+      valid = false;
+    }
     if (valid) {
       window.location.href = 'account-committed.html';
       return true;
     } else {
-      //window.history.back();
-      alert("Error: Fields highlighted in red are required");
+      if ($('.invalid').length !== 0) {
+        errmsg += '<li>Fields highlighted in red are required</li>';
+      }
+      $('#status').html("<div class='alert alert-danger'><h2>Error:</h2><ul>" + errmsg + "</ul></div>");
+      $('html,body').animate({
+        scrollTop: $("#status").offset().top
+      });
       return false;
     }
     return valid;
