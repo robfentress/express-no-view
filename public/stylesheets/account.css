@@ -177,6 +177,10 @@ th {
   border: 1px solid red;
 }
 
+.format {
+  background-color: yellow;
+}
+
 .toolbar select:focus {
   outline: none;
 }

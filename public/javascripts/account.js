@@ -99,63 +99,63 @@ $(document).ready(function () {
   });
 
 
-  $("#undo").on('click', function (e) {
+  $("#undo").on('mousedown', function (e) {
     formatDoc('undo');
   });
-  $("#redo").on('click', function (e) {
+  $("#redo").on('mousedown', function (e) {
     formatDoc('redo');
   });
-  $("#removeFormat").on('click', function (e) {
+  $("#removeFormat").on('mousedown', function (e) {
     formatDoc('removeFormat')
   });
 
-  $("#bold").on('click', function (e) {
+  $("#bold").on('mousedown', function (e) {
     formatDoc('bold');
   });
-  $("#italic").on('click', function (e) {
+  $("#italic").on('mousedown', function (e) {
     formatDoc('italic');
   });
-  $("#underline").on('click', function (e) {
+  $("#underline").on('mousedown', function (e) {
     formatDoc('underline');
   });
 
-  $("#justifyLeft").on('click', function (e) {
+  $("#justifyLeft").on('mousedown', function (e) {
     formatDoc('justifyleft');
   });
-  $("#justifyCenter").on('click', function (e) {
+  $("#justifyCenter").on('mousedown', function (e) {
     formatDoc('justifycenter');
   });
-  $("#justifyRight").on('click', function (e) {
+  $("#justifyRight").on('mousedown', function (e) {
     formatDoc('justifyright');
   });
 
 
-  $("#numberedList").on('click', function (e) {
+  $("#numberedList").on('mousedown', function (e) {
     formatDoc('insertorderedlist');
   });
-  $("#dottedList").on('click', function (e) {
+  $("#dottedList").on('mousedown', function (e) {
     formatDoc('insertunorderedlist');
   });
 
-  $("#quote").on('click', function (e) {
+  $("#quote").on('mousedown', function (e) {
     formatDoc('formatblock', 'blockquote');
   });
 
 
-  $("#hyperlink").on('click', function (e) {
+  $("#hyperlink").on('mousedown', function (e) {
     var sLnk = prompt('Write the URL here', 'http:\/\/');
     if (sLnk && sLnk != '' && sLnk != 'http://') {
       formatDoc('createlink', sLnk)
     }
   });
 
-  $("#cut").on('click', function (e) {
+  $("#cut").on('mousedown', function (e) {
     formatDoc('cut');
   });
-  $("#copy").on('click', function (e) {
+  $("#copy").on('mousedown', function (e) {
     formatDoc('copy');
   });
-  $("#paste").on('click', function (e) {
+  $("#paste").on('mousedown', function (e) {
     formatDoc('paste');
   });
 
@@ -186,7 +186,32 @@ $(document).ready(function () {
 
   function validate() {
     var valid = true;
+    var correctFormat = true;
     var errmsg = '';
+
+
+    var ss1 = Number(document.compForm["ss1"].value);
+    var ss2 = Number(document.compForm["ss2"].value);
+    var ss3 = Number(document.compForm["ss3"].value);
+
+    $('.number').removeClass("format");
+    if (isNaN(ss1)) {
+      $("[name='ss1']").addClass("format");
+      correctFormat = false;
+    }
+    if (isNaN(ss2)) {
+      $("[name='ss2']").addClass("format");
+      correctFormat = false;
+    }
+    if (isNaN(ss3)) {
+      $("[name='ss3']").addClass("format");
+      correctFormat = false;
+    }
+    if (correctFormat === false) {
+      valid = "false";
+      errmsg += '<li><span class="format">Incorrectly formated fields highlighted in yellow.</span></li>';
+    }
+
     $('.req').removeClass("invalid");
     if (document.compForm["first"].value == "") {
       $('[name="first"]').addClass("invalid");
@@ -212,8 +237,12 @@ $(document).ready(function () {
       errmsg += '<li>Password fields must match</li>';
       valid = false;
     }
-    if (valid) {
-      window.location.href = 'account-committed.html';
+    if (valid == true) {
+      if ($("#yes").prop("checked", true)) {
+        window.location.href = 'account-committed.html?committed=true';
+      } else {
+        window.location.href = 'account-committed.html';
+      }
       return true;
     } else {
       if ($('.invalid').length !== 0) {

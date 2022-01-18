@@ -27,6 +27,15 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="stylesheets/account.css">
+  <script>
+    $(document).ready(function () {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      if (urlParams.get('committed') === "true") {
+        $("#committed").show();
+      };
+    });
+  </script>
 </head>
 
 <body>
@@ -59,7 +68,8 @@
         <div class="content">
           <h1>Account Created</h1>
           <p>Your account has been successfully created.</p>
-          <p>Please note that if you chose "Yes" under <b>Payment Information</b>,
+          <p id="committed" style="display:none">Please note that because you chose "Yes" under <b>Payment
+              Information</b>,
             you will see a recurring monthly charge on your credit card of $19.99
             a month, starting immediately.</p>
         </div>

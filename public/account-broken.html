@@ -50,7 +50,7 @@
       </header>
       <nav class="page-nav" aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item"><a href="alum.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="target-page.html?alum">Home</a></li>
           <li class="breadcrumb-item" aria-current="page">Create Account</li>
         </ol>
       </nav>
@@ -69,7 +69,7 @@
                   <th>Last *</th>
                 </tr>
                 <tr>
-                  <td><input type="text" name="first" class="req"></td>
+                  <td><input type="text" name="first" class="req" autocomplete="first-name"></td>
                   <td><input type="text" name="mi" maxlength="1" size="2"></td>
                   <td><input type="text" name="last" class="req"></td>
                 </tr>
@@ -89,17 +89,19 @@
                       <input type="text" name="ss2" maxlength="2" class="number" size="2">
                       <input type="text" name="ss3" maxlength="4" class="number" size="4">
                     </td>
-                    <td><input type="text" name="username" placeholder="Username" aria-required="true"></td>
+                    <td><input type="text" name="username" placeholder="Username" class="req" aria-required="true"></td>
                   </tr>
                   <tr>
                     <th>Date of Birth</th>
-                    <td><input type="password" name="password" placeholder="Password" aria-required="true"></td>
+                    <td><input type="password" name="password" placeholder="Password" aria-required="true" class="req">
+                    </td>
                   </tr>
                   <tr>
                     <td>
                       <input type="text" id="datepicker">
                     </td>
-                    <td><input type="password" name="password2" placeholder="Retype Password" aria-required="true"></td>
+                    <td><input type="password" name="password2" placeholder="Retype Password" aria-required="true"
+                        class="req"></td>
                   </tr>
                 </tbody>
               </table>
@@ -293,7 +295,8 @@
                   <tr>
                     <td>
                       <input type="text" name="cardFirst" placeholder="First">
-                      <input type="text" name="cardMI" maxlength="1" size="2" placeholder="MI">
+                      <input type="text" name="cardMI" maxlength="1" size="2" placeholder="MI"
+                        aria-label="Middle Initial">
                       <input type="text" name="cardFirst" placeholder="Last">
                     </td>
                     <td><input type="radio" id="visa" name="cardType" value="visa"> VISA</td>
@@ -358,12 +361,12 @@
       <nav class="page-sidebar" aria-label="site">
         <h2 class="visually-hidden">Site Navigation</h2>
         <ul class="nav flex-column" aria-label="Lessons">
-          <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Members</a></li>
+          <li class="nav-item"><a class="nav-link" href="target-page.html?about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="target-page.html?members">Members</a></li>
           <li class="nav-item">
-            <a class="nav-link active" href="#" aria-current="page">Create Account</a>
+            <a class="nav-link active" aria-current="page">Create Account</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact Us</a>
+          <li class="nav-item"><a class="nav-link" href="target-page.html?contact">Contact Us</a>
           </li>
         </ul>
       </nav>
