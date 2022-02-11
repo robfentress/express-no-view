@@ -1,0 +1,70 @@
+/* Specific styles for ARIA Listboxes */
+
+.sortableWrapper {
+  text-align: center;
+  padding: 1rem;
+}
+
+.aria-listbox {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.aria-listbox > li {
+  padding: 0.3em;
+}
+.option {
+  display: block;
+  width: 100%;
+}
+.aria-listbox > li > .option span {
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: transparent;
+  padding: 0.5em 0;
+  padding-top: 0.7em;
+  border-radius: 0.3em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+.aria-listbox > li > .option:hover {
+  text-decoration: none;
+}
+
+.aria-listbox > li > .option:hover span {
+  box-shadow: none;
+}
+
+.aria-listbox > li > .option[aria-grabbed="true"] span {
+  opacity: 0.5;
+}
+
+.aria-listbox > li > .option[aria-grabbed="true"][aria-selected="true"] span {
+  box-shadow: 0 2px 5px rgba(241, 249, 0, 0.7);
+}
+
+.aria-listbox .orange span {
+  background: #f90;
+}
+
+.aria-listbox .purple span {
+  color: #fff;
+  background: #639;
+}
+
+.aria-listbox .green span {
+  color: #fff;
+  background: #00965a;
+}
+
+.aria-listbox .blue span {
+  color: #fff;
+  background: #015684;
+}
+
+.aria-listbox .black span {
+  color: #fff;
+  background: #000;
+}

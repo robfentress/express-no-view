@@ -1,0 +1,102 @@
+/* Specific styles for ARIA Listboxes */
+
+.multiselectWrapper {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+  background-color: var(--listbox-lightGrey);
+  margin-top: 2em;
+}
+.selectLabel label {
+  margin-bottom: 0.8em;
+}
+#standardSelectId {
+  width: 100%;
+  padding: 0.5em;
+  min-height: 89%;
+}
+.selectLabel {
+  max-width: 200px;
+  -webkit-flex: 0 1 70%;
+  -ms-flex: 0 1 70%;
+  flex: 0 1 70%;
+  margin-left: 5%;
+}
+.aria-listbox {
+  list-style: none;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+  padding: 1rem;
+  margin: 0;
+}
+
+.aria-listbox > li {
+  position: relative;
+  padding: 0.5rem;
+}
+
+.aria-listbox .option {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--bodyText);
+  background: #fff;
+  padding: 0.3em 0.5em;
+  padding-left: 1.5em;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.aria-listbox .option::before {
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 5px;
+  left: 0;
+  content: "";
+  background: #c00;
+  border-radius: 25px;
+}
+
+.aria-listbox .option::after {
+  display: block;
+  position: absolute;
+  width: 3px;
+  height: 10px;
+  top: 0;
+  left: 10px;
+  content: "";
+  background: var(--listbox-darkGrey);
+}
+
+.aria-listbox .option span::after {
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 2px;
+  left: 12px;
+  content: "";
+  background: var(--listbox-limeGreen);
+  border-radius: 16px;
+  -moz-transform: skewX(-15deg);
+  -ms-transform: skewX(-15deg);
+  -o-transform: skewX(-15deg);
+  -webkit-transform: skewX(-15deg);
+  transform: skewX(-15deg);
+}
+
+.aria-listbox [aria-selected="true"],
+.aria-listbox .option:hover,
+.aria-listbox .option:focus {
+  background: var(--listbox-limeBlue);
+  box-shadow: none;
+}

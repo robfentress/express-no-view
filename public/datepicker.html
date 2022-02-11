@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Date Picker Test</title>
+    <script src="4X/4X.js"></script>
+    <link rel="stylesheet" href="Templates/_common/css/components-style.css">
+    <script src="setup.js"></script>
+</head>
+
+<body>
+
+    <main id="main" class="main" tabindex="-1">
+        <div class="demo-block flex-container">
+            <div class="component flex-item">
+                <h1 class="pageTitle">ARIA Date Picker <small> (Basic)</small></h1>
+                <div class="dateField">
+                    <div class="dateField--flex-item">
+                        <label for="dateId">Set Date:</label>
+                        <input placeholder="MM/DD/YYYY" id="dateId" type="text" name="date" />
+                        <button aria-describedby="date" id="dateIcon" class="accCalendar aria-date-picker">
+                            <img src="Templates/Datepickers/Basic/img/calendar-button.svg" alt="Calendar"
+                                title="Calendar" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="keyboard flex-item">
+                <h2>The calendar is keyboard accessible:</h2>
+                <ul>
+                    <li>When the calendar is opened, focus is set on the current date.</li>
+                    <li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> arrow keys to navigate
+                        the row by week day.</li>
+                    <li>Press the <kbd class="home">Home</kbd> and <kbd class="end">End</kbd> keys to jump to the
+                        beginning or end of the current row.</li>
+                    <li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> arrow keys to navigate
+                        between weeks on the same week day.</li>
+                    <li>Press the <kbd>PageDown</kbd> and <kbd>PageUp</kbd> keys to navigate backwards or forwards by
+                        month.</li>
+                    <li>Press <kbd>Alt</kbd>+<kbd>PageDown</kbd> and <kbd>Alt</kbd>+<kbd>PageUp</kbd> to navigate
+                        backwards or forwards by year.</li>
+                    <li>Press the <kbd>Enter</kbd> key to activate the selected date.</li>
+                    <li>Press <kbd>Escape</kbd> to close the calendar without making a selection.</li>
+                    <li>Mouse users can click the desired date buttons as usual.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

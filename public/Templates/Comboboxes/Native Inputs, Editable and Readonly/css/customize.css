@@ -1,0 +1,24 @@
+/* Specific styles for ARIA Combobox */
+/***Overwrite the auto positioning***/
+
+ul.listbox {
+  position: relative;
+  overflow-y: scroll;
+  margin-left: 0;
+  height: 10em;
+}
+
+.form--container.editable-readonly .toplevel-div {
+  background: var(--globalWhite);
+  left: 72px !important;
+  top: 37px !important;
+  width: 14.5em;
+  min-width: 8em;
+}
+
+@media (min-width: 37.6em) {
+  .form--container.editable-readonly .toplevel-div {
+    left: 83px !important;
+    top: 38px !important;
+  }
+}

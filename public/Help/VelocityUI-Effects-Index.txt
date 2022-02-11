@@ -1,0 +1,80 @@
+VelocityUI Animation Effects
+
+Syntax:
+
+Velocity( elementToAnimate, "transition.slideDownIn", {
+  delay: 0, // Delay in milliseconds.
+  duration: 1500, // Animation duration in milliseconds.
+  easing: "ease-in-out", // Easing effect when animation is running.
+  container: null, // Optional parent element when animating within a scrollable container.
+  begin: function() {
+    // Callback to run before animation begins.
+  },
+  complete: function() {
+    // Callback to run after animation completes.
+  }
+});
+
+// For more advanced properties and configuration options, visit:
+http://VelocityJS.org/
+
+Effects Index:
+
+callout.bounce
+callout.shake
+callout.flash
+callout.pulse
+callout.swing
+callout.tada
+transition.fadeIn
+transition.fadeOut
+transition.flipXIn
+transition.flipXOut
+transition.flipYIn
+transition.flipYOut
+transition.flipBounceXIn
+transition.flipBounceXOut
+transition.flipBounceYIn
+transition.flipBounceYOut
+transition.swoopIn
+transition.swoopOut
+transition.whirlIn
+transition.whirlOut
+transition.shrinkIn
+transition.shrinkOut
+transition.expandIn
+transition.expandOut
+transition.bounceIn
+transition.bounceOut
+transition.bounceUpIn
+transition.bounceUpOut
+transition.bounceDownIn
+transition.bounceDownOut
+transition.bounceLeftIn
+transition.bounceLeftOut
+transition.bounceRightIn
+transition.bounceRightOut
+transition.slideUpIn
+transition.slideUpOut
+transition.slideDownIn
+transition.slideDownOut
+transition.slideLeftIn
+transition.slideLeftOut
+transition.slideRightIn
+transition.slideRightOut
+transition.slideUpBigIn
+transition.slideUpBigOut
+transition.slideDownBigIn
+transition.slideDownBigOut
+transition.slideLeftBigIn
+transition.slideLeftBigOut
+transition.slideRightBigIn
+transition.slideRightBigOut
+transition.perspectiveUpIn
+transition.perspectiveUpOut
+transition.perspectiveDownIn
+transition.perspectiveDownOut
+transition.perspectiveLeftIn
+transition.perspectiveLeftOut
+transition.perspectiveRightIn
+transition.perspectiveRightOut

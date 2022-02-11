@@ -1,0 +1,178 @@
+
+ARIA Listboxes
+
+Expected behaviors: ARIA Listboxes should only receive one tab stop, the Up/Down/Home/End keys should move focus appropriately, typing letters or numbers should jump ahead to the next matching option, and every listbox and option element should be explicitly labeled.
+
+The 4X ARIA Listbox module automatically configures all required ARIA attributes and focus handling, in strict accordance with the ARIA specification.
+
+The following attributes are handled automatically by the Listbox module:
+
+• role=listbox
+• role=option
+• aria-checked
+• aria-multiselectable
+• aria-selected
+• tabindex
+
+Available attributes for listbox option elements:
+
+• data-check : May be set to "false", "true", or "mixed" to set the current state of a checkable option when rendered.
+
+HTML syntax:
+
+[Standard]
+
+<ul id="listboxId">
+  <li>
+    <button>
+      Accessible name and markup.
+    </button>
+  </li>
+</ul>
+
+[Checkable]
+
+<ul id="listboxId">
+  <li>
+    <button data-check >
+      Accessible name and markup.
+    </button>
+  </li>
+</ul>
+
+IMPORTANT: The focusable active element must not include any other active elements, otherwise these will not be accessible to non-sighted screen reader users.
+
+JavaScript syntax:
+
+var myListboxDC = $A.setListbox({
+// Configuration key / value mappings
+});
+
+Parameters
+
+1: A configuration map to customize behaviors and options.
+
+Configuration
+
+{
+
+// Set an explicit name for the listbox.
+// Otherwise, if a select element is specified, the accessible name of the select element will be set as the listbox name instead.
+label: "My informative listbox label",
+
+// Optionally set a reference to a list element that already exists within the DOM.
+// If present, the markup must conform with the syntax specified in the tag.parent property.
+// Otherwise, if omitted, a listbox will automatically be generated and inserted at the position of the select element if present, or inserted within the node specified by the root property.
+listbox: "#listboxId",
+
+// Optionally set a reference to a native select element that already exists within the DOM.
+// When set, the listbox will automatically be generated to match all options within the select, including all natively supported attributes such as "multiple", "required", and "disabled".
+// Preselected options will also be reflected in the listbox, and both controls will be bound using two-way binding, so that when one changes it will automatically be reflected in the other.
+// The native select element may be hidden or visible as desired.
+// If there is no listbox already referenceable within the DOM, a new one will be generated and inserted at the same location as the select element.
+select: "#standardSelectId",
+
+// Optionally specify a DOM node where the listbox will be inserted within.
+// If undefined, the listbox will be inserted at the same location as the native select element.
+root: undefined,
+
+tag: {
+
+// CSS selector for the top level listbox container.
+parent: "ul",
+
+// The CSS selector that identifies the focusable active element within each tag.build.child tag markup.
+// Only one focusable element is allowed within each child tag.
+// If the child tag markup is changed, this selector must also be changed to point to the focusable active element within that markup.
+child: "button",
+
+// Return an array of all focusable child elements within the listbox container element.
+// This must match the CSS selector chosen above.
+parse: function(listboxNode) {
+  return listboxNode.querySelectorAll("button");
+},
+
+// Specify the build markup structure for generating new listboxes.
+build: {
+  parent: '<ul class="aria-listbox"></ul>',
+  child: '<li><button class="option"><span class="lbl">{OPTION-TEXT}</span></button></li>'
+}
+                },
+
+// Specify if the listbox is multiselect or single-select.
+// If a native select element is specified, this property will automatically be set to match the select element's 'multiple' property.
+// The selected state will automatically be toggleable by pressing the Spacebar when applicable.
+multiselect: false,
+
+// Specify if the listbox is required.
+// If a native select element is specified, this property will automatically be set to match the select element's 'required' property.
+required: false,
+
+// Specify if the listbox is disabled.
+// If a native select element is specified, this property will automatically be set to match the select element's 'disabled' property.
+disabled: false,
+
+// Specify if the listbox includes checkable options.
+// Checkable options support the values "false", "true", or "mixed" to represent the partially checked state.
+// When checkable is true, the multiple and sortable properties are automatically set to false to ensure intuitive accessibility.
+// Alternatively, the 'check' attribute may be set on individual option elements to set their default state when rendered.
+// The checked state will automatically be toggleable by pressing the Spacebar when applicable.
+checkable: false,
+
+// Specify if the listbox includes sortable options.
+// When sortable is true, the multiple and checkable properties are automatically set to false to ensure intuitive accessibility.
+// The grabbed state will automatically be toggleable by pressing the Spacebar when applicable.
+sortable: false,
+
+// Set the class to be applied when a listbox option is selected.
+// If undefined, "selected" will be set by default.
+toggleClassName: "selected",
+
+// Set screen reader accessible description text for key functionality within IE11.
+grabText: "Grabbable",
+grabbedText: "Grabbed",
+dropText: "Droppable",
+selectText: "Selected",
+unselectText: "Not Selected",
+
+// Set a custom event handler to process every time a listbox option is activated.
+onActivate: function(event, triggerNode, RTI, DC, currentState, set) {
+// If the option node is checkable, currentState will include a number from 0 to 2.
+// (0 = "false", 1 = "true", 2 = "mixed".)
+// Otherwise, if multiselect is true instead, currentState will reflect the boolean value for the currently selected option.
+// The set function can be used to set a new state for the option.
+// E.G. set("false"), set("true"), or set("mixed") for checkable options.
+},
+
+// Optionally extend the RTI instance with custom event handlers.
+// For available options, view the RovingTabIndex help doc at "Help/Module Imports/Actions/RovingTabIndex".
+extendRTI: {
+// Optional event handlers.
+}
+
+}
+
+Programmatic Control
+
+Since the Listbox control is an instantiated object, all of the following public properties and methods are available:
+
+Properties
+
+myListbox.listbox // The Listbox DOM node for the element with role="listbox"
+
+myListbox.options // The array of list option DOM nodes that contain role="option"
+
+myListbox.optionNodes // The array of native select option DOM nodes
+
+Methods
+
+// Force the listbox widget to redraw itself and recompute all child options and reset all event handlers.
+// Only applicable when a native select element is bound to the listbox.
+// This is necessary when new options are added, removed, or reordered within the bound select element to ensure proper keyboard accessibility.
+myListbox.update();
+
+// Returns an array of currently checked or selected listbox option nodes.
+// If any option elements are checked, all those set to "true" will be returned.
+// Otherwise, if there is a bound select element, the value of the select element will be returned.
+// Otherwise, all selected option elements will be returned.
+var listboxValue = myListbox.value();

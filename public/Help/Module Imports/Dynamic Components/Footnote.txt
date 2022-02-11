@@ -1,0 +1,49 @@
+
+ARIA Footnotes
+
+Expected behaviors: Each footnote must be actionable using both the keyboard and the mouse, focus must move to the beginning of the definition when activated, and focus must move back to the footnote when the back link is activated.
+
+The 4X ARIA Footnote module automatically configures all required focus handling and interaction events to ensure accessibility.
+
+The following attributes are handled automatically by the Footnote module:
+
+• aria-controls
+• aria-flowto
+
+HTML syntax:
+
+The Footnote module utilizes traditional skip link syntax, which consists of a standard link with an href attribute. The href attribute includes an id reference to the associated footnote definition, by pointing to a back link at the beginning of the definition content.
+
+<!-- The footnote skip link -->
+
+[Key Word or Phrase Here] <a class="aria-footnote" href="#footnoteId1"><sup>1</sup></a>
+
+<!-- The footnote back link -->
+
+<a id="footnoteId1" href="#" class="footnote-back-link" aria-label="Go Back" >&#8224;</a> [Definition Content Here]
+
+(Multiple footnotes that reference the same definition are supported.)
+
+JavaScript syntax:
+
+$A.setFootnotes( DOM-NodeList-or-CSS-Selector-forFootnote-Links , {
+// Configuration key / value map
+});
+
+Parameters
+
+1: A DOM element list or CSS selector to specify the footnote triggering elements.
+
+2: A configuration map to customize behaviors and options.
+
+Configuration
+
+{
+
+// Modify the smooth scrolling animation effects.
+override: {
+duration: 550,
+easing: "ease-in"
+}
+
+}

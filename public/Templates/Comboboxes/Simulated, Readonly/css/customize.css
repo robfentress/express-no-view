@@ -1,0 +1,19 @@
+/* Specific styles for ARIA Combobox */
+/***Overwrite the auto positioning***/
+
+ul.listbox {
+  position: relative;
+  overflow-y: scroll;
+  margin-left: 0;
+  height: 10em;
+}
+
+.sim--readonly {
+  position: relative;
+}
+.sim--readonly .toplevel-div {
+  background-color: var(--globalWhite);
+  left: 4px !important;
+  top: 187px !important;
+  width: 17em;
+}

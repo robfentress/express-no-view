@@ -1,0 +1,49 @@
+/* Specific styles for ARIA Listboxes */
+
+.aria-listbox {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 0;
+}
+.aria-listbox > li {
+  margin-bottom: 0.25em;
+  position: relative;
+}
+.aria-listbox > li > .option {
+  border: none;
+  width: 3em;
+  height: 3em;
+}
+.aria-listbox .option .lbl {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0.8em;
+  width: 10em;
+}
+
+.aria-listbox .option[aria-selected="true"],
+.aria-listbox .option:hover,
+.aria-listbox .option:focus {
+  background: #92dbf6;
+}
+
+.aria-listbox .option[aria-checked="false"] {
+  background: url("../img/unchecked.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.aria-listbox .option[aria-checked="mixed"] {
+  background: url("../img/indeterminate.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.aria-listbox .option[aria-checked="true"] {
+  background: url("../img/checked.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
