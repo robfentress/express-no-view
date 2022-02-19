@@ -40,10 +40,14 @@
   }
   body {
     background: #9d987b;
-    padding: 5px;
+    padding: 5px 0;
     height: 100vh;
     margin: 0;
+    @media screen and (max-width: 575px) {
+      padding: 0;
+    }
   }
+
   a {
     color: var(--vt-maroon);//#861f41
   }
@@ -53,7 +57,7 @@
   .wrapper {
     width: 80%;
     margin: auto;
-    @media (max-width: 992px) {
+    @media screen and (max-width: 992px) {
       width: 100%;
     }
   }
@@ -277,6 +281,9 @@
     display: inline-block;
   }
   @media (max-width:992px) {
+    body {
+      padding: 0;
+    }
     .page-sidebar {
       border-right: 5px solid var(--bs-white);
     }

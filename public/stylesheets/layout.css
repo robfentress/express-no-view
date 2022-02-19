@@ -1,0 +1,19 @@
+:root {
+    --vt-maroon: #861f41;
+    --a11yex-pale-blue: #aac5d4;
+    --a11yex-beige: #f5f5ec;
+}
+body {
+    background-color: #9d987b;
+    padding-top: .5rem;
+}
+.bg-maroon {
+    background-color: var(--vt-maroon);
+}
+.bg-pale-blue {
+    background-color: var(--a11yex-pale-blue);
+}
+
+.page-sidebar {
+    background-color: var(--a11yex-pale-blue);
+}

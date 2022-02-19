@@ -9,321 +9,70 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Made border darker to meet WCAG 2.1 */
-        .form-control,
-        .input-group-addon {
-            border-color: #8396A5
-        }
+    <link rel="stylesheet" href="stylesheets/registration.css">
 
-        /* Made focus state more distinguishable to meet WCAG 2.1 */
-        .form-control:focus {
-            border-style: dashed;
-            border-color: black;
-        }
-
-        /* Required for proper formatting of input group when using select tag */
-        /* 
-            .my-group {
-                width:100%;
-            }
-            .my-group select.form-control:first-child {
-            width:40%;
-            }
-            .my-group .form-control {
-            width:60%;
-            } 
-        */
-
-        .btn {
-            background-image: none;
-        }
-
-        .btn-primary {
-            color: #fff;
-            background-color: #861F41;
-            border-color: #861F41;
-        }
-
-        .btn-primary:focus,
-        .btn-primary:hover,
-        .btn-primary:active,
-        .btn-primary:active:focus {
-            color: #fff;
-            background-color: #A63F61;
-            border-color: #A63F61;
-        }
-
-        .btn-success {
-            color: #fff;
-            background-color: #C64600;
-            border-color: #C64600;
-        }
-
-        /* Rather than making background lighter, which violated contrast requirements, I made the border color change */
-        .btn-success:focus,
-        .btn-success:hover,
-        .btn-success:active,
-        .btn-success:active:focus {
-            background-color: #C64600;
-            border-color: yellow;
-        }
-
-        .btn-default,
-        .btn-default.active {
-            border-color: #8396A5;
-        }
-
-        /* Skip link styling */
-        #skippy {
-            display: block;
-            padding: 1em;
-            color: #fff;
-            background-color: #C64600;
-            outline: 0;
-        }
-
-        #main-menu .navbar-header {
-            background-color: #861F41
-        }
-
-        .navbar-default.fhmm {
-            background-image: none;
-            border-color: #000;
-            border-radius: 0;
-            background-color: #861F41;
-        }
-
-        .navbar-default .navbar-brand:focus,
-        .navbar-default .navbar-brand:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        .navbar-default .navbar-brand {
-            background-color: #861F41;
-            color: #fff;
-        }
-
-        .footer-text,
-        .footer-text a {
-            color: #fff;
-        }
-
-        .footer-text a {
-            text-decoration: underline;
-        }
-
-        .bold {
-            font-weight: bold;
-        }
-
-        .btn-inline-block {
-            vertical-align: top;
-            padding: 0;
-            line-height: 0;
-            background: none;
-            text-shadow: none;
-            border-radius: 8px;
-            border-style: none;
-            border-color: red;
-            font-size: 16px;
-            color: #C64600;
-        }
-
-        .btn-inline-block .glyphicon {
-            transition-duration: 0.5s;
-            transition-property: transform;
-            /*   top:0; */
-        }
-
-        .btn-inline-block[aria-expanded="true"] .glyphicon {
-            transform: rotate(90deg) translateX(-1px) translateY(1px);
-            -webkit-transform: rotate(90deg) translateX(-1px) translateY(1px);
-        }
-
-        .btn-inline-block.active.focus,
-        .btn-inline-block.active:focus,
-        .btn-inline-block.focus,
-        .btn-inline-block.focus,
-        .btn-inline-block:active:focus,
-        .btn-inline-block:focus {
-            outline: none;
-            border-style: dashed;
-            border-color: black;
-            box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 100%);
-            color: #C64600;
-        }
-
-        .form-label {
-            display: inline-block;
-            max-width: 100%;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script>
-        $(document).ready(function () {
-
-            var secureFlag = true;
-            var f = navigator.userAgent.search("Firefox");
-            var c = navigator.userAgent.search("Chrome");
-            var ie = navigator.userAgent.search("MSIE") + (navigator.userAgent.search(/Trident/)); // MSIE for older ie and Trident for newer IE such as IE 11
-            var ie9 = navigator.userAgent.search("MSIE 9.0");
-
-            var zoomlvl = 100;
-            var cookie_name = "zoom_level";
-            var index = document.cookie.indexOf(cookie_name);
-
-            // write cookies
-            function write_cookie_for_zoom(zoomLevel) {
-                $.cookie(cookie_name, zoomLevel, { path: '/', expires: 3650, secure: secureFlag });
-            }
-
-            function zoom(zoomlvl) {
-                if (f > -1) { // for firefox, use css3: transform:scale
-                    $("body").css({
-                        "-moz-transform": "scale(" + zoomlvl / 100 + ")",
-                        "-moz-transform-origin": "0 0"
-                    });
-                    var viewPortWidth = $(window).width();
-                    var currMainContentWrapperWidth = viewPortWidth * (zoomlvl / 100);
-                    var mainContentWidthDiff = (currMainContentWrapperWidth - viewPortWidth) / 2;
-                    if (mainContentWidthDiff > 50) { /* zoom in */
-                        $("body").css("left", "-" + mainContentWidthDiff + "px");
-                    } else if (mainContentWidthDiff < 50) {  /* zoom out */
-                        $("body").css("left", mainContentWidthDiff + "px");
-                    }
-
-                } else if (ie9 > -1) { // for ie9
-                    $("body").css({
-                        "transform": "scale(" + zoomlvl / 100 + ")",
-                        "transform-origin": "0 0",
-                        "-ms-transform": "scale(" + zoomlvl / 100 + ")",
-                        "-ms-transform-origin": "0 0"
-                    });
-
-                } else {  // for other browers, use zooming
-                    $("body").css("zoom", zoomlvl + "%");
-                    if (ie > -1) {  // for ie, re-position the div to center
-                        $("body").css("width", "100%");
-                        // center the viewport in the center if there is scroll bar in the window.
-                        var newPosition = ($(document).width() - $(window).width()) / 2;
-                        window.scrollTo(newPosition, 0);
-                    }
-                }
-                write_cookie_for_zoom(zoomlvl);
-            }
-
-            // zoom back
-            $("#back_to_original_page").click(function () {
-                zoomlvl = 100;
-                zoom(zoomlvl);
-            });
-
-            // zoom in the page
-            $("#zoom_in_page").click(function () {
-                // max zoom level is 150%
-                if (zoomlvl >= 150) {
-                    return;
-                }
-                zoomlvl += 10;
-                zoom(zoomlvl);
-            });
-
-            // zoom out the page
-            $("#zoom_out_page").click(function () {
-                // min zoom level is 70%
-                if (zoomlvl <= 70) {
-                    return;
-                }
-                zoomlvl -= 10;
-                zoom(zoomlvl);
-            });
-
-            $('.password-toggle').on('click', function (evt) {
-                var fieldSel = $(this).attr('data-for');
-                $(fieldSel).each(function () {
-                    if (this.type === "password") {
-                        this.type = "text";
-                    } else {
-                        this.type = "password";
-                    }
-                });
-            });
-
-            $('.question-toggle').on('change', function (evt) {
-                var questionId = $(this).attr('data-for');
-                var value = $(this).attr('data-option');
-
-                var question = $(`#${questionId}`)[0];
-                var label = $(`[for="${questionId}"]`);
-                console.log(label);
-
-                if ($(this).val() === value) {
-                    question.disabled = false;
-                    question.required = true;
-                    $(label).removeClass("text-muted");
-                } else {
-                    question.disabled = true;
-                    question.required = false;
-                    $(label).addClass("text-muted");
-                }
-            });
-
-        });    
-    </script>
+    <script src="javascripts/registration.js"></script>
 </head>
 
 <body>
     <!-- Changed nav to header, since doesn't contain navigation -->
-    <header class="navbar navbar-default fhmm" id="main-menu" role="banner">
+    <header class="navbar navbar-inverse fhmm" id="main-menu" role="banner">
         <!-- Added skiplink -->
         <a class="sr-only sr-only-focusable" id="skippy" href="#mainContent">Skip to main content</a>
         <div class="container-fluid">
             <div class="navbar-header">
-                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button> -->
+                    <span aria-hidden="true">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </span>
+                </button>
                 <!-- 
                     Removed Virginia Tech logo.
-                    This should only be used to to to the VT homepage.
+                    This should only be used to link to the VT homepage.
                     Instead, just added plain link. 
                 -->
-                <a href="/app/login.jsp" class="navbar-brand">Virginia Tech Electrical System Bill Pay</a>
+                <a href="https://vt/edu" class="navbar-brand" title="Virginia Tech">
+                    <img src="images/whiteVTonMaroon.svg" width="36" alt="">
+                </a>
+                <a href="/app/login.jsp" class="navbar-brand" title="Virginia Tech Electrical System Bill Pay">VTES Bill
+                    Pay</a>
             </div>
             <div>
-                <nav class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <!-- <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
-                    </ul> -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <nav>
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">Link</a></li>
+                        </ul>
+                    </nav>
 
+                    <!-- <div class="navbar-text hidden-xs" aria-hidden="true">Text Size: </div> -->
                     <!-- Text resizing options moved to the header where more useful -->
-                    <div class="navbar-form navbar-right hidden-xs">
+                    <div class="navbar-form navbar-right">
+                        <span class="text-white" aria-hidden="true">Text Size: </span>
                         <div class="btn-group" role="group" aria-label="Text Size">
-                            <button type="button" class="btn btn-default" id="zoom_out_page">
+                            <button type="button" class="btn btn-default btn-sm" id="zoom_out_page">
                                 <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
                                 <span class="sr-only">Zoom Out Page</span>
                             </button>
-                            <button type="button" class="btn btn-default" id="back_to_original_page">
+                            <button type="button" class="btn btn-default btn-sm" id="back_to_original_page">
                                 <i class="glyphicon glyphicon-text-size" aria-hidden="true"></i>
                                 <span class="sr-only">Regular Page Zoom</span>
                             </button>
-                            <button type="button" class="btn btn-default" aria-hidden="true" id="zoom_in_page">
+                            <button type="button" class="btn btn-default btn-sm" aria-hidden="true" id="zoom_in_page">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 <span class="sr-only">Zoom In Page</span>
                             </button>
                         </div>
                     </div>
-                </nav>
+                </div>
             </div>
 
             <!-- /.navbar-header -->
@@ -541,7 +290,7 @@
                             <div id="accountNumberDesc" class="collapse">
                                 <p>Your account number is 8 digits.<br>Enter your account number using the following
                                     format:<br>00012345-01 (include the dash).</p>
-                                <p><a href="#sampleBill">See below for sample</a></p>
+                                <p><a href="#sampleBill">See sample bill</a></p>
                             </div>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="accountNumber" name="accountNumber"
@@ -576,20 +325,23 @@
             </div>
             <!-- .row -->
             <div class="row">
-                <div class="col-md-12">
-                    <div class="well">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="well" role="group" aria-labelledby="completeReg">
+                        <h2 id="completeReg">Complete Registration</h2>
                         <div class="center-text">
-                            <label for="termsOfUse" class="control-label"><a
+                            <p class="control-label">Read and Accept our <a
                                     href="https://billpay.vtes.vt.edu/Registration Terms &amp; Conditions.htm"
-                                    target="termsOfUse">Read and Accept our Terms of Use in order to
-                                    Register.</a></label>
+                                    target="termsOfUse">Terms of Use</a> in order to
+                                Register.</p>
 
                             <div class="capricorn-login-form-group form-group">
-                                <label class="checkbox-label-lg">
-                                    <input type="checkbox" class="checkbox-lg" name="termsOfUse" id="termsOfUse"
-                                        autocomplete="new-field" value="Y">
-                                    <span>Accept</span>
-                                </label>
+                                <div class="checkbox">
+                                    <label class="checkbox-label-lg">
+                                        <input type="checkbox" class="checkbox-lg" name="termsOfUse" id="termsOfUse"
+                                            value="Y">
+                                        I accept the terms of use
+                                    </label>
+                                </div>
                             </div>
                             <hr>
 
@@ -606,6 +358,17 @@
 
 
         </form>
+        <div class="row" id="sampleBill">
+            <div class="col-md-12 text-center">
+                <p><br>You can find your account number and meter number on your Virginia Tech Electric Service bill as
+                    shown below:</p>
+
+                <img class="img-tooltip img-responsive center-block"
+                    src="https://billpay.vtes.vt.edu/SilverBlazePortalV4.0/images/sampleBill.png"
+                    alt="Sample bill showing where to find your account number and meter number" title=""
+                    data-hasqtip="7" aria-describedby="qtip-7" style="cursor: pointer;">
+            </div>
+        </div>
     </main>
     <!-- .container -->
 

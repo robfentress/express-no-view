@@ -8,31 +8,18 @@
   <title>Create Account | VT Alumni Network</title>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
-    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css"
-    integrity="sha512-+0Vhbu8sRUlg+R/NKgTv7ahM+szPDF10G6J5PcHb1tOrAaquZIUiKUV3TH16mi6fuH4NjvHqlok6ppBhR6Nxuw=="
-    crossorigin="anonymous" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autotab/1.9.2/js/jquery.autotab.min.js"
-    integrity="sha512-wKEDUO5yhx+KCNN/Kz6ksfeK00p/76dfENygq3LktbGl5zKSMpSm3zaBO0KFTKxqc689yf7gNUEViXz3c4jBFA=="
-    crossorigin="anonymous"></script>
-
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="stylesheets/account-fixed.css">
-  <link rel="stylesheet" href="stylesheets/aria.tooltip.css">
   <script src="javascripts/accname.js"></script>
 </head>
 
 <body>
-  <div class="wrapper">
+  <div class="container g-0">
+    <!-- <div style="background-color: black;" class="rounded mb-4">
+      <a href="test.html" class="visually-hidden-focusable text-white">skip to menu</a>
+    </div> -->
     <div class="page-wrap">
       <header class="page-header">
         <div class="d-flex align-items-center justify-content-between">
@@ -60,7 +47,7 @@
 
           <h1 id="main" class="mb-3">Create Account</h1>
           <div id="status"></div>
-          <form novalidate class="needs-validation">
+          <form novalidate class="needs-validation" action="account-committed.html" method="post">
             <div role="group" class="card mb-3" aria-labelledby="personal">
               <h2 class="card-header" id="personal">Personal Information</h2>
               <div class="card-body">
@@ -90,7 +77,7 @@
                   </div>
                 </div>
                 <div class="row g-3 mb-4">
-                  <div class="col-md-7">
+                  <div class="col-xl-7 col-12">
                     <label for="ssn" class="form-label">Social Security # (<i>e.g. 123-45-6789</i>)</label>
                     <input type="text" class="form-control" id="ssn"
                       pattern="^(?!000|666)[0-8][0-9]{2}-?(?!00)[0-9]{2}-?(?!0000)[0-9]{4}$">
@@ -98,9 +85,13 @@
                       Must match format: <br>123-45-6789 or 123456789.
                     </div>
                   </div>
-                  <div class="col-md-5">
-                    <label for="dob" class="form-label">Date of Birth</label>
-                    <input type="date" class="form-control" id="dob" autocomplete="bday">
+                  <div class="col-xl-5 col-12">
+                    <label for="dob" class="form-label">Date of Birth (e.g. MM/DD/YYYY)</label>
+                    <input type="text" class="form-control" id="dob" placeholder="MM/DD/YYYY"
+                      pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$" autocomplete="bday">
+                    <div class="invalid-feedback" id="dobInvalid">
+                      Date must be in format MM/DD/YYY
+                    </div>
                   </div>
                 </div>
                 <div class="row g-3 mb-4">
@@ -119,7 +110,7 @@
                           <div data-a11y-tooltip data-tooltip-block>
                             <input type="text" class="form-control" id="username" required pattern="^[a-zA-Z0-9]+$"
                               autocomplete="username" aria-describedby="usernameFormat">
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback" id="usernameInvalid">
                               Please provide a valid username.
                             </div>
                           </div>
@@ -275,134 +266,132 @@
                       connections that
                       are
                       vital to building a successful career. Are you interested?</p>
+                    <p id="monthlyDesc">
+                      Choosing "Yes" will cause fields to appear where you can enter your credit card information.
+                    </p>
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="monthly">
-                      <label class="form-check-label" for="monthly">
+                      <label class="form-check-label" for="monthly" aria-describedby="monthlyDesc">
                         Yes, sign me up at $19.99 a month!
                       </label>
                     </div>
                   </div>
                 </div>
 
-                <div class="row g-3 mb-3">
-                  <div class="col-sm-3">
-                    <fieldset>
-                      <legend class="form-label" id="type">Card Type</legend>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="visa" checked>
-                        <label class="form-check-label" for="visa">
-                          Visa
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="mastercard">
-                        <label class="form-check-label" for="mastercard">
-                          MasterCard
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="type" id="discover">
-                        <label class="form-check-label" for="discover">
-                          Discover
-                        </label>
-                      </div>
-                    </fieldset>
-
-
-                    <!-- <fieldset class="row mb-3">
-                      <legend class="col-form-label col-12">Card Type</legend>
-                      <div class="row">
-                      <div class="col-12">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="type" id="visa" checked>
-                          <label class="form-check-label" for="visa">
-                            Visa
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="type" id="mastercard">
-                          <label class="form-check-label" for="mastercard">
-                            MasterCard
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="type" id="discover">
-                          <label class="form-check-label" for="discover">
-                            Discover
-                          </label>
-                        </div>
-                      </div>
-                      </div>
-                    </fieldset> -->
-                  </div>
-                  <div class="col-sm-9">
+                <div id="cardInfo" class="collapse">
+                  <fieldset>
+                    <legend>Credit Card Information</legend>
                     <div class="row g-3 mb-3">
-                      <div class="col-12">
-                        <label for="ccName" class="form-label">Name as Appears on Card</label>
-                        <input type="text" class="form-control" id="ccName" value="" autocomplete="cc-name">
-                      </div>
-                      <div class="col-12">
-                        <label for="cc" class="form-label">Card Number (<i>e.g. 1111 2222 3333
-                            4444</i>)</label>
-                        <input type="text" class="form-control" id="cc" value=""
-                          pattern="^\d{4}([- ])*\d{4}([- ])*\d{4}([- ])*\d{4}$" autocomplete="cc-number">
-                        <div class="invalid-feedback" id="ccInvalid">
-                          Must be 16 digits. Space or hyphen between every 4 digits is optional.
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <span class="form-label">Expires</span>
-                        <div class="row mt-0">
-                          <div class="col-4">
-                            <select class="form-select" id="month" title="month" autocomplete="cc-exp-month">
-                              <option selected disabled value="">MM</option>
-                              <option value="01">01</option>
-                              <option value="02">02</option>
-                              <option value="03">03</option>
-                              <option value="04">04</option>
-                              <option value="05">05</option>
-                              <option value="06">06</option>
-                              <option value="07">07</option>
-                              <option value="08">08</option>
-                              <option value="09">09</option>
-                              <option value="10">10</option>
-                              <option value="11">11</option>
-                              <option value="12">12</option>
-                            </select>
+                      <div class="col-sm-3">
+                        <div role="group" aria-labelledby="type">
+                          <div class="form-label" id="type">Card Type <i class="text-danger bi-asterisk"
+                              aria-hidden="true"></i></div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="visa" checked>
+                            <label class="form-check-label" for="visa">
+                              Visa
+                            </label>
                           </div>
-                          <div class="col-4">
-                            <select class="form-select" id="year" title="year" autocomplete="cc-exp-year">
-                              <option selected disabled value="">YY</option>
-                              <option value="22">22</option>
-                              <option value="23">23</option>
-                              <option value="24">24</option>
-                              <option value="25">25</option>
-                              <option value="26">26</option>
-                              <option value="27">27</option>
-                              <option value="28">28</option>
-                              <option value="29">29</option>
-                              <option value="30">30</option>
-                              <option value="31">31</option>
-                              <option value="32">32</option>
-                              <option value="34">33</option>
-                              <option value="34">34</option>
-                              <option value="35">35</option>
-                              <option value="36">36</option>
-                              <option value="37">37</option>
-                            </select>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="mastercard">
+                            <label class="form-check-label" for="mastercard">
+                              MasterCard
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="discover">
+                            <label class="form-check-label" for="discover">
+                              Discover
+                            </label>
                           </div>
                         </div>
                       </div>
-                      <div class="col-4">
-                        <label for="cvc" class="form-label">CVC (<i>e.g. 123</i>)</label>
-                        <input type="text" class="form-control" id="cvc" pattern="\d{3}" value="" maxlength="3"
-                          autocomplete="cc-csc">
-                        <div class="invalid-feedback" id="cvcInvalid">
-                          Must be 3 digits. For instance, 123.
+                      <div class="col-sm-9">
+                        <div class="row g-3 mb-3">
+                          <div class="col-12">
+                            <label for="ccName" class="form-label">Name <i class="text-danger bi-asterisk"
+                                aria-hidden="true"></i></label>
+                            <input type="text" class="form-control" id="ccName" value="" autocomplete="cc-name"
+                              required>
+                            <div class="invalid-feedback" id="yearInvalid">
+                              Please enter the name as it appears on the card.
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <label for="ccNum" class="form-label">Card Number <i class="text-danger bi-asterisk"
+                                aria-hidden="true"></i> (<i>e.g. 1111 2222 3333
+                                4444</i>)</label>
+                            <input type="text" class="form-control" id="ccNum" value="" required
+                              pattern="^\d{4}([- ])*\d{4}([- ])*\d{4}([- ])*\d{4}$" autocomplete="cc-number">
+                            <div class="invalid-feedback" id="ccInvalid">
+                              Must be 16 digits. Space or hyphen between every 4 digits is optional.
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <span class="form-label">Expires <i class="text-danger bi-asterisk"
+                                aria-hidden="true"></i></span>
+                            <div class="row mt-0">
+                              <div class="col-sm-4 col-6">
+                                <select class="form-select" id="month" aria-label="Month" title="Month"
+                                  autocomplete="cc-exp-month" required>
+                                  <option selected disabled value="">MM</option>
+                                  <option value="01">01</option>
+                                  <option value="02">02</option>
+                                  <option value="03">03</option>
+                                  <option value="04">04</option>
+                                  <option value="05">05</option>
+                                  <option value="06">06</option>
+                                  <option value="07">07</option>
+                                  <option value="08">08</option>
+                                  <option value="09">09</option>
+                                  <option value="10">10</option>
+                                  <option value="11">11</option>
+                                  <option value="12">12</option>
+                                </select>
+                                <div class="invalid-feedback" id="monthInvalid">
+                                  Must select a month.
+                                </div>
+                              </div>
+                              <div class="col-sm-4 col-6">
+                                <select class="form-select" id="year" aria-label="Year" title="Year"
+                                  autocomplete="cc-exp-year" required>
+                                  <option selected disabled value="">YY</option>
+                                  <option value="22">22</option>
+                                  <option value="23">23</option>
+                                  <option value="24">24</option>
+                                  <option value="25">25</option>
+                                  <option value="26">26</option>
+                                  <option value="27">27</option>
+                                  <option value="28">28</option>
+                                  <option value="29">29</option>
+                                  <option value="30">30</option>
+                                  <option value="31">31</option>
+                                  <option value="32">32</option>
+                                  <option value="34">33</option>
+                                  <option value="34">34</option>
+                                  <option value="35">35</option>
+                                  <option value="36">36</option>
+                                  <option value="37">37</option>
+                                </select>
+                                <div class="invalid-feedback" id="yearInvalid">
+                                  Must select a year.
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-4 col-6">
+                            <label for="cvc" class="form-label">CVC <i class="text-danger bi-asterisk"
+                                aria-hidden="true"></i> (<i>e.g. 123</i>)</label>
+                            <input type="text" class="form-control" id="cvc" required pattern="\d{3}" value=""
+                              maxlength="3" autocomplete="cc-csc">
+                            <div class="invalid-feedback" id="cvcInvalid">
+                              Must be 3 digits. For instance, 123.
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </fieldset>
                 </div>
               </div>
             </div>
@@ -439,13 +428,6 @@
   <script src="javascripts/validate.js"></script>
   <script src="javascripts/ckeditor.js" defer></script>
   <script src="javascripts/editor.js" defer></script>
-
-  <!-- <script>
-    window.onload = function () {
-      var mypass = document.getElementById("password");
-      console.log(accname.getAccessibleName(mypass));
-    }
-  </script> -->
 </body>
 
 </html>
