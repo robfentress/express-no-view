@@ -156,6 +156,7 @@
                                 and pointed to it with aria-describedby.
                                 That way, it is always visible and doesn't disappear when the user
                                 starts typing.
+                                Added correct autocomplete value, which is required under WCAG 2.1.
                              -->
                             <input type="text" class="form-control" id="accessCode"
                                 aria-describedby="accessCodeDescHelp" required autocomplete="username">
@@ -193,6 +194,7 @@
                                     the error message, that would probably work.  Another option would be to add the
                                     error message to a live regions, which would cause a screen reader to announce the
                                     error messages. 
+                                    Added correct autocomplete value, which is required under WCAG 2.1.
                                  -->
                                 <input type="password" class="form-control" id="password"
                                     aria-describedby="passwordHelp" required autocomplete="new-password">
@@ -269,6 +271,7 @@
                                 </ul>
                             </div>
                             <div class="capricorn-login-form-group input-group">
+                                <!-- Added correct autocomplete value, which is required under WCAG 2.1. -->
                                 <input type="password" class="form-control" id="confirm" aria-describedby="confirmHelp"
                                     required autocomplete="new-password">
                                 <!-- <span id="confirmPassword-error" class="help-block">This field is required.</span> -->
@@ -364,6 +367,7 @@
 
                         <div class="capricorn-login-form-group form-group">
                             <label for="firstName">First Name <span class="text-muted">(required)</span></label>
+                            <!-- Added correct autocomplete value, which is required under WCAG 2.1. -->
                             <input type="text" name="firstName" id="firstName" class="form-control" required
                                 autocomplete="given-name">
                             <!-- <span id="firstName-error" class="help-block">This field is required.</span> -->
@@ -371,6 +375,7 @@
 
                         <div class="capricorn-login-form-group form-group">
                             <label for="lastName">Last Name <span class="text-muted">(required)</span></label>
+                            <!-- Added correct autocomplete value, which is required under WCAG 2.1. -->
                             <input type="text" name="lastName" id="lastName" class="form-control" required
                                 autocomplete="family-name">
                             <!-- <span id="lastName-error" class="help-block">This field is required.</span> -->
@@ -379,6 +384,7 @@
                         <div class="capricorn-login-form-group form-group">
                             <label for="emailAddress" class="control-label">Email Address <span
                                     class="text-muted">(required)</span></label>
+                            <!-- Added correct autocomplete value, which is required under WCAG 2.1. -->
                             <input type="email" class="form-control" id="emailAddress" name="emailAddress"
                                 autocomplete="email" value="" maxlength="120" required>
                             <!-- <span id="emailAddress-error" class="help-block">This field is required.</span> -->
@@ -387,6 +393,7 @@
                         <div class="capricorn-login-form-group form-group">
                             <label for="confirmEmail" class="control-label">Confirm Email <span
                                     class="text-muted">(required)</span></label>
+                            <!-- Added correct autocomplete value, which is required under WCAG 2.1. -->
                             <input type="email" class="form-control" id="confirmEmail" name="confirmEmail"
                                 autocomplete="email" value="" maxlength="120" required>
                             <!-- <span id="confirmEmail-error" class="help-block">This field is required.</span> -->
@@ -396,6 +403,7 @@
                             <label for="phoneNumber" class="control-label">Phone Number</label>
                             <div class="row form-horizontal">
                                 <div class="col-md-7">
+                                    <!-- Added correct autocomplete value, which is required under WCAG 2.1. -->
                                     <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
                                         autocomplete="tel" value="" maxlength="20" inputmode="tel">
                                 </div>
@@ -407,6 +415,7 @@
                                                 style="white-space: nowrap;">Ext</label>
                                         </div>
                                         <div class="col-md-9">
+                                            <!-- Added correct autocomplete value, which is required under WCAG 2.1. -->
                                             <input type="text" class="form-control" id="phoneExt" name="phoneExt"
                                                 autocomplete="tel-extension" value="" inputmode="tel" maxlength="10">
                                         </div>
@@ -473,7 +482,7 @@
                             <!-- Added a heading for consistency -->
                             <h2 id="completeReg">Complete Registration</h2>
                             <!-- 
-                                Made it so these instructions weren't a part of the label, 
+                                Made it so these instructions weren't a part of the label, but were instead referenced through aria-describedby, 
                                 since having multiple labels is poorly supported, especially the way it was done here. -->
                             <p class="control-label" id="terms">Read and Accept our <a
                                     href="https://billpay.vtes.vt.edu/Registration Terms &amp; Conditions.htm"
@@ -482,9 +491,9 @@
 
                             <div class="capricorn-login-form-group form-group">
                                 <div class="checkbox">
-                                    <label class="checkbox-label-lg">
+                                    <label class="checkbox-label-lg" for="termsOfUse">
                                         <input type="checkbox" class="checkbox-lg" name="termsOfUse" id="termsOfUse"
-                                            aria-labelledby="terms" value="Y">
+                                            aria-describedby="terms" value="Y">
                                         <span>Accept</span>
                                     </label>
                                 </div>
@@ -523,7 +532,7 @@
         <!-- Changed div to section, referencing hidden heading label, and added bottom padding -->
         <section aria-labelledby="contactHeader" class="container-fluid"
             style="background:#861F41; margin-top:24px; width:100%; padding-bottom:15px">
-            <!-- Heading provides label for group, but is visibly hidden -->
+            <!-- Heading provides label for group, but is visually hidden -->
             <h2 id="contactHeader" class="sr-only">Contact</h2>
             <div id="footer" class="container" style="margin-top:12px; width:80%">
                 <div class="row">
