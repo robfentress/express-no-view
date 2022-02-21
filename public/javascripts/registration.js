@@ -100,11 +100,22 @@ $(document).ready(function () {
             question.disabled = false;
             question.required = true;
             $(label).removeClass("text-muted");
+            $('#requiredQuestion').removeClass("removedFromDOM");
         } else {
             question.disabled = true;
             question.required = false;
             $(label).addClass("text-muted");
+            $('#requiredQuestion').addClass("removedFromDOM");
         }
     });
+
+    $('#termsOfUse').on('change', function (evt) {
+        if (this.checked) {
+            $('#Register_Submit').prop("disabled", false);
+        } else {
+            $('#Register_Submit').prop("disabled", true);
+        }
+    });
+
 
 }); 

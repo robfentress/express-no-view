@@ -6,24 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Access Registration | VTES</title>
+
+    <!-- Main Bootstrap 3 styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+    <!-- Used font-awesome icons for some things -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Just added the styles for the validation.  Didn't include the code validation logic. -->
+    <link rel="stylesheet" href="stylesheets/jquery.validate.password.css">
+
+    <!-- Custom styles -->
     <link rel="stylesheet" href="stylesheets/registration.css">
 
+    <!-- Jquery is used for some interactive functions -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Main Bootstrap javascript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Cookie library used to save state of zooming -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <!-- Custom javascript, based on what was on the VTES site, but with some modifications and additions -->
     <script src="javascripts/registration.js"></script>
 </head>
 
 <body>
-    <!-- Changed nav to header, since doesn't contain navigation -->
+    <!-- Changed nav to header, since it contains more than navigation -->
     <header class="navbar navbar-inverse fhmm" id="main-menu" role="banner">
-        <!-- Added skiplink -->
+        <!-- Added skip link -->
         <a class="sr-only sr-only-focusable" id="skippy" href="#mainContent">Skip to main content</a>
         <div class="container-fluid">
             <div class="navbar-header">
+                <!-- Added an extra brand image to link to VT home page -->
+                <a href="https://vt/edu" class="navbar-brand vt-brand" title="Virginia Tech Home">
+                    <img src="images/whiteVTonMaroon.svg" width="36" alt="Virginia Tech">
+                </a>
+
+                <!-- 
+                    The logo link should only be used to link to the VT home page so I added a text link to the VTES home page.
+                -->
+                <a href="/app/login.jsp" class="navbar-brand" title="Virginia Tech Electrical System Bill Pay">VTES Bill
+                    Pay</a>
+                <!-- 
+                    Use this if you have navigation items.
+                    Note that I wrapped the icon bars in an element with aria-hidden, to be on the safe side. 
+                -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -33,28 +63,25 @@
                         <span class="icon-bar"></span>
                     </span>
                 </button>
-                <!-- 
-                    Removed Virginia Tech logo.
-                    This should only be used to link to the VT homepage.
-                    Instead, just added plain link. 
-                -->
-                <a href="https://vt/edu" class="navbar-brand" title="Virginia Tech">
-                    <img src="images/whiteVTonMaroon.svg" width="36" alt="">
-                </a>
-                <a href="/app/login.jsp" class="navbar-brand" title="Virginia Tech Electrical System Bill Pay">VTES Bill
-                    Pay</a>
             </div>
             <div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <!-- If you have nav links, they would go here, wrapped in a nav tag -->
                     <nav>
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">Link</a></li>
+                            <li><a href="https://billpay.vtes.vt.edu/app/login.jsp">Login</a></li>
+                            <li><a href="https://billpay.vtes.vt.edu/app/capricorn?para=quickPay">QuickPay</a></li>
+                            <li class="active"><a href="https://billpay.vtes.vt.edu/app/register.jsp">Register <span
+                                        class="sr-only">(current)</span></a></li>
                         </ul>
                     </nav>
 
-                    <!-- <div class="navbar-text hidden-xs" aria-hidden="true">Text Size: </div> -->
-                    <!-- Text resizing options moved to the header where more useful -->
+                    <!-- 
+                        Text resizing options moved to the header where more useful. 
+                        Probably better to use the icons you had before, but I didn't have access to those.
+                        Note, this is not in a navigation region, since these aren't navigation items.
+                        May just want to get rid of these, since they can cause horizontal scrolling.
+                    -->
                     <div class="navbar-form navbar-right">
                         <span class="text-white" aria-hidden="true">Text Size: </span>
                         <div class="btn-group" role="group" aria-label="Text Size">
@@ -66,8 +93,8 @@
                                 <i class="glyphicon glyphicon-text-size" aria-hidden="true"></i>
                                 <span class="sr-only">Regular Page Zoom</span>
                             </button>
-                            <button type="button" class="btn btn-default btn-sm" aria-hidden="true" id="zoom_in_page">
-                                <i class="glyphicon glyphicon-plus"></i>
+                            <button type="button" class="btn btn-default btn-sm" id="zoom_in_page">
+                                <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
                                 <span class="sr-only">Zoom In Page</span>
                             </button>
                         </div>
@@ -81,20 +108,40 @@
     </header>
     <!-- Changed this to use the main tag -->
     <main class="capricorn-container container" id="mainContent">
+        <!-- Added a top level heading -->
         <h1>Web Access Registration</h1>
         <!-- Removed redundant role="form" -->
-        <form role="form" name="registration" id="registration-form" method="post" autocomplete="off"
+        <form name="registration" id="registration-form" method="post" autocomplete="off"
             action="/app/capricorn?para=registrationRequest" novalidate="novalidate">
             <div class="row">
                 <div class="col-md-6">
+                    <!-- Made the subheadings heading level 2 -->
                     <h2 id="accDetails">Login Details</h2>
                     <div class="well">
                         <div class="capricorn-login-form-group form-group">
-                            <label for="accessCode">User Name</label> <button type="button"
-                                class="btn btn-default btn-inline-block" data-toggle="collapse"
+                            <!-- 
+                                Indicated field is required by using the word "required", rather than an asterisk.
+                                You could use aria-hidden to hide this from screen readers if you want, 
+                                since the required property on the field will provide an indication to these users.
+                             -->
+                            <label for="accessCode">User Name <span class="text-muted">(required)</span></label>
+                            <!-- 
+                                Moved the tooltip button out of the label, and instead of making it a tooltip,
+                                I changed it to a disclosure button.  That way, it works with keyboard,
+                                and on mobile.  The button rotates when clicked, which is a little weird, but 
+                                I was trying to mimic the way an expansion triangle works.  There is probably
+                                a better way to do this.
+                             -->
+                            <button type="button" class="btn btn-default help-btn" data-toggle="collapse"
                                 data-target="#accessCodeDesc" aria-expanded="false" aria-controls="accessCodeDesc"
                                 title="User Name Format Instructions"><i
                                     class="glyphicon glyphicon-question-sign"></i></button>
+                            <!-- 
+                                Making this a disclosure rather than a tooltip, allows us to add useful structure
+                                to the revealed content.  Associating this much content with the field using
+                                aria-describedby, is probably too verbose.  This gives the user the option of
+                                learning more if necessary, but isn't as intrusive.
+                                -->
                             <div id="accessCodeDesc" class="collapse">
                                 <p>User Name Format:</p>
                                 <ul>
@@ -104,16 +151,25 @@
                                     <li>Blank space is not valid</li>
                                 </ul>
                             </div>
+                            <!-- 
+                                Removed placeholder text and instead placed text after the field 
+                                and pointed to it with aria-describedby.
+                                That way, it is always visible and doesn't disappear when the user
+                                starts typing.
+                             -->
                             <input type="text" class="form-control" id="accessCode"
-                                aria-describedby="accessCodeDescHelp" aria-required="true">
+                                aria-describedby="accessCodeDescHelp" required autocomplete="username">
+                            <!-- <span id="accessCode-error" class="help-block" style="">This field is required.</span> -->
+
+                            <!-- Darkened text-muted slightly to pass contrast requirements. -->
                             <div id="accessCodeDescHelp" class="text-muted">
                                 Use a permanent name, for example, Joe.Smith
                             </div>
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="password">Password</label>
-                            <button type="button" class="btn btn-default btn-inline-block" data-toggle="collapse"
+                            <label for="password">Password <span class="text-muted">(required)</span></label>
+                            <button type="button" class="btn btn-default help-btn" data-toggle="collapse"
                                 data-target="#passwordDesc" aria-expanded="false" aria-controls="passwordDesc"
                                 title="Password Format Instructions">
                                 <i class="glyphicon glyphicon-question-sign"></i>
@@ -129,24 +185,75 @@
                                 </ul>
                             </div>
                             <div class="input-group">
+                                <!-- 
+                                    Removed passwordIndicator from aria-describedby, since it had pointed to an empty element,
+                                    and now that element has been removed entirely.
+                                    When there is an error, "password-error" is added to aria-describedby, but there is no
+                                    element on the page with that id.  If you added the "password-error" to 
+                                    the error message, that would probably work.  Another option would be to add the
+                                    error message to a live regions, which would cause a screen reader to announce the
+                                    error messages. 
+                                 -->
                                 <input type="password" class="form-control" id="password"
-                                    aria-describedby="passwordHelp" aria-required="true">
+                                    aria-describedby="passwordHelp" required autocomplete="new-password">
                                 <div class="input-group-btn">
+                                    <!-- 
+                                        Changed password toggle from an image to a button, 
+                                        so it is accessible for those using a keyboard 
+                                        and those using a screen reader. -->
                                     <button type="button" class="btn btn-default password-toggle" data-toggle="button"
                                         data-for="#password" aria-pressed="false" autocomplete="off"
                                         title="Toggle Password Visibility">
                                         <span class="fa fa-eye" aria-hidden="true"></span>
                                     </button>
+                                    <!-- 
+                                        Removed passwordIndicator, since the cue it provides is already indicated in other ways.
+                                        You could add it back, but if you did, I wouldn't point to it from the field using aria-describedby,
+                                        since it is empty.
+                                     -->
                                 </div>
                             </div>
+                            <!-- 
+                                Should add the id "password-error" to the error messages, 
+                                if the password field points to this id when the field is in error state.
+                                Alternately, you could wrap these error messages in a live region, so that 
+                                the error message will be announced when added to the region.
+                             -->
+                            <!-- <div class="password-meter">
+                                <div class="password-meter-message password-meter-message-too-short">Password too
+                                    short
+                                </div>
+                                <div class="password-meter-bg">
+                                    <div class="password-meter-bar password-meter-too-short"></div>
+                                </div>
+                            </div>
+                            <div class="password-meter">
+                                <div class="password-meter-message password-meter-message-weak">Weak password</div>
+                                <div class="password-meter-bg">
+                                    <div class="password-meter-bar password-meter-weak"></div>
+                                </div>
+                            </div>
+                            <div class="password-meter">
+                                <div class="password-meter-message password-meter-message-not-good-enough">Not good
+                                    enough</div>
+                                <div class="password-meter-bg">
+                                    <div class="password-meter-bar password-meter-not-good-enough"></div>
+                                </div>
+                            </div>
+                            <div class="password-meter">
+                                <div class="password-meter-message password-meter-message-strong">Strong password</div>
+                                <div class="password-meter-bg">
+                                    <div class="password-meter-bar password-meter-strong"></div>
+                                </div>
+                            </div> -->
                             <div id="passwordHelp" class="text-muted">
                                 8 to 20 characters
                             </div>
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="confirm">Confirm Password</label>
-                            <button type="button" class="btn btn-default btn-inline-block" data-toggle="collapse"
+                            <label for="confirm">Confirm Password <span class="text-muted">(required)</span></label>
+                            <button type="button" class="btn btn-default help-btn" data-toggle="collapse"
                                 data-target="#confirmDesc" aria-expanded="false" aria-controls="confirmDesc"
                                 title="Password Format Instructions">
                                 <i class="glyphicon glyphicon-question-sign"></i>
@@ -163,7 +270,8 @@
                             </div>
                             <div class="capricorn-login-form-group input-group">
                                 <input type="password" class="form-control" id="confirm" aria-describedby="confirmHelp"
-                                    aria-required="true">
+                                    required autocomplete="new-password">
+                                <!-- <span id="confirmPassword-error" class="help-block">This field is required.</span> -->
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default password-toggle" data-toggle="button"
                                         data-for="#confirm" aria-pressed="false" autocomplete="off"
@@ -177,8 +285,12 @@
                             </div>
                         </div>
 
+                        <!-- 
+                            Changed this pattern to a select element, 
+                            rather than the poorly structured button menu that it was using before. -->
                         <div class="capricorn-login-form-group form-group">
-                            <label class="form-label">Security Question</label>
+                            <label class="form-label" for="chooseQuestion">Security Question <span
+                                    class="text-muted">(required)</span></label>
                             <select class="form-control question-toggle" id="chooseQuestion"
                                 data-for="challengeQuestion" data-option="create" aria-describedby="chooseQuestionHelp"
                                 required>
@@ -196,8 +308,13 @@
                             </div>
                         </div>
 
+                        <!-- 
+                            The enter question field is always visible, but is disabled unless Create your own is selected 
+                            in the prior select element.
+                         -->
                         <div class="capricorn-login-form-group form-group">
-                            <label for="challengeQuestion" class="text-muted">Enter your own question</label>
+                            <label for="challengeQuestion" class="text-muted">Enter your own question <span
+                                    class="text-muted removedFromDOM" id="requiredQuestion">(required)</span></label>
                             <input type="text" name="challengeQuestion" id="challengeQuestion" class="form-control"
                                 disabled aria-describedby="challengeQuestionHelp">
                             <div id="challengeQuestionHelp" class="text-muted">
@@ -206,16 +323,24 @@
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="challengeAnswer">Answer to Security Question</label>
+                            <label for="challengeAnswer">Answer to Security Question <span
+                                    class="text-muted">(required)</span></label>
                             <input type="text" name="challengeAnswer" id="challengeAnswer" class="form-control"
                                 aria-describedby="challengeAnswerHelp" required>
+                            <!-- <span id="challengeAnswer-error" class="help-block">This field is required.</span> -->
                             <div id="challengeAnswerHelp" class="text-muted">
                                 Choose a question and answer that you will remember easily in the future.
                             </div>
                         </div>
 
+                        <!-- 
+                            Changed this to ordinary radio buttons, since I worried that with the switch styling,
+                            the keyboard interaction model might have been less clear to some users.  
+                            Probably not a big deal to leave it like it was, but this seemed simpler and more standard.
+                         -->
                         <div class="form-group" role="group" aria-labelledby="paperlessLabel">
-                            <div class="form-label" id="paperlessLabel">Sign up for paperless bills?</div>
+                            <div class="form-label" id="paperlessLabel">Sign up for paperless bills? <span
+                                    class="text-muted">(required)</span></div>
                             <div class="radio">
                                 <label for="eBillingOptin2">
                                     <input type="radio" name="eBillingOptin" id="eBillingOptin2" value="Y" checked>
@@ -233,33 +358,42 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <!-- Made the subheadings heading level 2 -->
                     <h2 id="personalDetails">Personal Details</h2>
                     <div class="well">
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" name="firstName" id="firstName" class="form-control" required>
+                            <label for="firstName">First Name <span class="text-muted">(required)</span></label>
+                            <input type="text" name="firstName" id="firstName" class="form-control" required
+                                autocomplete="given-name">
+                            <!-- <span id="firstName-error" class="help-block">This field is required.</span> -->
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" class="form-control" required>
+                            <label for="lastName">Last Name <span class="text-muted">(required)</span></label>
+                            <input type="text" name="lastName" id="lastName" class="form-control" required
+                                autocomplete="family-name">
+                            <!-- <span id="lastName-error" class="help-block">This field is required.</span> -->
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="emailAddress" class="control-label">Email Address:</label>
+                            <label for="emailAddress" class="control-label">Email Address <span
+                                    class="text-muted">(required)</span></label>
                             <input type="email" class="form-control" id="emailAddress" name="emailAddress"
                                 autocomplete="email" value="" maxlength="120" required>
+                            <!-- <span id="emailAddress-error" class="help-block">This field is required.</span> -->
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="confirmEmail" class="control-label">Confirm Email:</label>
+                            <label for="confirmEmail" class="control-label">Confirm Email <span
+                                    class="text-muted">(required)</span></label>
                             <input type="email" class="form-control" id="confirmEmail" name="confirmEmail"
                                 autocomplete="email" value="" maxlength="120" required>
+                            <!-- <span id="confirmEmail-error" class="help-block">This field is required.</span> -->
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="phoneNumber" class="control-label">Phone Number:</label>
+                            <label for="phoneNumber" class="control-label">Phone Number</label>
                             <div class="row form-horizontal">
                                 <div class="col-md-7">
                                     <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
@@ -270,11 +404,11 @@
                                     <div class="row form-group" style="margin: 0px -15px;">
                                         <div class="col-md-3">
                                             <label for="phoneExt" class="control-label"
-                                                style="white-space: nowrap;">Ext:</label>
+                                                style="white-space: nowrap;">Ext</label>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" id="phoneExt" name="phoneExt"
-                                                autocomplete="tel-ex" value="" inputmode="tel" maxlength="10">
+                                                autocomplete="tel-extension" value="" inputmode="tel" maxlength="10">
                                         </div>
                                     </div>
                                 </div>
@@ -282,19 +416,23 @@
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="accountNumber" class="control-label">Account Number</label>
-                            <button type="button" class="btn btn-default btn-inline-block" data-toggle="collapse"
+                            <label for="accountNumber" class="control-label">Account Number <span
+                                    class="text-muted">(required)</span></label>
+                            <button type="button" class="btn btn-default help-btn" data-toggle="collapse"
                                 data-target="#accountNumberDesc" aria-expanded="false" aria-controls="accountNumberDesc"
                                 title="Account Number Format Instructions"><i
                                     class="glyphicon glyphicon-question-sign"></i></button>
                             <div id="accountNumberDesc" class="collapse">
                                 <p>Your account number is 8 digits.<br>Enter your account number using the following
                                     format:<br>00012345-01 (include the dash).</p>
-                                <p><a href="#sampleBill">See sample bill</a></p>
+                                <!-- Moved link to sample from the label to the disclosure content -->
+                                <p>Your account number can be found on your bill (<a href="#sampleBill">see sample
+                                        bill</a>)</p>
                             </div>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="accountNumber" name="accountNumber"
                                     maxlength="120" value="" aria-describedby="accountNumberHelp" required>
+                                <!-- <span id="accountWithPrefix-error" class="help-block">This field is required.</span> -->
                                 <div id="accountNumberHelp" class="text-muted">
                                     e.g. 00012345-00
                                 </div>
@@ -303,17 +441,20 @@
                         </div>
 
                         <div class="capricorn-login-form-group form-group">
-                            <label for="meterNumber" class="control-label">Your Meter Number</label>
-                            <button type="button" class="btn btn-default btn-inline-block" data-toggle="collapse"
+                            <label for="meterNumber" class="control-label">Your Meter Number <span
+                                    class="text-muted">(required)</span></label>
+                            <button type="button" class="btn btn-default help-btn" data-toggle="collapse"
                                 data-target="#meterNumberDesc" aria-expanded="false" aria-controls="meterNumberDesc"
                                 title="Account Number Format Instructions"><i
                                     class="glyphicon glyphicon-question-sign"></i></button>
                             <div id="meterNumberDesc" class="collapse">
-                                <p>Your meter number can be found on your bill.</p>
-                                <p><a href="#sampleBill">See below for sample</a></p>
+                                <!-- Moved link to sample from the label to the disclosure content -->
+                                <p>Your meter number can be found on your bill (<a href="#sampleBill">see sample
+                                        bill</a>).</p>
                             </div>
                             <input type="text" class="form-control" aria-label="E.g. 0000012345" id="meterNumber"
                                 name="meterNumber" value="" aria-describedby="meterNumberHelp" required>
+                            <!-- <span id="meterNumber-error" class="help-block">This field is required.</span> -->
                             <div id="meterNumberHelp" class="text-muted">
                                 e.g. 0000012345
                             </div>
@@ -326,10 +467,15 @@
             <!-- .row -->
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
+                    <!-- Made this a labelled group -->
                     <div class="well" role="group" aria-labelledby="completeReg">
-                        <h2 id="completeReg">Complete Registration</h2>
                         <div class="center-text">
-                            <p class="control-label">Read and Accept our <a
+                            <!-- Added a heading for consistency -->
+                            <h2 id="completeReg">Complete Registration</h2>
+                            <!-- 
+                                Made it so these instructions weren't a part of the label, 
+                                since having multiple labels is poorly supported, especially the way it was done here. -->
+                            <p class="control-label" id="terms">Read and Accept our <a
                                     href="https://billpay.vtes.vt.edu/Registration Terms &amp; Conditions.htm"
                                     target="termsOfUse">Terms of Use</a> in order to
                                 Register.</p>
@@ -338,24 +484,24 @@
                                 <div class="checkbox">
                                     <label class="checkbox-label-lg">
                                         <input type="checkbox" class="checkbox-lg" name="termsOfUse" id="termsOfUse"
-                                            value="Y">
-                                        I accept the terms of use
+                                            aria-labelledby="terms" value="Y">
+                                        <span>Accept</span>
                                     </label>
                                 </div>
                             </div>
                             <hr>
 
                             <div>
-                                <button type="submit" id="Register_Submit" class="btn btn-primary btn-lg" disabled="">
+                                <button type="submit" id="Register_Submit" class="btn btn-primary btn-lg" disabled>
                                     Register Now <span class="glyphicon glyphicon-check"></span></button>
-                                <a href="https://billpay.vtes.vt.edu/app" type="button" class="btn btn-link btn-lg"
-                                    id="capricorn-login-signup">Return to Login </a>
+                                <!-- Unnecessary now that link to login is in nav at top of page -->
+                                <!-- <a href="https://billpay.vtes.vt.edu/app" type="button" class="btn btn-link btn-lg"
+                                    id="capricorn-login-signup">Return to Login </a> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
 
         </form>
         <div class="row" id="sampleBill">
@@ -363,10 +509,10 @@
                 <p><br>You can find your account number and meter number on your Virginia Tech Electric Service bill as
                     shown below:</p>
 
-                <img class="img-tooltip img-responsive center-block"
+                <!-- Removed the pointer cursor styling and tooltip as they are unneccessary. -->
+                <img class="img-responsive center-block"
                     src="https://billpay.vtes.vt.edu/SilverBlazePortalV4.0/images/sampleBill.png"
-                    alt="Sample bill showing where to find your account number and meter number" title=""
-                    data-hasqtip="7" aria-describedby="qtip-7" style="cursor: pointer;">
+                    alt="Sample bill showing where to find your account number and meter number">
             </div>
         </div>
     </main>
@@ -426,7 +572,7 @@
             </div>
         </section>
         <!-- Used CSS instead of the align attribute to center text -->
-        <div style="padding-top:15px; text-align: center;">
+        <div class="text-center" style="padding-top:15px;">
             <p>Virginia Tech Electric Service - All contents © 2021 Virginia Tech Electric Service. All rights reserved.
             </p>
         </div>
