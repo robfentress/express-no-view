@@ -66,9 +66,8 @@
                         <label for="first" class="form-label">First <i class="text-danger bi-asterisk"
                             aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
                         <input type="text" class="form-control" id="first" value="" required autocomplete="given-name"
-                          aria-describedby="firstInvalid">
+                          aria-describedby="firstInvalid" data-invalid="Must enter a first name.">
                         <div class="invalid-feedback" id="firstInvalid">
-                          Please provide a first name.
                         </div>
                       </div>
                       <div class="mb-3">
@@ -78,9 +77,9 @@
                       <div class="mb-3">
                         <label for="last" class="form-label">Last <i class="text-danger bi-asterisk"
                             aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
-                        <input type="text" class="form-control" id="last" value="" required autocomplete="family-name">
+                        <input type="text" class="form-control" id="last" value="" required autocomplete="family-name"
+                          data-invalid="Must enter a last name.">
                         <div class="invalid-feedback" id="lastInvalid">
-                          Please provide a last name.
                         </div>
                       </div>
                     </fieldset>
