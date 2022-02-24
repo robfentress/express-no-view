@@ -33,9 +33,9 @@
     const paymentInfo = document.querySelector(`#paymentInfo`);
     const cardInfo = document.querySelector(`#cardInfo`);
 
-    form.addEventListener('input', evt => {
-        console.log(active);
-    })
+    // form.addEventListener('input', evt => {
+    //     console.log(active);
+    // })
 
     let status = document.getElementById('status');
     let validated = false;
@@ -45,6 +45,18 @@
         help.innerHTML = item.getAttribute('data-hint');
     });
 
+    // const checkRequired = () => {
+    //     let help = this.nextElementSibling;
+    //     help.innerHTML = item.getAttribute('data-required');
+    // }
+    const checkFirst = () => {
+        let help = this.nextElementSibling;
+        if (!first.checkValidity()) {
+            firstHelp.innerHTML = first.getAttribute('data-required');
+        } else {
+            firstHelp.innerHTML = "";
+        }
+    }
 
     const checkDOB = function () {
         if (!dob.checkValidity()) {
@@ -58,6 +70,24 @@
             }
         }
         updateErrorsList();
+    }
+
+    const checkUsername = function () {
+
+        if (!username.checkValidity()) {
+            usernameFeedback.classList.add('invalid-help');
+            if (username.value) {
+                usernameFeedback.innerHTML = "Contains a character that isn't a letter or number. Only alphanumeric characters allowed.";
+            } else {
+                usernameFeedback.innerHTML = "Username cannot be empty.";
+            }
+        } else {
+            usernameFeedback.classList.remove('invalid-help');
+            usernameFeedback.innerHTML = "";
+            if (username.getAttribute('data-hint')) {
+                usernameFeedback.innerHTML = username.getAttribute('data-hint');
+            }
+        }
     }
 
     const checkUsername = function () {
@@ -218,6 +248,8 @@
     // Loop over them and prevent submission
 
     form.addEventListener('submit', function (event) {
+        checkFirst();
+        checkLast();
         checkUsername();
         checkDOB();
         checkPasswords();
@@ -256,6 +288,7 @@
 
         if (!validated) {
             form.classList.add('was-validated');
+            first.addEventListener('input', checkFirst, false);
             username.addEventListener('input', checkUsername, false);
             dob.addEventListener('input', checkDOB, false);
             password.addEventListener('input', checkPasswords, false);
