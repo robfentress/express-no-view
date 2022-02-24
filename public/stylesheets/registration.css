@@ -1,25 +1,24 @@
-        
-        a {
-            /* Required for sufficient contrast against well background */
-            color: #3072AC;
-            /* Required to be able to see difference between link text and the text that surrounds it */
-            text-decoration: underline;
-        }
-        
-        /* Made border darker to meet WCAG 2.1 */
-        .form-control,
-        .input-group-addon {
-            border-color: #8396A5
-        }
+a {
+    /* Required for sufficient contrast against well background */
+    color: #3072ac;
+    /* Required to be able to see difference between link text and the text that surrounds it */
+    text-decoration: underline;
+}
 
-        /* Made focus state more distinguishable to meet WCAG 2.1 */
-        .form-control:focus {
-            border-style: dashed;
-            border-color: black;
-        }
+/* Made border darker to meet WCAG 2.1 */
+.form-control,
+.input-group-addon {
+    border-color: #8396a5;
+}
 
-        /* Required for proper formatting of input group when using select tag */
-        /* 
+/* Made focus state more distinguishable to meet WCAG 2.1 */
+.form-control:focus {
+    border-style: dashed;
+    border-color: black;
+}
+
+/* Required for proper formatting of input group when using select tag */
+/* 
             .my-group {
                 width:100%;
             }
@@ -31,263 +30,297 @@
             } 
         */
 
-        /* Removing the background image makes it easier to determine whether text will meet contrast requirements */
-        .btn {
-            background-image: none;
-        }
+/* Removing the background image makes it easier to determine whether text will meet contrast requirements */
+.btn {
+    background-image: none;
+}
 
-        /* Required for sufficient contrast against well background */
-        .btn-link {
-            color: #3072AC;
-        }
+/* Required for sufficient contrast against well background */
+.btn-link {
+    color: #3072ac;
+}
 
-        .btn-primary {
-            color: #fff;
-            background-color: #861F41;
-            border-color: #861F41;
-        }
-        .btn-primary[disabled] {
-            background-color: #861F41;
-        }
+.btn-primary {
+    color: #fff;
+    background-color: #861f41;
+    border-color: #861f41;
+}
+.btn-primary[disabled] {
+    background-color: #861f41;
+}
 
-        .btn-primary:focus,
-        .btn-primary:hover,
-        .btn-primary:active,
-        .btn-primary:active:focus {
-            color: #fff;
-            background-color: #A63F61;
-            border-color: #A63F61;
-        }
+.btn-primary:focus,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:active:focus {
+    color: #fff;
+    background-color: #a63f61;
+    border-color: #a63f61;
+}
 
-        .btn-success {
-            color: #fff;
-            background-color: #C64600;
-            border-color: #C64600;
-        }
-        /* 
+.btn-success {
+    color: #fff;
+    background-color: #c64600;
+    border-color: #c64600;
+}
+/* 
             Rather than making background lighter, which violated contrast requirements, I made the border color change. 
             There are probably better ways to do this.
         */
-        .btn-success:focus,
-        .btn-success:hover,
-        .btn-success:active,
-        .btn-success:active:focus {
-            background-color: #C64600;
-            border-color: yellow;
-        }
+.btn-success:focus,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:active:focus {
+    background-color: #c64600;
+    border-color: yellow;
+}
 
-        .btn-default,
-        .btn-default.active {
-            border-color: #8396A5;
-        }
+.btn-default,
+.btn-default.active {
+    border-color: #8396a5;
+}
 
-
-        /* 
+/* 
             The styling for the help button. 
             I haven't tested this out in multiple browsers.
             Before using I'd check in IE and mobile browsers to make sure it looks okay.
         */
-        .help-btn {
-            vertical-align: top;
-            padding: 0;
-            line-height: 0;
-            background: none;
-            text-shadow: none;
-            border-radius: 8px;
-            border-style: none;
-            border-color: red;
-            font-size: 16px;
-            color: #C64600;
-        }
-        .help-btn .glyphicon {
-            transition-duration: 0.5s;
-            transition-property: transform;
-        }
-        .help-btn[aria-expanded="true"] .glyphicon {
-            transform: rotate(90deg) translateX(-1px) translateY(1px);
-            -webkit-transform: rotate(90deg) translateX(-1px) translateY(1px);
-        }
-        .help-btn.active.focus,
-        .help-btn.active:focus,
-        .help-btn.focus,
-        .help-btn.focus,
-        .help-btn:active:focus,
-        .help-btn:focus {
-            outline: none;
-            border-style: dashed;
-            border-color: black;
-            box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 100%);
-            color: #C64600;
-        }
+.help-btn {
+    vertical-align: top;
+    padding: 0;
+    line-height: 0;
+    background: none;
+    text-shadow: none;
+    border-radius: 8px;
+    border-style: none;
+    border-color: red;
+    font-size: 16px;
+    color: #c64600;
+}
+.help-btn .glyphicon {
+    transition-duration: 0.5s;
+    transition-property: transform;
+}
+.help-btn[aria-expanded="true"] .glyphicon {
+    transform: rotate(90deg) translateX(-1px) translateY(1px);
+    -webkit-transform: rotate(90deg) translateX(-1px) translateY(1px);
+}
+.help-btn.active.focus,
+.help-btn.active:focus,
+.help-btn.focus,
+.help-btn.focus,
+.help-btn:active:focus,
+.help-btn:focus {
+    outline: none;
+    border-style: dashed;
+    border-color: black;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 100%);
+    color: #c64600;
+}
 
+/* Skip link styling */
+#skippy {
+    display: block;
+    padding: 1em;
+    color: #fff;
+    background-color: #c64600;
+    outline: 0;
+}
 
-        /* Skip link styling */
-        #skippy {
-            display: block;
-            padding: 1em;
-            color: #fff;
-            background-color: #C64600;
-            outline: 0;
-        }
+#main-menu .navbar-header {
+    background-color: #861f41;
+}
 
-        #main-menu .navbar-header {
-            background-color: #861F41
-        }
+.navbar-inverse {
+    background-image: none;
+    border-color: #000;
+    border-radius: 0;
+    background-color: #861f41;
+}
 
-        .navbar-inverse {
-            background-image: none;
-            border-color: #000;
-            border-radius: 0;
-            background-color: #861F41;
-        }
+.navbar-inverse .navbar-toggle {
+    background-color: #861f41;
+    color: #fff;
+    border-color: #fff;
+}
 
-        .navbar-inverse .navbar-toggle {
-            background-color: #861F41;
-            color: #fff;
-            border-color: #fff;
-        }
+.navbar-inverse .navbar-brand {
+    background-color: #861f41;
+    color: #fff;
+    text-decoration: none;
+}
 
-        .navbar-inverse .navbar-brand {
-            background-color: #861F41;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        /* VT-THEMED STYLING FOR TOP NAVBAR */
-        /* Styling for VT Home link */
-        /* 
+/* VT-THEMED STYLING FOR TOP NAVBAR */
+/* Styling for VT Home link */
+/* 
             Gotta push it over a bit, or else it is overlapped a bit by the VTES Bill Pay link.  
             This is a bit of a hack and may have unintended consequences.  
             Should double-check to make sure before using. 
         */
-        .navbar-inverse .navbar-brand.vt-brand {
-            margin-right:1.5rem;
-        }
-        /* Provides an inner glow to VT Home link on hover. */
-        .navbar-inverse .navbar-brand.vt-brand:hover {
-            box-shadow: inset 0 3px 9px rgb(232 119 34 / 50%);
-        }
+.navbar-inverse .navbar-brand.vt-brand {
+    margin-right: 1.5rem;
+}
+/* Provides an inner glow to VT Home link on hover. */
+.navbar-inverse .navbar-brand.vt-brand:hover {
+    box-shadow: inset 0 3px 9px rgb(232 119 34 / 50%);
+}
 
-        .navbar-inverse .navbar-brand:focus,
-        .navbar-inverse .navbar-brand:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-        .navbar-inverse .navbar-nav>li>a {
-            color:#fff;
-            text-decoration: none;
-        }
-        .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus  {
-            text-decoration: underline;
-        }
-        .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a  {
-            background-image: none;
-        }
-        .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
-            background-color: #861F41;
-            box-shadow: inset 0 3px 9px rgb(0 0 0 / 50%);
-        }
-        .navbar-inverse .navbar-text {
-            background-color: #861F41;
-            color: #fff;
-        }
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-brand:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+    text-decoration: none;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    text-decoration: underline;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .open > a {
+    background-image: none;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #861f41;
+    box-shadow: inset 0 3px 9px rgb(0 0 0 / 50%);
+}
+.navbar-inverse .navbar-text {
+    background-color: #861f41;
+    color: #fff;
+}
 
-        /* Footer styling */
-        .footer-text,
-        .footer-text a {
-            color: #fff;
-        }
-        .footer-text a {
-            text-decoration: underline;
-        }
+/* Footer styling */
+.footer-text,
+.footer-text a {
+    color: #fff;
+}
+.footer-text a {
+    text-decoration: underline;
+}
 
-        /* General utility classes */
-        .bold {
-            font-weight: bold;
-        }
-        .text-white {
-            color: white;
-        }
-        /* Required for sufficient contrast against well background */
-        .text-muted {
-            color:#707070;
-        }
+/* General utility classes */
+.bold {
+    font-weight: bold;
+}
+.text-white {
+    color: white;
+}
+/* Required for sufficient contrast against well background */
+.text-muted {
+    color: #707070;
+}
 
-        /* Styling the group label for paperless bill to look like a form label */
-        .form-label {
-            display: inline-block;
-            max-width: 100%;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
+/* Styling the group label for paperless bill to look like a form label */
+.form-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
 
-        .well {
-            /* Makes contrast more predictable */
-            background-image: none;
-        }
-        
+.well {
+    /* Makes contrast more predictable */
+    background-image: none;
+}
 
-        /* These changes required to provide suffficient contrast between text and background and between areas in the password meter */
-        .password-meter-bg {
-            height: 9px;
-            top: 7px;
-            border: 1px solid #8396A5;
-        }
-        .password-meter-bg .password-meter-strong {
-            width:219px;
-        }
-        .password-meter-bar {
-            height: 7px;
-            border-right: 1px solid #8396A5;
-        }
-        .password-meter-message {
-            padding-left: 4px;
-            padding-right: 4px;
-            margin-top: 4px;
-            border: 1px solid #8396A5;
-            border-bottom: none;
-            border-radius: 5px 5px 0 0;
-        }
-        .password-meter-message-weak,
-        .password-meter-message-too-short,
-        .password-meter-message-not-good-enough {
-            -webkit-transition: background-color 500ms linear;
-            -ms-transition: background-color 500ms linear;
-            transition: background-color 500ms linear;
-        }
-        .password-meter-message-weak {
-            background-color: #4A4A4A;
-        }
-        .password-meter-message-too-short {
-            background-color: #fff;
-        }
-        .password-meter-message-not-good-enough {
-            color:#C38A18;
-            background-color: #fff;
-        }
+/* These changes required to provide suffficient contrast between text and background and between areas in the password meter */
+.password-meter-bg {
+    height: 9px;
+    top: 7px;
+    border: 1px solid #8396a5;
+}
+.password-meter-bg .password-meter-strong {
+    width: 219px;
+}
+.password-meter-bar {
+    height: 7px;
+    border-right: 1px solid #8396a5;
+}
+.password-meter-message {
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-top: 4px;
+    border: 1px solid #8396a5;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+}
+.password-meter-message-weak,
+.password-meter-message-too-short,
+.password-meter-message-not-good-enough {
+    -webkit-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
+}
+.password-meter-message-weak {
+    background-color: #4a4a4a;
+}
+.password-meter-message-too-short {
+    background-color: #fff;
+}
+.password-meter-message-not-good-enough {
+    color: #c38a18;
+    background-color: #fff;
+}
 
-        /* Used to toggle "required" visibility for "Enter your own question" field */
-        .removedFromDOM {
-            display:none;
-        }
+/* Used to toggle "required" visibility for "Enter your own question" field */
+.removedFromDOM {
+    display: none;
+}
 
-        .center-text {
-            text-align: center;
-        }
+.center-text {
+    text-align: center;
+}
 
+/* Styling for big checkbox (provided by Capricorn) */
+.checkbox-label-lg {
+    line-height: 26px;
+}
+/* For some reason I had to shift this over a bit */
+.checkbox-label-lg span {
+    margin-left: 13px;
+    font-weight: bold;
+}
+.checkbox-lg {
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+    margin-top: 0 !important;
+}
+.btn-check {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+}
+.btn-check:focus + .btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
 
-        /* Styling for big checkbox (provided by Capricorn) */
-        .checkbox-label-lg {
-            line-height: 26px;
-        }
-        /* For some reason I had to shift this over a bit */
-        .checkbox-label-lg span {
-            margin-left: 13px;
-            font-weight: bold;
-        }
-        .checkbox-lg {
-            width: 26px;
-            height: 26px;
-            vertical-align: middle;
-            margin-top: 0!important;
-        }
+.btn-check:focus + .btn-default,
+.btn-default:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    border-style: dashed;
+    border-color: black;
+}
+.btn-check:active + .btn-default,
+.btn-check:checked + .btn-default,
+.btn-default.active,
+.btn-default:active,
+.show > .btn-default.dropdown-toggle {
+    background-color: #e0e0e0;
+    box-shadow: inset 0 3px 5px rgb(0 0 0 / 40%);
+}
+.btn-check:active + .btn-default:focus,
+.btn-check:checked + .btn-default:focus,
+.btn-default.active:focus,
+.btn-default:active:focus,
+.show > .btn-default.dropdown-toggle:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}

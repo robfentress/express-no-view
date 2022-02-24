@@ -200,14 +200,22 @@
                                     aria-describedby="passwordHelp" required autocomplete="new-password">
                                 <div class="input-group-btn">
                                     <!-- 
-                                        Changed password toggle from an image to a button, 
-                                        so it is accessible for those using a keyboard 
-                                        and those using a screen reader. -->
-                                    <button type="button" class="btn btn-default password-toggle" data-toggle="button"
-                                        data-for="#password" aria-pressed="false" autocomplete="off"
-                                        title="Toggle Password Visibility">
-                                        <span class="fa fa-eye" aria-hidden="true"></span>
-                                    </button>
+                                        Changed password toggle from an image to a checkbox styled to look like a button, 
+                                        so it is accessible for those using a keyboard and those using a screen reader. 
+                                    -->
+                                    <!-- 
+                                        This treatment uses a checkbox, which works better with Talkback
+                                        than a button with the aria-pressed attribute.
+                                        The downside is that it still looks like a button, so the user may be tempted
+                                        to activate it with the Enter key, which would actually submit the form, 
+                                        rather than toggle the button.  Only Spacebar press and mouseup events to that. 
+                                        Another downside is that the title attribute doesn't show on hover. 
+                                    -->
+                                    <input type="checkbox" class="btn-check password-toggle" data-for="#password"
+                                        id="btn-check" autocomplete="off">
+                                    <label class="btn btn-default" for="btn-check"><span class="fa fa-eye"
+                                            aria-hidden="true"><span class="sr-only">Make Password
+                                                Visible</span></label>
                                     <!-- 
                                         Removed passwordIndicator, since the cue it provides is already indicated in other ways.
                                         You could add it back, but if you did, I wouldn't point to it from the field using aria-describedby,
@@ -275,6 +283,14 @@
                                 <input type="password" class="form-control" id="confirm" aria-describedby="confirmHelp"
                                     required autocomplete="new-password">
                                 <!-- <span id="confirmPassword-error" class="help-block">This field is required.</span> -->
+                                <!-- 
+                                        Changed password toggle from an image to a button that uses aria-pressed, 
+                                        so it is accessible for those using a keyboard and those using a screen reader. 
+                                    -->
+                                <!-- 
+                                        This treatment uses a button with aria-pressed, which works with both Enter and Spacebar keypresses, but the pressed state is not communicated well with Talkback
+                                        than a button with the aria-pressed attribute.  
+                                    -->
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default password-toggle" data-toggle="button"
                                         data-for="#confirm" aria-pressed="false" autocomplete="off"
