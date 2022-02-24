@@ -46,38 +46,45 @@
         <div class="content">
 
           <h1 id="main" class="mb-3">Create Account</h1>
-          <div id="status" role="alert"></div>
-          <form novalidate class="needs-validation" action="account-committed.html" method="post">
+          <form novalidate class="needs-validation" action="account-committed.html" method="post" id="acctForm">
 
             <div class="row">
+              <div class="col-lg-8">
+                <div class="text-muted alert alert-light border border-warning" aria-hidden="true">Required
+                  fields are
+                  marked
+                  with <i class="text-danger bi-asterisk" aria-hidden="true"></i><span
+                    class="visually-hidden">(required)</span></div>
+              </div>
               <div class="col-lg-8">
                 <div role="group" class="card mb-3" aria-labelledby="personal">
                   <h2 class="card-header" id="personal">Personal Information</h2>
                   <div class="card-body">
-                    <p aria-hidden="true" class="text-muted text-danger">Required fields are marked with <i
-                        class="text-danger bi-asterisk"></i></p>
-                    <div class="mb-3">
-                      <label for="first" class="form-label">First Name <i class="text-danger bi-asterisk"
-                          aria-hidden="true"></i></label>
-                      <input type="text" class="form-control" id="first" value="" required autocomplete="given-name"
-                        aria-describedby="firstInvalid">
-                      <div class="invalid-feedback" id="firstInvalid">
-                        Please provide a first name.
+                    <fieldset>
+                      <legend>Name</legend>
+                      <div class="mb-3">
+                        <label for="first" class="form-label">First <i class="text-danger bi-asterisk"
+                            aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
+                        <input type="text" class="form-control" id="first" value="" required autocomplete="given-name"
+                          aria-describedby="firstInvalid">
+                        <div class="invalid-feedback" id="firstInvalid">
+                          Please provide a first name.
+                        </div>
                       </div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="mi" class="form-label"><abbr title="Middle Initial">M.I.</abbr></label>
-                      <input type="text" class="form-control" id="mi" value="" maxlength="1">
-                    </div>
-                    <div class="mb-5">
-                      <label for="last" class="form-label">Last Name <i class="text-danger bi-asterisk"
-                          aria-hidden="true"></i></label>
-                      <input type="text" class="form-control" id="last" value="" required autocomplete="family-name">
-                      <div class="invalid-feedback" id="lastInvalid">
-                        Please provide a last name.
+                      <div class="mb-3">
+                        <label for="mi" class="form-label">Middle</label>
+                        <input type="text" class="form-control" id="mi" value="">
                       </div>
-                    </div>
-                    <hr class="mb-5">
+                      <div class="mb-3">
+                        <label for="last" class="form-label">Last <i class="text-danger bi-asterisk"
+                            aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
+                        <input type="text" class="form-control" id="last" value="" required autocomplete="family-name">
+                        <div class="invalid-feedback" id="lastInvalid">
+                          Please provide a last name.
+                        </div>
+                      </div>
+                    </fieldset>
+                    <!-- <hr class="mb-5"> -->
                     <div class="mb-3">
                       <label for="ssn" class="form-label">Social Security #</label>
                       <input type="text" class="form-control" id="ssn"
@@ -105,7 +112,7 @@
                   <div class="card-body">
                     <div class="mb-4 d-flex flex-column">
                       <label for="username" class="form-label">Username <i class="text-danger bi-asterisk"
-                          aria-hidden="true"></i></label>
+                          aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
                       <input type="text" class="form-control" id="username" required pattern="^[a-zA-Z0-9]+$"
                         autocomplete="username" aria-describedby="usernameHelp"
                         data-hint="Can only contain letters and numbers">
@@ -124,9 +131,9 @@
                           Passwords must match
                         </div>
                       </div>
-                      <div class="mb-3">
+                      <div>
                         <label for="retype" class="form-label">Retype Password <i class="text-danger bi-asterisk"
-                            aria-hidden="true"></i></label>
+                            aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
                         <input type="text" class="form-control" id="retype" required autocomplete="new-password"
                           data-hint="Passwords must match" aria-describedby="retypeHelp">
                         <div class="hint" id="retypeHelp">
@@ -141,7 +148,7 @@
                 <div role="group" class="card mb-3" aria-labelledby="howreach">
                   <h2 id="howreach" class="card-header">How may we reach you?</h2>
                   <div class="card-body">
-                    <fieldset class="mb-4">
+                    <fieldset>
                       <legend>Address</legend>
                       <div class="row g-3 mb-3">
                         <div class="col">
@@ -215,20 +222,14 @@
                           </select>
                         </div>
                       </div>
-                      <div class="row g-3 mb-3">
+                      <div class="row g-3">
                         <div class="col">
                           <label for="zip" class="form-label">ZIP</label>
                           <input type="text" class="form-control" id="zip" value="" autocomplete="postal-code">
                         </div>
                       </div>
-                      <!-- <div class="row g-3">
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                            </div>
-                          </div> -->
                     </fieldset>
-                    <fieldset class="mb-4">
+                    <fieldset>
                       <legend>Contact</legend>
                       <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -238,7 +239,7 @@
                           e.g. user@domain.com
                         </div>
                       </div>
-                      <div class="mb-3">
+                      <div>
                         <label for="phone" class="form-label">Phone</label>
                         <input type="text" class="form-control" id="phone" value="" autocomplete="tel-national"
                           aria-describedby="phoneHelp">
@@ -257,7 +258,7 @@
 
             <div class="row">
               <div class="col-lg-8">
-                <div role="group" class="card mb-3 rounded-0">
+                <div role="group" class="card mb-3">
                   <h2 class="card-header" id="tell">Tell us about yourself</h2>
                   <div class="card-body p-0">
                     <textarea aria-labelledby="tell" cols="80" id="editor1" name="editor1" rows="10"
@@ -282,7 +283,8 @@
                           connections that
                           are
                           vital to building a successful career.</p>
-                        <p id="interested" class="form-label">Are you interested in becoming a member?</p>
+                        <p id="interested" class="form-label"><strong>Are you interested in becoming a member?</strong>
+                        </p>
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" value="" id="monthly"
                             aria-describedby="interested monthlyHelp">
@@ -295,11 +297,10 @@
                         </div>
                       </div>
                     </div>
-                    <div id="cardInfo">
-                      <!-- <div id="cardInfo" class="collapse"> -->
+                    <div id="paymentInfo" class="collapse">
                       <div role="group" aria-labelledby="pay">
                         <h3 id="pay">Payment Information</h3>
-                        <fieldset class="mb-4">
+                        <fieldset>
                           <legend>Card Type</legend>
                           <div class="form-check">
                             <input class="form-check-input" type="radio" name="type" id="visa" checked>
@@ -320,16 +321,16 @@
                             </label>
                           </div>
                         </fieldset>
-                        <fieldset>
+                        <fieldset id="cardInfo">
                           <legend>Card Information</legend>
-                          <div class="row g-3 mb-3">
+                          <div class="row g-3">
                             <div class="col-lg-12">
-                              <div class="row g-3 mb-3">
+                              <div class="row g-3">
                                 <div class="col-12">
                                   <label for="ccName" class="form-label">Name <i class="text-danger bi-asterisk"
-                                      aria-hidden="true"></i></label>
+                                      aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
                                   <input type="text" class="form-control" id="ccName" value="" autocomplete="cc-name"
-                                    required aria-describedby="ccNameHelp">
+                                    data-toggle-required aria-describedby="ccNameHelp">
                                   <div class="invalid-feedback" id="yearInvalid">
                                     Please enter the name as it appears on the card.
                                   </div>
@@ -339,10 +340,10 @@
                                 </div>
                                 <div class="col-12">
                                   <label for="ccNum" class="form-label">Card Number <i class="text-danger bi-asterisk"
-                                      aria-hidden="true"></i></label>
-                                  <input type="text" class="form-control" id="ccNum" value="" required
-                                    pattern="^\d{4}([- ])*\d{4}([- ])*\d{4}([- ])*\d{4}$" autocomplete="cc-number"
-                                    aria-describedby="ccNumHelp">
+                                      aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
+                                  <input type="text" class="form-control" id="ccNum" value="" data-toggle-required
+                                    data-toggle-pattern="^\d{4}([- ])*\d{4}([- ])*\d{4}([- ])*\d{4}$"
+                                    autocomplete="cc-number" aria-describedby="ccNumHelp">
                                   <div class="invalid-feedback" id="ccInvalid">
                                     Must be 16 digits. Space or hyphen between every 4 digits is optional.
                                   </div>
@@ -352,11 +353,11 @@
                                 </div>
                                 <div class="col-12">
                                   <span class="form-label">Expires <i class="text-danger bi-asterisk"
-                                      aria-hidden="true"></i></span>
+                                      aria-hidden="true"></i><span class="visually-hidden">(required)</span></span>
                                   <div class="row mt-0">
                                     <div class="col-auto">
                                       <select class="form-select" id="month" aria-label="Month" title="Month"
-                                        autocomplete="cc-exp-month" required>
+                                        autocomplete="cc-exp-month" data-toggle-required>
                                         <option selected disabled value="">MM</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -380,7 +381,7 @@
                                     </div>
                                     <div class="col-auto">
                                       <select class="form-select" id="year" aria-label="Year" title="Year"
-                                        autocomplete="cc-exp-year" required>
+                                        autocomplete="cc-exp-year" data-toggle-required>
                                         <option selected disabled value="">YY</option>
                                         <option value="22">22</option>
                                         <option value="23">23</option>
@@ -407,9 +408,10 @@
                                 </div>
                                 <div class="col-auto">
                                   <label for="cvc" class="form-label">CVC <i class="text-danger bi-asterisk"
-                                      aria-hidden="true"></i></label>
-                                  <input type="text" class="form-control" id="cvc" required pattern="\d{3}" value=""
-                                    maxlength="3" autocomplete="cc-csc" aria-describedby="cvcHelp">
+                                      aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
+                                  <input type="text" class="form-control" id="cvc" data-toggle-required
+                                    data-toggle-pattern="\d{3}" value="" maxlength="3" autocomplete="cc-csc"
+                                    aria-describedby="cvcHelp">
                                   <div class="invalid-feedback" id="cvcInvalid">
                                     Must be 3 digits. For instance, 123.
                                   </div>
@@ -428,22 +430,33 @@
               </div>
             </div>
 
-            <section aria-labelledby="errorsHeading" id="errorRegion" class="d-none">
-              <h3 id="errorsHeading"><span class="num-errors"></span> Validation Errors</h3>
-              <p>
-                <button type="button" class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#errors"
-                  aria-expanded="false" aria-controls="errors">
-                  <svg class="bi" width="15" height="15" fill="currentColor">
-                    <use xlink:href="images/bootstrap-icons.svg#caret-right-fill" />
-                  </svg> See Error
-                  Details</button>
-              </p>
-              <div id="errors" class="collapse">
-                <ul id="errorsList"></ul>
+            <div id="status" role="alert"></div>
+            <div class="row">
+              <div class="col-md-8">
+                <section aria-labelledby="errorsLabel" id="errorRegion" class="card rounded mb-3 d-none">
+                  <div class="card-header d-flex flex-content-end bg-danger text-white">
+                    <h2 id="errorsHeading">
+                      <i class="bi-exclamation-triangle-fill" aria-hidden="true"></i> <span class="num-errors"></span>
+                      <span id="errorsLabel">Validation Errors</span>
+                    </h2>
+                  </div>
+                  <button type="button" class="btn btn-dark text-start rounded-0" data-bs-toggle="collapse"
+                    data-bs-target="#errors" aria-expanded="false" aria-controls="errors"><i
+                      class="bi-caret-right-fill d-inline-block" aria-hidden="true"></i>
+                    Details
+                  </button>
+                  <div class="card-body p-0">
+                    <div id="errors" class="collapse">
+                      <ul id="errorsList" class="list-group rounded-0 rounded-bottom"></ul>
+                    </div>
+                  </div>
+                </section>
               </div>
-            </section>
+            </div>
             <div class="row g-3 mb-5">
-              <div class="col-lg-8">
+              <div class="col-lg-6">
+              </div>
+              <div class="col-lg-2">
                 <button class="btn btn-dark" type="submit">Submit form</button>
               </div>
             </div>

@@ -288,15 +288,24 @@ legend {
   all: revert;
 }
 fieldset {
-  border-style: dotted;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
+  border: none;
+  border-top: 2px inset var(--vt-grey);
+  border-bottom: 2px inset var(--vt-grey);
   padding-left: 0;
   padding-right: 0;
+  padding-bottom: 1.25rem;
+  margin: 0 0 2rem;
+  border-radius: 0.25rem;
 }
+// fieldset:after {
+//   content: "";
+//   width: 70%;
+//   left: 15%;
+//   position: absolute;
+//   border-bottom: 1px dotted var(--vt-grey);
+// }
 legend {
-  text-align: center;
+  margin: auto;
   font-weight: bold;
   padding: 0 0.5rem;
   text-transform: uppercase;
@@ -307,12 +316,6 @@ legend {
   padding-top: 0.375rem;
 }
 
-label {
-  font-weight: bold;
-}
-.card {
-  border-radius: 0;
-}
 hr {
   border-bottom: 2px dotted currentColor;
   background: none;
@@ -326,12 +329,12 @@ hr {
 .invalid-help {
   color: #dc3545;
 }
-button[aria-controls="errors"] .bi {
+button[aria-controls="errors"] .bi-caret-right-fill {
   // transition-duration: 0.5s;
   // transition-property: transform;
   transition: all 0.3s ease;
 }
-button[aria-controls="errors"][aria-expanded="true"] > .bi {
+button[aria-controls="errors"][aria-expanded="true"] > .bi-caret-right-fill {
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
 }

@@ -5,7 +5,8 @@
     var mypass = document.getElementById("password");
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation');
+    //var forms = document.querySelectorAll('.needs-validation');
+    let form = document.querySelector(`#acctForm`);
     const pw1 = "password";
     const pw2 = "retype";
     const username = document.querySelector(`#username`);
@@ -27,6 +28,7 @@
     const globalMsg = document.querySelector(`#globalMsg`);
     const errorRegion = document.querySelector(`#errorRegion`);
     const errors = document.querySelector(`#errorsList`);
+    const paymentInfo = document.querySelector(`#paymentInfo`);
     const cardInfo = document.querySelector(`#cardInfo`);
     let status = document.getElementById('status');
     let validated = false;
@@ -48,6 +50,7 @@
                 dobFeedback.innerHTML = dob.getAttribute('data-hint');
             }
         }
+        updateErrorsList();
     }
 
     const checkUsername = function () {
@@ -154,92 +157,109 @@
     let checkDate = function () {
 
     }
-    // let notify = function () {
 
-    // }
-    // let togglePayment = function (evt) {
-    //     notify()
-    //     setTimeout(function () {
-    //         globalMsg.innerHTML = "";
-    //     }, 10000);
-    // }
     let togglePayment = function () {
         if (monthly.checked) {
-            cardInfo.classList.add("show");
+            paymentInfo.classList.add("show");
+            //cardInfo.removeAttribute('disabled');
+            cardInfo.querySelectorAll('[data-toggle-required]').forEach(item => {
+                item.setAttribute("required", true);
+            });
+            cardInfo.querySelectorAll('[data-toggle-pattern]').forEach(item => {
+                item.setAttribute("pattern", item.getAttribute("data-toggle-pattern"));
+            });
         } else {
-            cardInfo.classList.remove("show");
+            paymentInfo.classList.remove("show");
+            cardInfo.querySelectorAll('[data-toggle-required]').forEach(item => {
+                item.removeAttribute("required", true);
+            });
+            cardInfo.querySelectorAll('[data-toggle-pattern]').forEach(item => {
+                item.removeAttribute("pattern", item.getAttribute("data-toggle-pattern"));
+            });
+            //cardInfo.setAttribute('diabled', true);
         }
+
+        form.checkValidity();
+        updateErrorsList();
     }
 
     monthly.addEventListener('change', togglePayment);
 
 
+    function updateErrorsList() {
+        var inv = form.querySelectorAll(`:invalid:not(fieldset)`), numErrors = inv.length;
+        let errs = "";
+        for (var i = 0; i < numErrors; i++) {
+            var controlId = inv[i].id;
+            var label = document.getElementById(controlId);
+            var labelText = accname.getAccessibleName(label);
+            var msg = inv[i].nextElementSibling.innerHTML;
+            errs += `<li id="${controlId}Item" class="list-group-item"><b><a href="#${controlId}">${labelText}</a>:</b><div>${msg}</div></li>`;
+        }
+        errors.innerHTML = errs;
+    }
+
+    const validationAlert = function () {
+        //let numErrors = document.querySelectorAll('.invalid-help').length;
+        var inv = form.querySelectorAll(`:invalid:not(fieldset)`), numErrors = inv.length;
+        status.innerHTML += `<div class="alert alert-danger"><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="images/bootstrap-icons.svg#exclamation-triangle-fill"/></svg>${numErrors} invalid form entries</div>`;
+        setTimeout(() => { removeMsg(status.querySelector('div:last-child')) }, 5000);
+    }
+    const removeMsg = function (msg) {
+        status.removeChild(msg);
+    }
     // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                checkUsername();
-                checkDOB();
-                checkPasswords();
-                //checkSocial();
-                checkEmail();
-                checkPhone();
-                //checkCC();
-                if (!form.checkValidity()) {
-                    let numErrors = document.querySelectorAll('.invalid-help').length;
-                    status.innerHTML = `<div class="alert alert-danger">
-                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="images/bootstrap-icons.svg#exclamation-triangle-fill"/></svg>    
-                    ${numErrors} invalid form entries</div>
-                    `;
 
+    form.addEventListener('submit', function (event) {
+        checkUsername();
+        checkDOB();
+        checkPasswords();
+        //checkSocial();
+        checkEmail();
+        checkPhone();
+        //checkCC();
+        let isValid = form.checkValidity();
+        var inv = form.querySelectorAll(`:invalid:not(fieldset)`), numErrors = inv.length;
+        if (!isValid) {
+            validationAlert();
+            if (numErrors > 0) {
+                errorRegion.classList.remove("d-none");
+            } else {
+                errorRegion.classList.add("d-none");
+            }
+            document.querySelectorAll('.num-errors').forEach(item => {
+                item.innerHTML = numErrors;
+            });
 
-                    if (numErrors > 0) {
-                        errorRegion.classList.remove("d-none");
-                    } else {
-                        errorRegion.classList.add("d-none");
-                    }
-                    document.querySelectorAll('.num-errors').forEach(item => {
-                        item.innerHTML = numErrors;
-                    });
-
+            event.preventDefault()
+            event.stopPropagation()
+        } else {
+            if (monthly.checked) {
+                let retVal = confirm("You're committing to paying $19.99 per month for membership dues.  Is that alright?  If so, click OK to continue.");
+                if (retVal == true) {
+                    return true;
+                } else {
                     event.preventDefault()
                     event.stopPropagation()
-                } else {
-                    if (monthly.checked) {
-                        let retVal = confirm("You're committing to paying $19.99 per month for membership dues.  Is that alright?  If so, click OK to continue.");
-                        if (retVal == true) {
-                            return true;
-                        } else {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-                    }
                 }
+            }
+        }
 
-                var inv = form.querySelectorAll(`:invalid:not(fieldset)`), len = inv.length;
-                let errs = "";
-                for (var i = 0; i < len; i++) {
-                    var controlId = inv[i].id;
-                    var label = document.getElementById(controlId);
-                    var labelText = accname.getAccessibleName(label);
-                    var msg = inv[i].nextElementSibling.innerHTML;
-                    errs += `<li id="${controlId}Item"><b><a href="#${controlId}">${labelText}</a>:</b><div>${msg}</div></li>`
-                }
-                errors.innerHTML = errs;
+        updateErrorsList();
 
-                if (!validated) {
-                    form.classList.add('was-validated');
-                    username.addEventListener('input', checkUsername, false);
-                    dob.addEventListener('input', checkDOB, false);
-                    password.addEventListener('input', checkPasswords, false);
-                    retype.addEventListener('input', checkPasswords, false);
-                    // ssn.addEventListener('input', checkSocial, false);
-                    // dob.addEventListener('input', checkDate, false);
-                    email.addEventListener('input', checkEmail, false);
-                    phone.addEventListener('input', checkPhone, false);
-                    validated = true;
-                }
-            }, false)
-        });
+        if (!validated) {
+            form.classList.add('was-validated');
+            username.addEventListener('input', checkUsername, false);
+            dob.addEventListener('input', checkDOB, false);
+            password.addEventListener('input', checkPasswords, false);
+            retype.addEventListener('input', checkPasswords, false);
+            // ssn.addEventListener('input', checkSocial, false);
+            // dob.addEventListener('input', checkDate, false);
+            email.addEventListener('input', checkEmail, false);
+            phone.addEventListener('input', checkPhone, false);
+            validated = true;
+        }
+    }, false)
+        ;
 
 })()
