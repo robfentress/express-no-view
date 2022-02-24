@@ -9,6 +9,8 @@
     let form = document.querySelector(`#acctForm`);
     const pw1 = "password";
     const pw2 = "retype";
+    const first = document.querySelector(`#first`), firstHelp = first.nextElementSibling;
+    const last = document.querySelector(`#last`), lastHelp = last.nextElementSibling;
     const username = document.querySelector(`#username`);
     const usernameFeedback = document.querySelector(`#usernameHelp`);
     const password = document.querySelector(`#${pw1}`);
@@ -30,6 +32,11 @@
     const errors = document.querySelector(`#errorsList`);
     const paymentInfo = document.querySelector(`#paymentInfo`);
     const cardInfo = document.querySelector(`#cardInfo`);
+
+    form.addEventListener('input', evt => {
+        console.log(active);
+    })
+
     let status = document.getElementById('status');
     let validated = false;
 
