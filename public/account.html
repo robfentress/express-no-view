@@ -329,9 +329,9 @@
                                   <label for="ccName" class="form-label">Name <i class="text-danger bi-asterisk"
                                       aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
                                   <input type="text" class="form-control" id="ccName" value="" autocomplete="cc-name"
-                                    data-toggle-required aria-describedby="ccNameHelp">
-                                  <div class="invalid-feedback" id="yearInvalid">
-                                    Please enter the name as it appears on the card.
+                                    data-toggle-required aria-describedby="ccNameInvalid ccNameHelp"
+                                    data-invalid="Please enter the name as it appears on the card. e.g. John Smith">
+                                  <div class="invalid-feedback" id="ccNameInvalid">
                                   </div>
                                   <div id="ccNameHelp" class="text-muted">
                                     e.g. John Smith
@@ -342,9 +342,10 @@
                                       aria-hidden="true"></i><span class="visually-hidden">(required)</span></label>
                                   <input type="text" class="form-control" id="ccNum" value="" data-toggle-required
                                     data-toggle-pattern="^\d{4}([- ])*\d{4}([- ])*\d{4}([- ])*\d{4}$"
-                                    autocomplete="cc-number" aria-describedby="ccNumHelp">
+                                    autocomplete="cc-number" aria-describedby="ccNumHelp ccInvalid"
+                                    data-invalid="Must be 16 digits. Space or hyphen between every 4 digits is optional.">
                                   <div class="invalid-feedback" id="ccInvalid">
-                                    Must be 16 digits. Space or hyphen between every 4 digits is optional.
+
                                   </div>
                                   <div id="ccNumHelp" class="text-muted">
                                     e.g. 1111 2222 3333 4444

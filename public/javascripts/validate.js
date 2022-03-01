@@ -49,12 +49,20 @@
     //     let help = this.nextElementSibling;
     //     help.innerHTML = item.getAttribute('data-required');
     // }
-    const checkFirst = () => {
-        let help = this.nextElementSibling;
+    function checkFirst() {
+        let help = first.nextElementSibling;
         if (!first.checkValidity()) {
-            firstHelp.innerHTML = first.getAttribute('data-required');
+            firstHelp.innerHTML = first.getAttribute('data-invalid');
         } else {
             firstHelp.innerHTML = "";
+        }
+    }
+    function checkLast() {
+        let help = last.nextElementSibling;
+        if (!last.checkValidity()) {
+            lastHelp.innerHTML = last.getAttribute('data-invalid');
+        } else {
+            lastHelp.innerHTML = "";
         }
     }
 
@@ -72,23 +80,23 @@
         updateErrorsList();
     }
 
-    const checkUsername = function () {
+    // const checkUsername = function () {
 
-        if (!username.checkValidity()) {
-            usernameFeedback.classList.add('invalid-help');
-            if (username.value) {
-                usernameFeedback.innerHTML = "Contains a character that isn't a letter or number. Only alphanumeric characters allowed.";
-            } else {
-                usernameFeedback.innerHTML = "Username cannot be empty.";
-            }
-        } else {
-            usernameFeedback.classList.remove('invalid-help');
-            usernameFeedback.innerHTML = "";
-            if (username.getAttribute('data-hint')) {
-                usernameFeedback.innerHTML = username.getAttribute('data-hint');
-            }
-        }
-    }
+    //     if (!username.checkValidity()) {
+    //         usernameFeedback.classList.add('invalid-help');
+    //         if (username.value) {
+    //             usernameFeedback.innerHTML = "Contains a character that isn't a letter or number. Only alphanumeric characters allowed.";
+    //         } else {
+    //             usernameFeedback.innerHTML = "Username cannot be empty.";
+    //         }
+    //     } else {
+    //         usernameFeedback.classList.remove('invalid-help');
+    //         usernameFeedback.innerHTML = "";
+    //         if (username.getAttribute('data-hint')) {
+    //             usernameFeedback.innerHTML = username.getAttribute('data-hint');
+    //         }
+    //     }
+    // }
 
     const checkUsername = function () {
 
@@ -179,15 +187,36 @@
             }
         }
     }
-    const checkCC = function () {
-        var ccformat = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/;
-        if (cc.value == 0) {
-            cc.setCustomValidity('');
+
+    function checkCCName() {
+        let help = ccName.nextElementSibling;
+        if (!ccName.checkValidity()) {
+            ccNameHelp.innerHTML = ccName.getAttribute('data-invalid');
         } else {
-            if (cc.value.match(ccformat)) {
-                cc.setCustomValidity('');
+            ccNameHelp.innerHTML = "";
+        }
+    }
+    const checkCCNum = function () {
+        var ccformat = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/;
+        let help = ccNum.nextElementSibling;
+        if (ccNum.value == 0) {
+            ccNum.setCustomValidity('');
+        } else {
+            if (ccNum.value.match(ccformat)) {
+                ccNum.setCustomValidity('');
+                help.innerHTML = '';
             } else {
-                cc.setCustomValidity('Invalid email address');
+                const lettersRegEx = /[A-Za-z]*/;
+                let hasLetters = lettersRegEx.test(ccNum.value);
+                if (hasLetters) {
+                    let noLetters = 'Credit card number cannot have letters.';
+                    ccNum.setCustomValidity(noLetters);
+                    help.innerHTML = noLetters
+                } else {
+                    let generic = 'Must be 16 digits. Space or hyphen between every 4 digits is optional.';
+                    ccNum.setCustomValidity(generic);
+                    help.innerHTML = generic;
+                }
             }
         }
     }
@@ -256,7 +285,8 @@
         //checkSocial();
         checkEmail();
         checkPhone();
-        //checkCC();
+        checkCCName();
+        checkCCNum();
         let isValid = form.checkValidity();
         var inv = form.querySelectorAll(`:invalid:not(fieldset)`), numErrors = inv.length;
         if (!isValid) {
@@ -289,6 +319,7 @@
         if (!validated) {
             form.classList.add('was-validated');
             first.addEventListener('input', checkFirst, false);
+            first.addEventListener('input', checkLast, false);
             username.addEventListener('input', checkUsername, false);
             dob.addEventListener('input', checkDOB, false);
             password.addEventListener('input', checkPasswords, false);
@@ -297,6 +328,8 @@
             // dob.addEventListener('input', checkDate, false);
             email.addEventListener('input', checkEmail, false);
             phone.addEventListener('input', checkPhone, false);
+            ccName.addEventListener('input', checkCCName, false);
+            ccNum.addEventListener('input', checkCCNum, false);
             validated = true;
         }
     }, false)
