@@ -1,4 +1,6 @@
 {
     "npm-scripts.showStartNotification": false,
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "liveServer.settings.root": "/public",
+    "vscode-edge-devtools.headless": false
 }
