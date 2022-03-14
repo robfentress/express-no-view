@@ -12,6 +12,10 @@ const ENTER = 13;
  */
 const SPACE = 32;
 
+let count = 0;
+
+const info = document.getElementById('info');
+
 const keydownEnterActivateBtn = document.querySelectorAll('[data-keydown-enter-activate]');
 
 const keydownSpaceActivateBtn = document.querySelectorAll('[data-keydown-space-activate]');
@@ -43,7 +47,8 @@ addEventListeners();
  */
 function activateButton(event) {
     if (event) console.log(event);
-    alert("button activated");
+    info.innerHTML = ++count;
+    //alert("button activated");
 }
 
 /**

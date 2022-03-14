@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    <div id="info" class="position-fixed top-0 end-0 bg-info p-1">0</div>
     <div class="container">
         <h1>Button Tests</h1>
         <p>How can we activate a simple action button in a way that is the most useable for the largest number of
@@ -34,7 +35,8 @@
                     <div class="mb-3">
                         <button data-mousedown-activate="true">native button 1</button>
                     </div>
-                    <p>This calls our <code>activateButton</code> function, displaying an alert dialog. However, it does
+                    <p>This calls our <code>activateButton</code> function, updating the number of activations in the
+                        upper right of the screen. However, it does
                         this
                         whether someone presses the left, middle, <em>or</em> right mouse buttons, which makes it
                         less than
@@ -184,9 +186,8 @@
                         <a class="btn btn-secondary" href="#" data-click-activate="true">anchor button 2</a>
                     </div>
                     <p>We add a <code>click</code> event listener, which calls the <code>activateButton</code> function,
-                        displaying
-                        an alert
-                        dialog. This event is triggered whenever someone
+                        updating the number of activations in the upper right of the screen. This event is triggered
+                        whenever someone
                         clicks on the anchor button
                         with a mouse (<code>mousedown</code> on an element
                         followed by <code>mouseup</code> on the same element) or when the
