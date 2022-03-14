@@ -31,9 +31,9 @@
                 <div class="mb-5">
                     <h3>Native Button 1</h3>
                     <p><code>button[data-mousedown-activate]</code></p>
-                    <div class="mb-3"><button>before native button 1</button></div>
+                    <div class="mb-3"><button>before native 1</button></div>
                     <div class="mb-3">
-                        <button data-mousedown-activate="true">native button 1</button>
+                        <button data-mousedown-activate="true">native 1</button>
                     </div>
                     <p>This calls our <code>activateButton</code> function, updating the number of activations in the
                         upper right of the screen. However, it does
@@ -50,9 +50,9 @@
                 <div class="mb-5">
                     <h3>Native Button 2</h3>
                     <p><code>button[data-<mark>mouseup</mark>-activate]</code></p>
-                    <div class="mb-3"><button>before native button 2</button></div>
+                    <div class="mb-3"><button>before native 2</button></div>
                     <div class="mb-3">
-                        <button data-mouseup-activate="true">native button 2</button>
+                        <button data-mouseup-activate="true">native 2</button>
                     </div>
                     <p>This is better, since it doesn't interfere with our ability to access the context menu by
                         right-clicking on the button, but what about keyboard users?</p>
@@ -60,9 +60,9 @@
                 <div class="mb-5">
                     <h3>Native Button 3</h3>
                     <p><code>button[data-keydown-enter-activate]</code></p>
-                    <div class="mb-3"><button>before native button 3</button></div>
+                    <div class="mb-3"><button>before native 3</button></div>
                     <div class="mb-3">
-                        <button data-keydown-enter-activate="true">native button 3</button>
+                        <button data-keydown-enter-activate="true">native 3</button>
                     </div>
                     <p>This lets us activate the button by pressing the <kbd>Enter</kbd> key (<code>keydown</code>), but
                         can't
@@ -72,10 +72,9 @@
                 <div class="mb-5">
                     <h3>Native Button 4</h3>
                     <p><code>button[data-keydown-enter-activate]<mark>[data-keydown-space-activate]</mark></code></p>
-                    <div class="mb-3"><button>before native button 4</button></div>
+                    <div class="mb-3"><button>before native 4</button></div>
                     <div class="mb-3">
-                        <button data-keydown-enter-activate="true" data-keydown-space-activate="true">native button
-                            4</button>
+                        <button data-keydown-enter-activate="true" data-keydown-space-activate="true">native 4</button>
                     </div>
                     <p>Okay, now it can be triggered by pressing the <kbd>Spacebar</kbd> key (<code>keydown</code>), but
                         if you hold down the Spacebar key, it triggers over and over. Perhaps this is sometimes useful
@@ -88,10 +87,9 @@
                 <div class="mb-5">
                     <h3>Native Button 5</h3>
                     <p><code>button[data-keydown-enter-activate][data-<mark>keyup</mark>-space-activate]</code></p>
-                    <div class="mb-3"><button>before native button 5</button></div>
+                    <div class="mb-3"><button>before native 5</button></div>
                     <div class="mb-3">
-                        <button data-keydown-enter-activate="true" data-keyup-space-activate="true">native
-                            button 5</button>
+                        <button data-keydown-enter-activate="true" data-keyup-space-activate="true">native 5</button>
                     </div>
                     <p>Now we can activate our button by pressing down on the <kbd>Enter</kbd> key
                         (<code>keydown</code>)
@@ -108,11 +106,10 @@
                     <h3>Native Button 6</h3>
                     <p><code>button[data-keydown-enter-activate][data-keyup-space-activate]<mark>[data-mouseup-activate]</mark></code>
                     </p>
-                    <div class="mb-3"><button>before native button 6</button></div>
+                    <div class="mb-3"><button>before native 6</button></div>
                     <div class="mb-3">
                         <button data-keydown-enter-activate="true" data-keyup-space-activate="true"
-                            data-mouseup-activate="true">native
-                            button 6</button>
+                            data-mouseup-activate="true">native 6</button>
                     </div>
                     <p>Now we can activate the button with our mouse and our keyboard, but what happens if we
                         <code>mousedown</code> somewhere off our button and then move our mouse over the button and
@@ -123,9 +120,9 @@
                 <div class="mb-5">
                     <h3>Native Button 7</h3>
                     <p><code>button<mark>[data-click-activate]</mark></code></p>
-                    <div class="mb-3"><button>before native button 7</button></div>
+                    <div class="mb-3"><button>before native 7</button></div>
                     <div class="mb-3">
-                        <button data-click-activate="true">native button 7</button>
+                        <button data-click-activate="true">native 7</button>
                     </div>
                     <p>We could have added a <code>mousedown</code> event listener to our button that set a flag
                         indicating
@@ -154,9 +151,9 @@
                 <div class="mb-5">
                     <h3>Anchor Button 1</h3>
                     <p><code>a[href="#"]</code></p>
-                    <div class="mb-3"><button>before anchor button 1</button></div>
+                    <div class="mb-3"><button>before anchor 1</button></div>
                     <div class="mb-3">
-                        <a class="btn btn-secondary" href="#">anchor button 1</a>
+                        <a class="btn btn-secondary" href="#">anchor 1</a>
                     </div>
                     <p>This is a link styled to look like a button. No behavior is attached yet, but, by virtue of the
                         fact
@@ -181,9 +178,9 @@
                 <div class="mb-5">
                     <h3>Anchor Button 2</h3>
                     <p><code>a[href="#"]<mark>[data-click-activate]</mark></code></p>
-                    <div class="mb-3"><button>before anchor button 2</button></div>
+                    <div class="mb-3"><button>before anchor 2</button></div>
                     <div class="mb-3">
-                        <a class="btn btn-secondary" href="#" data-click-activate="true">anchor button 2</a>
+                        <a class="btn btn-secondary" href="#" data-click-activate="true">anchor 2</a>
                     </div>
                     <p>We add a <code>click</code> event listener, which calls the <code>activateButton</code> function,
                         updating the number of activations in the upper right of the screen. This event is triggered
@@ -200,11 +197,9 @@
                 <div class="mb-5">
                     <h3>Anchor Button 3</h3>
                     <p><code>a[href="#"][data-click-<mark>prevent-default</mark>-activate]</code></p>
-                    <div class="mb-3"><button>before anchor button 3</button></div>
+                    <div class="mb-3"><button>before anchor 3</button></div>
                     <div class="mb-3">
-                        <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true">anchor
-                            button
-                            3</a>
+                        <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true">anchor 3</a>
                     </div>
                     <p>Before calling the <code>activateButton</code> function, we prevent the default click behavior
                         (scrolling to
@@ -215,10 +210,10 @@
                     <h3>Anchor Button 4</h3>
                     <p><code>a[href="#"][data-click-prevent-default-activate]<mark>[data-keyup-space-activate]</mark></code>
                     </p>
-                    <div class="mb-3"><button>before anchor button 4</button></div>
+                    <div class="mb-3"><button>before anchor 4</button></div>
                     <div class="mb-3">
                         <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true"
-                            data-keyup-space-activate="true">anchor button 4</a>
+                            data-keyup-space-activate="true">anchor 4</a>
                     </div>
                     <p>While we we get the ability to activate the anchor button by pressing the <code>Enter</code> key
                         for
@@ -233,11 +228,10 @@
                     <h3>Anchor Button 5</h3>
                     <p><code>a[href="#"][data-click-prevent-default-activate][data-keyup-space-activate]<mark>[data-keydown-space-prevent-default]</mark></code>
                     </p>
-                    <div class="mb-3"><button>before anchor button 5</button></div>
+                    <div class="mb-3"><button>before anchor 5</button></div>
                     <div class="mb-3">
                         <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true"
-                            data-keyup-space-activate="true" data-keydown-space-prevent-default="true">anchor button
-                            5</a>
+                            data-keyup-space-activate="true" data-keydown-space-prevent-default="true">anchor 5</a>
                     </div>
                     <p>Although we are now triggering the <code>activateButton</code> function on <kbd>Spacebar</kbd>
                         <code>keyup</code> events, we also had to prevent the default <em><code>keydown</code></em>
@@ -250,12 +244,11 @@
                     <h3>Anchor Button 6</h3>
                     <p><code>a[href="#"][data-click-prevent-default-activate][data-keyup-space-activate][data-keydown-space-prevent-default]<mark>[role="button"]</mark></code>
                     </p>
-                    <div class="mb-3"><button>before anchor button 6</button></div>
+                    <div class="mb-3"><button>before anchor 6</button></div>
                     <div class="mb-3">
                         <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true"
                             data-keyup-space-activate="true" data-keydown-space-prevent-default="true"
-                            role="button">anchor
-                            button 6</a>
+                            role="button">anchor 6</a>
                     </div>
                     <p>Even though it could be activated using keyboard, mouse, and touch devices, we also had to add
                         <code>role="button"</code> to it in order for screen reading and voice control software to
@@ -284,11 +277,10 @@
                     <h3>Generic Button 1</h3>
                     <p><code>div[data-click-activate]</code>
                     </p>
-                    <div class="mb-3"><button>before generic button 1</button></div>
+                    <div class="mb-3"><button>before generic 1</button></div>
                     <div class="mb-3">
                         <div class="btn btn-secondary" data-click-activate="true">
-                            generic
-                            button 1</div>
+                            generic 1</div>
                     </div>
                     <p>Someone could activate this by clicking on it with their mouse (and other pointers?), but because
                         it
@@ -300,11 +292,10 @@
                     <h3>Generic Button 2</h3>
                     <p><code>div[data-click-activate]<mark>[tabindex="0"]</mark></code>
                     </p>
-                    <div class="mb-3"><button>before generic button 2</button></div>
+                    <div class="mb-3"><button>before generic 2</button></div>
                     <div class="mb-3">
                         <div class="btn btn-secondary" data-click-activate="true" tabindex="0">
-                            generic
-                            button 2</div>
+                            generic 2</div>
                     </div>
                     <p>In order for this generic element to be able to receive focus, we must add
                         <code>tabindex="0"</code>
@@ -317,12 +308,11 @@
                     <h3>Generic Button 3</h3>
                     <p><code>div[data-click-activate][tabindex="0"]<mark>[data-keydown-enter-activate][data-keyup-space-activate]</mark></code>
                     </p>
-                    <div class="mb-3"><button>before generic button 3</button></div>
+                    <div class="mb-3"><button>before generic 3</button></div>
                     <div class="mb-3">
                         <div class="btn btn-secondary" data-click-activate="true" tabindex="0"
                             data-keydown-enter-activate="true" data-keyup-space-activate="true">
-                            generic
-                            button 3</div>
+                            generic 3</div>
                     </div>
                     <p>In addition to the <code>tabindex="0"</code>, we have to add a <code>keydown</code> event
                         listener
@@ -340,13 +330,12 @@
                     <h3>Generic Button 4</h3>
                     <p><code>div[data-click-activate][tabindex="0"][data-keydown-enter-activate][data-keyup-space-activate]<mark>[data-keydown-space-prevent-default]</mark></code>
                     </p>
-                    <div class="mb-3"><button>before generic button 4</button></div>
+                    <div class="mb-3"><button>before generic 4</button></div>
                     <div class="mb-3">
                         <div class="btn btn-secondary" data-click-activate="true" tabindex="0"
                             data-keydown-enter-activate="true" data-keyup-space-activate="true"
                             data-keydown-space-prevent-default="true">
-                            generic
-                            button 4</div>
+                            generic 4</div>
                     </div>
                     <p>If we don't explictly prevent the default <code>keydown</code> behavior for the
                         <kbd>Spacebar</kbd>
@@ -360,13 +349,12 @@
                     <h3>Generic Button 5</h3>
                     <p><code>div[data-click-activate][tabindex="0"][data-keydown-enter-activate][data-keyup-space-activate][data-keydown-space-prevent-default]<mark>[role="button"]</mark></code>
                     </p>
-                    <div class="mb-3"><button>before generic button 5</button></div>
+                    <div class="mb-3"><button>before generic 5</button></div>
                     <div class="mb-3">
                         <div class="btn btn-secondary" data-click-activate="true" tabindex="0"
                             data-keydown-enter-activate="true" data-keyup-space-activate="true"
                             data-keydown-space-prevent-default="true" role="button">
-                            generic
-                            button 5</div>
+                            generic 5</div>
                     </div>
                     <p>Finally, in order for the generic button to behave as expected for users of screen reading
                         software,
