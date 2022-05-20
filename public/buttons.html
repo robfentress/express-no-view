@@ -9,443 +9,494 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-        /* My one modification to BS5 to make focus state change meet 3:1 */
-        .btn:focus {
-            outline: 1px solid blue
+        .butt {
+            display: inline-block;
+
+            /* Technically, ButtonBorder should work, 
+            but some browser didn't like it so I had to use ButtonText as a fallback */
+            border: 2px outset ButtonText;
+            border-color: ButtonBorder;
+
+            padding: 1px 6px;
+            color: ButtonText;
+            background-color: rgb(239, 239, 239);
+            /* background-color: ButtonFace; */
+
+            /* To get rid of underline when applied to links */
+            text-decoration: none;
+
+            text-align: center;
+
+            /* According to spec, buttons should use the default cursor, not the pointer */
+            cursor: default;
+
+            /* I'm not sure what appearance was supposed to buy me,
+            but it just seemed to mess things up on Safari */
+            /* appearance: button;
+            -moz-appearance: button;
+            -webkit-appearance: button; */
+
+            box-sizing: border-box;
+
+            /* 
+            The default behavior for buttons is that you shouldn't be able to select
+            the text inside of them by click and dragging on text inside of them.
+            However, in Safari and Chrome, you can drag before the button, and 
+            then through and past it to select the text.  I'm not sure who to 
+            replcate that behavior.
+            */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            /* 
+            The default behavior for buttons is for them not to be draggable.
+            You can prevent this behavior in all but Firefox.
+            Neither -moz-user-drag, not setting the draggable attribute to false works.
+            */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+        }
+
+        .butt:focus:not(:focus-visible) {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .butt:focus {
+            outline: 1px auto ButtonText;
+            outline-color: Highlight;
+            outline-color: -webkit-focus-ring-color;
+            outline-offset: 0;
+        }
+
+        .butt:active {
+            border-style: inset;
+        }
+
+        .butt:focus,
+        .butt:hover {
+            color: ButtonText;
+
         }
     </style>
 </head>
 
 <body>
-    <div id="info" class="position-fixed top-0 end-0 bg-info p-1">0</div>
-    <div class="container">
+    <section aria-label="counter">
+        <div id="info" class="position-fixed top-0 end-0 bg-info p-1 border" aria-live="polite">0</div>
+    </section>
+    <main class="container">
         <h1>Button Tests</h1>
         <p>How can we activate a simple action button in a way that is the most useable for the largest number of
             people, regardless of
             their preferred means of interacting with it (such as keyboard, mouse, touch, pen, voice, or screen reader)?
         </p>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-            <div class="col">
-                <h2 class="text-secondary">Native HTML Buttons</h2>
-                <p class="border-bottom p-2"><code>&lt;button&gt;</code></p>
-                <div class="mb-5">
-                    <h3>Native Button 1</h3>
-                    <p><code>button[data-mousedown-activate]</code></p>
-                    <div class="mb-3"><button>before native 1</button></div>
-                    <div class="mb-3">
-                        <button data-mousedown-activate="true">native 1</button>
-                    </div>
-                    <p>This calls our <code>activateButton</code> function, updating the number of activations in the
-                        upper right of the screen. However, it does
-                        this
-                        whether someone presses the left, middle, <em>or</em> right mouse buttons, which makes it
-                        less than
-                        ideal for
-                        most purposes, unless you are specifically querying the <code>button</code> property of the
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button#Return_value">MouseEvent
-                            interface</a> to see which button
-                        has been pressed.
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h3>Native Button 2</h3>
-                    <p><code>button[data-<mark>mouseup</mark>-activate]</code></p>
-                    <div class="mb-3"><button>before native 2</button></div>
-                    <div class="mb-3">
-                        <button data-mouseup-activate="true">native 2</button>
-                    </div>
-                    <p>This is better, since it doesn't interfere with our ability to access the context menu by
-                        right-clicking on the button, but what about keyboard users?</p>
-                </div>
-                <div class="mb-5">
-                    <h3>Native Button 3</h3>
-                    <p><code>button[data-keydown-enter-activate]</code></p>
-                    <div class="mb-3"><button>before native 3</button></div>
-                    <div class="mb-3">
-                        <button data-keydown-enter-activate="true">native 3</button>
-                    </div>
-                    <p>This lets us activate the button by pressing the <kbd>Enter</kbd> key (<code>keydown</code>), but
-                        can't
-                        users usually
-                        activate buttons using the <kbd>Spacebar</kbd> key too?</p>
-                </div>
-                <div class="mb-5">
-                    <h3>Native Button 4</h3>
-                    <p><code>button[data-keydown-enter-activate]<mark>[data-keydown-space-activate]</mark></code></p>
-                    <div class="mb-3"><button>before native 4</button></div>
-                    <div class="mb-3">
-                        <button data-keydown-enter-activate="true" data-keydown-space-activate="true">native 4</button>
-                    </div>
-                    <p>Okay, now it can be triggered by pressing the <kbd>Spacebar</kbd> key (<code>keydown</code>), but
-                        if you hold down the Spacebar key, it triggers over and over. Perhaps this is sometimes useful
-                        behavior, but for a basic use case, it presents problems for people with mobility disabilities,
-                        which prevent them from quickly pressing and releasing keys. Does pressing and holding the
-                        <kbd>Enter</kbd> key cause the event to be triggered rpeatedly or is it just an issue with the
-                        <kdb>Spacebar</kdb> key.
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h3>Native Button 5</h3>
-                    <p><code>button[data-keydown-enter-activate][data-<mark>keyup</mark>-space-activate]</code></p>
-                    <div class="mb-3"><button>before native 5</button></div>
-                    <div class="mb-3">
-                        <button data-keydown-enter-activate="true" data-keyup-space-activate="true">native 5</button>
-                    </div>
-                    <p>Now we can activate our button by pressing down on the <kbd>Enter</kbd> key
-                        (<code>keydown</code>)
-                        and by releasing the
-                        <kbd>Spacebar</kbd> key (<code>keyup</code>)
-                        when it has focus. Note how the appearance of the
-                        button changes when it is being activated with the <kbd>Spacebar</kbd> key, as opposed to the
-                        <kbd>Enter</kbd> key. Does this matter?
-                    </p>
-                    <p>Probably not, but what about our mouse? Don't we need to
-                        add that back now?</p>
-                </div>
-                <div class="mb-5">
-                    <h3>Native Button 6</h3>
-                    <p><code>button[data-keydown-enter-activate][data-keyup-space-activate]<mark>[data-mouseup-activate]</mark></code>
-                    </p>
-                    <div class="mb-3"><button>before native 6</button></div>
-                    <div class="mb-3">
-                        <button data-keydown-enter-activate="true" data-keyup-space-activate="true"
-                            data-mouseup-activate="true">native 6</button>
-                    </div>
-                    <p>Now we can activate the button with our mouse and our keyboard, but what happens if we
-                        <code>mousedown</code> somewhere off our button and then move our mouse over the button and
-                        release.
-                        This would activate our button, but is that what we'd actually want?
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h3>Native Button 7</h3>
-                    <p><code>button<mark>[data-click-activate]</mark></code></p>
-                    <div class="mb-3"><button>before native 7</button></div>
-                    <div class="mb-3">
-                        <button data-click-activate="true">native 7</button>
-                    </div>
-                    <p>We could have added a <code>mousedown</code> event listener to our button that set a flag
-                        indicating
-                        the we had
-                        pressed the button. Then we could have modified our <code>mouseup</code> event listener so that
-                        it
-                        checked
-                        whether that flag had been set before activating the button. But why do that when we can just
-                        add a
-                        click event listener and get rid of everything else? Doing this automatically activates the
-                        button
-                        when the user clicks on the button with a mouse
-                        (<code>mousedown</code> on element
-                        followed by <code>mouseup</code> on element), taps on it on a touchscreen device
-                        (<code>touchstart</code> on
-                        element followed by <code>touchend</code> on element), or presses the
-                        <kbd>Enter</kbd> key (<code>keydown</code>) or releases the
-                        <kbd>Spacebar</kbd> key (<code>keyup</code>) while the button has focus.
-                    </p>
-                </div>
-            </div> <!-- .col for native HTML buttons -->
+        <h2><abbr title="Too Long; Didn't Read">TLDR</abbr></h2>
+        <p>A <code>click</code> event handler is the most efficient starting point for things that function as simple
+            action buttons, whether actual HTML button elements, anchor elements that function as buttons, or generic
+            (<code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>) elements. However, other <code>keydown</code> and
+            <code>keyup</code> handlers must be added if you aren't actually using an HTML button element and want to
+            emulate the actual expected behavior of buttons. The last example for each type (Native HTML, Anchor, or
+            Generic) shows the correct way to code elements of that type; the rest are non-examples.
+        </p>
+        <h2>Key for understanding examples</h2>
+        <p>
+            Before each example there is a button that doesn't do anything, but merely serves as something that
+            can
+            receive
+            focus when clicked on, so that you can easily test whether the button below it can be tabbed to. I use
+            <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes">data attributes</a>
+            to determine what event listeners to apply to a button. For
+            instance, a button element that has a <code>mousedown</code> event listener that can activate the button has
+            the
+            attribute <code>data-mousedown-activate</code>. Before each example, I've provided a selector that
+            shows
+            the element type and the data attributes used for that example, along with any other attributes that are
+            relevant, such as <code>href</code> or <code>tabindex</code>. In the selector, I've highlighted whatever is
+            most important to
+            take
+            note of for that example. Whenever a button has successfully been activated, the number in the counter
+            section at the top right of the page will be incremented.
+        </p>
 
-            <div class="col">
-                <h2 class="text-secondary">Anchor Buttons</h2>
-                <p class="border-bottom p-2"><code>&lt;a&gt;</code></p>
-                <div class="mb-5">
-                    <h3>Anchor Button 1</h3>
-                    <p><code>a[href="#"]</code></p>
-                    <div class="mb-3"><button>before anchor 1</button></div>
-                    <div class="mb-3">
-                        <a class="btn btn-secondary" href="#">anchor 1</a>
+        <div class="mb-3">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+                <div class="col">
+                    <h2>Native HTML Buttons</h2>
+                    <p class="border-bottom"><b>Base Element:</b> <code>&lt;button&gt;</code></p>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Native Button 1</h3>
+                        <p><code>button[data-mousedown-activate]</code></p>
+                        <div class="mb-3"><button>before native 1</button></div>
+                        <div class="mb-3">
+                            <button data-mousedown-activate>native 1</button>
+                        </div>
+                        <p>This calls our <code>activateButton</code> function, updating the number of activations in
+                            the counter section in the
+                            upper right corner of the page. However, it does
+                            this
+                            whether someone presses the left, middle, <em>or</em> right mouse buttons, which makes it
+                            less than
+                            ideal for a simple action button, unless you are specifically querying the
+                            <code>button</code> property of the
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button#Return_value">MouseEvent
+                                interface</a> to see which button
+                            has been pressed.
+                        </p>
                     </div>
-                    <p>This is a link styled to look like a button. No behavior is attached yet, but, by virtue of the
-                        fact
-                        that it is an <code>&lt;a&gt;</code> tag
-                        whose
-                        <code>href</code>
-                        attribute is set to <code>#</code>, it does
-                        scroll to the top of the page when the user clicks on it with a mouse
-                        (<code>mousedown</code> on an element
-                        followed by <code>mouseup</code> on the same element), taps on it on a touchscreen device
-                        (<code>touchstart</code> on
-                        element followed by <code>touchend</code> on element), or presses the
-                        <kbd>Enter</kbd> key (<code>keydown</code>) while it has focus. Pressing the <kbd>Spacebar</kbd>
-                        key
-                        (<code>keydown</code>) actually scrolls the page <em>down</em>,
-                        whether or not the anchor button has focus, because that is the default page
-                        behavior unless focus is on an element that prevents it (as is the case automatically with an
-                        actual
-                        <code>&lt;button&gt;</code> tag).
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h3>Anchor Button 2</h3>
-                    <p><code>a[href="#"]<mark>[data-click-activate]</mark></code></p>
-                    <div class="mb-3"><button>before anchor 2</button></div>
-                    <div class="mb-3">
-                        <a class="btn btn-secondary" href="#" data-click-activate="true">anchor 2</a>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Native Button 2</h3>
+                        <p><code>button[data-<mark>mouseup</mark>-activate]</code></p>
+                        <div class="mb-3"><button>before native 2</button></div>
+                        <div class="mb-3">
+                            <button data-mouseup-activate>native 2</button>
+                        </div>
+                        <p>This is better, since it doesn't interfere with our ability to access the context menu by
+                            right-clicking on the button, but what about keyboard users?</p>
                     </div>
-                    <p>We add a <code>click</code> event listener, which calls the <code>activateButton</code> function,
-                        updating the number of activations in the upper right of the screen. This event is triggered
-                        whenever someone
-                        clicks on the anchor button
-                        with a mouse (<code>mousedown</code> on an element
-                        followed by <code>mouseup</code> on the same element) or when the
-                        <kbd>Enter</kbd> key is pressed (<code>keydown</code>) while it has focus. However, the page
-                        still
-                        scrolls to the top in response
-                        to these events, because this behavior has not been explicitly prevented.
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h3>Anchor Button 3</h3>
-                    <p><code>a[href="#"][data-click-<mark>prevent-default</mark>-activate]</code></p>
-                    <div class="mb-3"><button>before anchor 3</button></div>
-                    <div class="mb-3">
-                        <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true">anchor 3</a>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Native Button 3</h3>
+                        <p><code>button[data-keydown-enter-activate]</code></p>
+                        <div class="mb-3"><button>before native 3</button></div>
+                        <div class="mb-3">
+                            <button data-keydown-enter-activate>native 3</button>
+                        </div>
+                        <p>This lets us activate the button by pressing the <kbd>Enter</kbd> key (<code>keydown</code>),
+                            but
+                            can't
+                            users usually
+                            activate buttons using the <kbd>Spacebar</kbd> key too?</p>
                     </div>
-                    <p>Before calling the <code>activateButton</code> function, we prevent the default click behavior
-                        (scrolling to
-                        the
-                        top of the page) using <code>event.preventDefault()</code>.</p>
-                </div>
-                <div class="mb-5">
-                    <h3>Anchor Button 4</h3>
-                    <p><code>a[href="#"][data-click-prevent-default-activate]<mark>[data-keyup-space-activate]</mark></code>
-                    </p>
-                    <div class="mb-3"><button>before anchor 4</button></div>
-                    <div class="mb-3">
-                        <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true"
-                            data-keyup-space-activate="true">anchor 4</a>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Native Button 4</h3>
+                        <p><code>button[data-keydown-enter-activate]<mark>[data-keydown-space-activate]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before native 4</button></div>
+                        <div class="mb-3">
+                            <button data-keydown-enter-activate data-keydown-space-activate>native
+                                4</button>
+                        </div>
+                        <p>Okay, now it can be triggered by pressing the <kbd>Spacebar</kbd> key (<code>keydown</code>),
+                            but
+                            if you hold down the Spacebar key, it triggers over and over. Perhaps this is sometimes
+                            useful
+                            behavior, but for a basic use case, it presents problems for people with mobility
+                            disabilities,
+                            which prevent them from quickly pressing and releasing keys. Does pressing and holding the
+                            <kbd>Enter</kbd> key cause the event to be triggered rpeatedly or is it just an issue with
+                            the
+                            <kdb>Spacebar</kdb> key.
+                        </p>
                     </div>
-                    <p>While we we get the ability to activate the anchor button by pressing the <code>Enter</code> key
-                        for
-                        free by
-                        virtue of the
-                        fact that it is an <code>&lt;a&gt;</code> tag, we have to explictly add a Spacebar keyup
-                        listener,
-                        in order
-                        to replicate the default behavior of native HTML <code>&lt;button&gt;</code> tags.</p>
-                </div>
-                <div class="mb-5">
-                    <h3>Anchor Button 5</h3>
-                    <p><code>a[href="#"][data-click-prevent-default-activate][data-keyup-space-activate]<mark>[data-keydown-space-prevent-default]</mark></code>
-                    </p>
-                    <div class="mb-3"><button>before anchor 5</button></div>
-                    <div class="mb-3">
-                        <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true"
-                            data-keyup-space-activate="true" data-keydown-space-prevent-default="true">anchor 5</a>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Native Button 5</h3>
+                        <p><code>button[data-keydown-enter-activate][data-<mark>keyup</mark>-space-activate]</code></p>
+                        <div class="mb-3"><button>before native 5</button></div>
+                        <div class="mb-3">
+                            <button data-keydown-enter-activate data-keyup-space-activate>native
+                                5</button>
+                        </div>
+                        <p>Now we can activate our button by pressing down on the <kbd>Enter</kbd> key
+                            (<code>keydown</code>)
+                            and by releasing the
+                            <kbd>Spacebar</kbd> key (<code>keyup</code>)
+                            when it has focus. Note how the appearance of the
+                            button changes when it is being activated with the <kbd>Spacebar</kbd> key, as opposed to
+                            the
+                            <kbd>Enter</kbd> key. Does this matter?
+                        </p>
+                        <p>Probably not, but what about our mouse? Don't we need to
+                            add that back now?</p>
                     </div>
-                    <p>Although we are now triggering the <code>activateButton</code> function on <kbd>Spacebar</kbd>
-                        <code>keyup</code> events, we also had to prevent the default <em><code>keydown</code></em>
-                        behavior,
-                        which is to
-                        scroll down.
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h3>Anchor Button 6</h3>
-                    <p><code>a[href="#"][data-click-prevent-default-activate][data-keyup-space-activate][data-keydown-space-prevent-default]<mark>[role="button"]</mark></code>
-                    </p>
-                    <div class="mb-3"><button>before anchor 6</button></div>
-                    <div class="mb-3">
-                        <a class="btn btn-secondary" href="#" data-click-prevent-default-activate="true"
-                            data-keyup-space-activate="true" data-keydown-space-prevent-default="true"
-                            role="button">anchor 6</a>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Native Button 6</h3>
+                        <p><code>button[data-keydown-enter-activate][data-keyup-space-activate]<mark>[data-mouseup-activate]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before native 6</button></div>
+                        <div class="mb-3">
+                            <button data-keydown-enter-activate data-keyup-space-activate data-mouseup-activate>native
+                                6</button>
+                        </div>
+                        <p>Now we can activate the button with our mouse and our keyboard, but what happens if we
+                            <code>mousedown</code> somewhere off our button and then move our mouse over the button and
+                            release.
+                            This would activate our button, but is that what we'd actually want?
+                        </p>
                     </div>
-                    <p>Even though it could be activated using keyboard, mouse, and touch devices, we also had to add
-                        <code>role="button"</code> to it in order for screen reading and voice control software to
-                        properly
-                        expose it
-                        as a button. Without it, screen reader users would be told it was a link rather than a button,
-                        and
-                        it would respond to
-                        link-related key commands rather than button-related ones. Similarly, without
-                        <code>role="button"</code>, users of Dragon
-                        voice
-                        control software wouldn't be able to activate the control by saying "click button" (although
-                        they
-                        could activate it other ways).
-                    </p>
-                </div>
-            </div> <!-- .col for anchor buttons -->
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Native Button 7</h3>
+                        <p><code>button<mark>[data-click-activate]</mark></code></p>
+                        <div class="mb-3"><button>before native 7</button></div>
+                        <div class="mb-3">
+                            <button data-click-activate>native 7</button>
+                        </div>
+                        <p>We could have added a <code>mousedown</code> event listener to our button that set a flag
+                            indicating
+                            the we had
+                            pressed the button. Then we could have modified our <code>mouseup</code> event listener so
+                            that
+                            it
+                            checked
+                            whether that flag had been set before activating the button. But why do that when we can
+                            just
+                            add a
+                            click event listener and get rid of everything else? Doing this automatically activates the
+                            button
+                            when the user clicks on the button with a mouse
+                            (<code>mousedown</code> on element
+                            followed by <code>mouseup</code> on element), taps on it on a touchscreen device
+                            (<code>touchstart</code> on
+                            element followed by <code>touchend</code> on element), or presses the
+                            <kbd>Enter</kbd> key (<code>keydown</code>) or releases the
+                            <kbd>Spacebar</kbd> key (<code>keyup</code>) while the button has focus.
+                        </p>
+                    </div>
+                </div> <!-- .col for native HTML buttons -->
 
-            <div class="col">
-                <h2 class="text-secondary">Generic Element Buttons
-                </h2>
-                <p class="border-bottom p-2"><code>&lt;span&gt;</code> or
-                    <code>&lt;div&gt;</code>
-                </p>
-                <div class="mb-5">
-                    <h3>Generic Button 1</h3>
-                    <p><code>div[data-click-activate]</code>
-                    </p>
-                    <div class="mb-3"><button>before generic 1</button></div>
-                    <div class="mb-3">
-                        <div class="btn btn-secondary" data-click-activate="true">
-                            generic 1</div>
+                <div class="col">
+                    <h2>Anchor Buttons</h2>
+                    <p class="border-bottom"><b>Base Element:</b> <code>&lt;a&gt;</code></p>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Anchor Button 1</h3>
+                        <p><code>a[href="#"]</code></p>
+                        <div class="mb-3"><button>before anchor 1</button></div>
+                        <div class="mb-3">
+                            <a class="butt" href="#">anchor 1</a>
+                        </div>
+                        <p>This is a link styled to look like a button. No behavior is attached yet, but, by virtue of
+                            the
+                            fact
+                            that it is an <code>&lt;a&gt;</code> tag
+                            whose
+                            <code>href</code>
+                            attribute is set to <code>#</code>, it does
+                            scroll to the top of the page when the user clicks on it with a mouse
+                            (<code>mousedown</code> on an element
+                            followed by <code>mouseup</code> on the same element), taps on it on a touchscreen device
+                            (<code>touchstart</code> on
+                            element followed by <code>touchend</code> on element), or presses the
+                            <kbd>Enter</kbd> key (<code>keydown</code>) while it has focus. Pressing the
+                            <kbd>Spacebar</kbd>
+                            key
+                            (<code>keydown</code>) actually scrolls the page <em>down</em>,
+                            whether or not the anchor button has focus, because that is the default page
+                            behavior unless focus is on an element that prevents it (as is the case automatically with
+                            an
+                            actual
+                            <code>&lt;button&gt;</code> tag).
+                        </p>
                     </div>
-                    <p>Someone could activate this by clicking on it with their mouse (and other pointers?), but because
-                        it
-                        is just a <code>&lt;div&gt;</code> tag, it can't receive focus, so they wouldn't be able to
-                        activate it with
-                        their
-                        keyboard.</p>
-                </div>
-                <div class="mb-5">
-                    <h3>Generic Button 2</h3>
-                    <p><code>div[data-click-activate]<mark>[tabindex="0"]</mark></code>
-                    </p>
-                    <div class="mb-3"><button>before generic 2</button></div>
-                    <div class="mb-3">
-                        <div class="btn btn-secondary" data-click-activate="true" tabindex="0">
-                            generic 2</div>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Anchor Button 2</h3>
+                        <p><code>a[href="#"]<mark>[data-click-activate]</mark></code></p>
+                        <div class="mb-3"><button>before anchor 2</button></div>
+                        <div class="mb-3">
+                            <a class="butt" href="#" data-click-activate>anchor 2</a>
+                        </div>
+                        <p>We add a <code>click</code> event listener, which calls the <code>activateButton</code>
+                            function,
+                            updating the number of activations in the upper right of the screen. This event is triggered
+                            whenever someone
+                            clicks on the anchor button
+                            with a mouse (<code>mousedown</code> on an element
+                            followed by <code>mouseup</code> on the same element) or when the
+                            <kbd>Enter</kbd> key is pressed (<code>keydown</code>) while it has focus. However, the page
+                            still
+                            scrolls to the top in response
+                            to these events, because this behavior has not been explicitly prevented.
+                        </p>
                     </div>
-                    <p>In order for this generic element to be able to receive focus, we must add
-                        <code>tabindex="0"</code>
-                        to it. Even though it can receive focus, does making it focusable mean that it will
-                        automatically
-                        respond to <code>keydown</code> or <code>keyup</code> events?
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h3>Generic Button 3</h3>
-                    <p><code>div[data-click-activate][tabindex="0"]<mark>[data-keydown-enter-activate][data-keyup-space-activate]</mark></code>
-                    </p>
-                    <div class="mb-3"><button>before generic 3</button></div>
-                    <div class="mb-3">
-                        <div class="btn btn-secondary" data-click-activate="true" tabindex="0"
-                            data-keydown-enter-activate="true" data-keyup-space-activate="true">
-                            generic 3</div>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Anchor Button 3</h3>
+                        <p><code>a[href="#"][data-click-<mark>prevent-default</mark>-activate]</code></p>
+                        <div class="mb-3"><button>before anchor 3</button></div>
+                        <div class="mb-3">
+                            <a class="butt" href="#" data-click-prevent-default-activate>anchor
+                                3</a>
+                        </div>
+                        <p>Before calling the <code>activateButton</code> function, we prevent the default click
+                            behavior
+                            (scrolling to
+                            the
+                            top of the page) using <code>event.preventDefault()</code>.</p>
                     </div>
-                    <p>In addition to the <code>tabindex="0"</code>, we have to add a <code>keydown</code> event
-                        listener
-                        for
-                        the <kdb>Enter</kdb> key and a <code>keyup</code>
-                        listener for the <kbd>Spacebar</kbd> key in order for this generic element to respond to key
-                        presses
-                        in the
-                        same way as a native HTML button would if we'd added a click event listener to it. Even then, it
-                        doesn't quite. For instance, aside from activating the generic button, what does my press of the
-                        <kbd>Spacebar</kbd> key now do?
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h3>Generic Button 4</h3>
-                    <p><code>div[data-click-activate][tabindex="0"][data-keydown-enter-activate][data-keyup-space-activate]<mark>[data-keydown-space-prevent-default]</mark></code>
-                    </p>
-                    <div class="mb-3"><button>before generic 4</button></div>
-                    <div class="mb-3">
-                        <div class="btn btn-secondary" data-click-activate="true" tabindex="0"
-                            data-keydown-enter-activate="true" data-keyup-space-activate="true"
-                            data-keydown-space-prevent-default="true">
-                            generic 4</div>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Anchor Button 4</h3>
+                        <p><code>a[href="#"][data-click-prevent-default-activate]<mark>[data-keyup-space-activate]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before anchor 4</button></div>
+                        <div class="mb-3">
+                            <a class="butt" href="#" data-click-prevent-default-activate
+                                data-keyup-space-activate>anchor
+                                4</a>
+                        </div>
+                        <p>While we we get the ability to activate the anchor button by pressing the <code>Enter</code>
+                            key
+                            for
+                            free by
+                            virtue of the
+                            fact that it is an <code>&lt;a&gt;</code> tag, we have to explictly add a Spacebar keyup
+                            listener,
+                            in order
+                            to replicate the default behavior of native HTML <code>&lt;button&gt;</code> tags.</p>
                     </div>
-                    <p>If we don't explictly prevent the default <code>keydown</code> behavior for the
-                        <kbd>Spacebar</kbd>
-                        key, the page will scroll
-                        down when someone presses that key. We don't need to prevent any default <code>keydown</code>
-                        behavior for the <kbd>Enter</kbd> key though, because there isn't any for generic elements.
-                    </p>
-                </div>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Anchor Button 5</h3>
+                        <p><code>a[href="#"][data-click-prevent-default-activate][data-keyup-space-activate]<mark>[data-keydown-space-prevent-default]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before anchor 5</button></div>
+                        <div class="mb-3">
 
-                <div class="mb-5">
-                    <h3>Generic Button 5</h3>
-                    <p><code>div[data-click-activate][tabindex="0"][data-keydown-enter-activate][data-keyup-space-activate][data-keydown-space-prevent-default]<mark>[role="button"]</mark></code>
-                    </p>
-                    <div class="mb-3"><button>before generic 5</button></div>
-                    <div class="mb-3">
-                        <div class="btn btn-secondary" data-click-activate="true" tabindex="0"
-                            data-keydown-enter-activate="true" data-keyup-space-activate="true"
-                            data-keydown-space-prevent-default="true" role="button">
-                            generic 5</div>
+                            <a class="butt" href="#" data-click-prevent-default-activate data-keyup-space-activate
+                                data-keydown-space-prevent-default>anchor 5</a>
+                        </div>
+                        <p>Although we are now triggering the <code>activateButton</code> function on
+                            <kbd>Spacebar</kbd>
+                            <code>keyup</code> events, we also had to prevent the default <em><code>keydown</code></em>
+                            behavior,
+                            which is to
+                            scroll down.
+                        </p>
                     </div>
-                    <p>Finally, in order for the generic button to behave as expected for users of screen reading
-                        software,
-                        we must add <code>role="button"</code>.
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Anchor Button 6</h3>
+                        <p><code>a[href="#"][data-click-prevent-default-activate][data-keyup-space-activate][data-keydown-space-prevent-default]<mark>[role="button"]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before anchor 6</button></div>
+                        <div class="mb-3">
+                            <a class="butt" href="#" data-click-prevent-default-activate data-keyup-space-activate
+                                data-keydown-space-prevent-default role="button">anchor 6</a>
+                        </div>
+                        <p>Even though it could be activated using keyboard, mouse, and touch devices, we also had to
+                            add
+                            <code>role="button"</code> to it in order for screen reading and voice control software to
+                            properly
+                            expose it
+                            as a button. Without it, screen reader users would be told it was a link rather than a
+                            button,
+                            and
+                            it would respond to
+                            link-related key commands rather than button-related ones. Similarly, without
+                            <code>role="button"</code>, users of Dragon
+                            voice
+                            control software wouldn't be able to activate the control by saying "click button" (although
+                            they
+                            could activate it other ways).
+                        </p>
+                    </div>
+                </div> <!-- .col for anchor buttons -->
+
+                <div class="col">
+                    <h2>Generic Element Buttons
+                    </h2>
+                    <p class="border-bottom"><b>Base Element:</b> <code>&lt;span&gt;</code> or
+                        <code>&lt;div&gt;</code>
                     </p>
-                </div>
-            </div> <!-- .col for generic buttons -->
-        </div> <!-- .row -->
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Generic Button 1</h3>
+                        <p><code>div[data-click-activate]</code>
+                        </p>
+                        <div class="mb-3"><button>before generic 1</button></div>
+                        <div class="mb-3">
 
-        <!--
+                            <div class="butt" data-click-activate>
+                                generic 1</div>
+                        </div>
+                        <p>Someone could activate this by clicking on it with their mouse (and other pointers?), but
+                            because
+                            it
+                            is just a <code>&lt;div&gt;</code> tag, it can't receive focus, so they wouldn't be able to
+                            activate it with
+                            their
+                            keyboard.</p>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Generic Button 2</h3>
+                        <p><code>div[data-click-activate]<mark>[tabindex="0"]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before generic 2</button></div>
+                        <div class="mb-3">
 
-        <table class="table">
-            <caption>Button Comparisons</caption>
-            <tr>
-                <td></td>
-                <th scope="col">mouse</th>
-                <th scope="col">keyboard</th>
-                <th scope="col">touch</th>
-                <th scope="col">Dragon</th>
-                <th scope="col">1.3.1</th>
-                <th scope="col">2.1.1</th>
-                <th scope="col">3.2.2</th>
-                <th scope="col">4.1.1</th>
-                <th scope="col">4.1.2</th>
-            </tr>
-            <tr>
-                <th scope="row">button</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">span.btn</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">span.btn[tabindex]</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">span.btn[role]</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">span.btn[role][tabindex]</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table> -->
+                            <div class="butt" data-click-activate tabindex="0">
+                                generic 2</div>
+                        </div>
+                        <p>In order for this generic element to be able to receive focus, we must add
+                            <code>tabindex="0"</code>
+                            to it. Even though it can receive focus, does making it focusable mean that it will
+                            automatically
+                            respond to <code>keydown</code> or <code>keyup</code> events?
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Generic Button 3</h3>
+                        <p><code>div[data-click-activate][tabindex="0"]<mark>[data-keydown-enter-activate][data-keyup-space-activate]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before generic 3</button></div>
+                        <div class="mb-3">
 
-    </div> <!-- .container -->
+                            <div class="butt" data-click-activate tabindex="0" data-keydown-enter-activate
+                                data-keyup-space-activate>
+                                generic 3</div>
+                        </div>
+                        <p>In addition to the <code>tabindex="0"</code>, we have to add a <code>keydown</code> event
+                            listener
+                            for
+                            the <kdb>Enter</kdb> key and a <code>keyup</code>
+                            listener for the <kbd>Spacebar</kbd> key in order for this generic element to respond to key
+                            presses
+                            in the
+                            same way as a native HTML button would if we'd added a click event listener to it. Even
+                            then, it
+                            doesn't quite. For instance, aside from activating the generic button, what does my press of
+                            the
+                            <kbd>Spacebar</kbd> key now do?
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Generic Button 4</h3>
+                        <p><code>div[data-click-activate][tabindex="0"][data-keydown-enter-activate][data-keyup-space-activate]<mark>[data-keydown-space-prevent-default]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before generic 4</button></div>
+                        <div class="mb-3">
 
-    <script src="javascripts/buttons.js"></script>
+                            <div class="butt" data-click-activate tabindex="0" data-keydown-enter-activate
+                                data-keyup-space-activate data-keydown-space-prevent-default>
+                                generic 4</div>
+                        </div>
+                        <p>If we don't explictly prevent the default <code>keydown</code> behavior for the
+                            <kbd>Spacebar</kbd>
+                            key, the page will scroll
+                            down when someone presses that key. We don't need to prevent any default
+                            <code>keydown</code>
+                            behavior for the <kbd>Enter</kbd> key though, because there isn't any for generic elements.
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="text-secondary">Generic Button 5</h3>
+                        <p><code>div[data-click-activate][tabindex="0"][data-keydown-enter-activate][data-keyup-space-activate][data-keydown-space-prevent-default]<mark>[role="button"]</mark></code>
+                        </p>
+                        <div class="mb-3"><button>before generic 5</button></div>
+                        <div class="mb-3">
+
+                            <div class="butt" data-click-activate tabindex="0" data-keydown-enter-activate
+                                data-keyup-space-activate data-keydown-space-prevent-default role="button">
+                                generic 5</div>
+                        </div>
+                        <p>Finally, in order for the generic button to behave as expected for users of screen reading
+                            software,
+                            we must add <code>role="button"</code>.
+                        </p>
+                    </div>
+                </div> <!-- .col for generic buttons -->
+            </div> <!-- .row -->
+
+        </div> <!-- .container -->
+    </main>
+    <script src="buttons.js"></script>
 </body>
 
 </html>
