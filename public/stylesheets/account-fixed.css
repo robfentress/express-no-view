@@ -347,4 +347,27 @@ button[aria-controls=errors][aria-expanded=true] > .bi-caret-right-fill {
   -webkit-transform: rotate(90deg);
 }
 
+@media screen and (forced-colors: active) {
+  .form-check-input {
+    background-color: Canvas;
+  }
+
+  .form-check-input:checked {
+    background-color: CanvasText;
+  }
+
+  .form-check-input:checked[type=checkbox] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='Canvas' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+  }
+
+  .form-check-input:checked[type=radio] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+  }
+
+  .cke_top, .cke_reset_all * {
+    forced-color-adjust: none;
+    background: #fff;
+  }
+}
+
 /*# sourceMappingURL=account-fixed.css.map */
