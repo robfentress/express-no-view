@@ -1,0 +1,109 @@
+body {
+    font-family: sans-serif;
+}
+
+[role="search"] {
+    margin-bottom: .5em;
+}
+
+.list {
+    font-family: sans-serif;
+}
+table {
+    width:100%;
+    max-width: 29em;
+}
+table tbody tr:nth-child(odd) {
+    background-color: #ddd;
+}
+
+thead th {
+    background-color: #28a8e0;
+    color: #fff;
+    text-shadow: 1px 1px 2px black;
+    text-align: left;
+}
+
+thead th:first-child {
+    min-width: 10em;
+}
+
+thead th:nth-child(2) {
+    min-width: 5em;
+}
+
+thead th:nth-child(3) {
+    min-width: 6em;
+}
+
+thead th div {
+    padding: .1em;
+}
+
+th {
+    font-weight: normal;
+    font-size: 1em;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid gray;
+    padding: .25em;
+}
+
+.sort {
+    border-radius: 0;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 1em;
+    padding: .1em;
+    margin: 0;
+}
+
+.sort>span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sort>span span {
+    padding: .25em;
+}
+
+.sort>span span:nth-child(2):after {
+    color: currentcolor;
+    font-size: .8em;
+    top: 0;
+}
+
+.sort.asc>span span:nth-child(2):after {
+    content: "▼";
+}
+
+.sort.desc>span span:nth-child(2):after {
+    content: "▲";
+}
+
+.pagination li {
+    display: inline-block;
+    padding: 5px;
+}
+
+.hidden {
+    display: none;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 29em;
+}
+[role="status"], [role="search"] {
+    /* text-align: center;
+    margin-bottom: .5em; */
+    padding:.5em;
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Filtered Table</title>
+    <link rel="stylesheet" href="stylesheets/filtered-table.css">
+</head>
+
+<body>
+    <!-- <fieldset>
+  <legend>Column Visibility</legend>
+  <label for="nameCol"><input id="nameCol" type="checkbox" checked>Name</label>
+  <label for="bornCol"><input id="bornCol" type="checkbox" checked>Year</label>
+</fieldset> -->
+    <main>
+        <h1>Filtered Table</h1>
+        <h2>Page 1</h2>
+        <div id="users">
+            <div class="flex">
+                <div role="search">
+                    <label for="search">Search: <input class="search" /></label>
+                </div>
+                <div role="status" aria-live="polite" id="announcement"></div>
+            </div>
+            <table>
+                <caption>Year and place of birth for users</caption>
+                <!-- IMPORTANT, class="list" have to be at tbody -->
+                <thead>
+                    <th class="nameCol">
+                        <button class="sort" data-sort="name" id="name">
+                            <span>
+                                <span>Name</span>
+                                <span aria-hidden="true"></span>
+                            </span>
+                        </button>
+                    </th>
+                    <th class="bornCol">
+                        <button class="sort" data-sort="born" id="born">
+                            <span>
+                                <span>Year</span>
+                                <span aria-hidden="true"></span>
+                            </span>
+                        </button>
+                    </th>
+                    <th>
+                        <div>Place</div>
+                    </th>
+                </thead>
+                <tbody class="list">
+                    <tr>
+                        <td class="name">Jonny Stromberg</td>
+                        <td class="born">1986</td>
+                        <td>Baltimore</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Jonas Arnklint</td>
+                        <td class="born">1985</td>
+                        <td>Roanoke</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Martina Elm</td>
+                        <td class="born">1986</td>
+                        <td>Los Angeles</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Gustaf Lindqvist</td>
+                        <td class="born">1983</td>
+                        <td>Pittsburgh</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Joe Jackson</td>
+                        <td class="born">1932</td>
+                        <td>Buffalo</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Nancy Martinez</td>
+                        <td class="born">1980</td>
+                        <td>Norfolk</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Laquan McDaniels</td>
+                        <td class="born">1986</td>
+                        <td>Radford</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Wen Li</td>
+                        <td class="born">1973</td>
+                        <td>Memphis</td>
+                    </tr>
+                    <tr>
+                        <td class="name">j Stromberg</td>
+                        <td class="born">1986</td>
+                        <td>Baltimore</td>
+                    </tr>
+                    <tr>
+                        <td class="name">j Arnklint</td>
+                        <td class="born">1985</td>
+                        <td>Roanoke</td>
+                    </tr>
+                    <tr>
+                        <td class="name">m Elm</td>
+                        <td class="born">1986</td>
+                        <td>Los Angeles</td>
+                    </tr>
+                    <tr>
+                        <td class="name">g Lindqvist</td>
+                        <td class="born">1983</td>
+                        <td>Pittsburgh</td>
+                    </tr>
+                    <tr>
+                        <td class="name">j Jackson</td>
+                        <td class="born">1932</td>
+                        <td>Buffalo</td>
+                    </tr>
+                    <tr>
+                        <td class="name">n Martinez</td>
+                        <td class="born">1980</td>
+                        <td>Norfolk</td>
+                    </tr>
+                    <tr>
+                        <td class="name">l McDaniels</td>
+                        <td class="born">1986</td>
+                        <td>Radford</td>
+                    </tr>
+                    <tr>
+                        <td class="name">w Li</td>
+                        <td class="born">1973</td>
+                        <td>Memphis</td>
+                    </tr>
+                    <tr>
+                        <td class="name">j s</td>
+                        <td class="born">1986</td>
+                        <td>Baltimore</td>
+                    </tr>
+                    <tr>
+                        <td class="name">j a</td>
+                        <td class="born">1985</td>
+                        <td>Roanoke</td>
+                    </tr>
+                    <tr>
+                        <td class="name">m e</td>
+                        <td class="born">1986</td>
+                        <td>Los Angeles</td>
+                    </tr>
+                    <tr>
+                        <td class="name">g l</td>
+                        <td class="born">1983</td>
+                        <td>Pittsburgh</td>
+                    </tr>
+                    <tr>
+                        <td class="name">j j</td>
+                        <td class="born">1932</td>
+                        <td>Buffalo</td>
+                    </tr>
+                    <tr>
+                        <td class="name">n m</td>
+                        <td class="born">1980</td>
+                        <td>Norfolk</td>
+                    </tr>
+                    <tr>
+                        <td class="name">l m</td>
+                        <td class="born">1986</td>
+                        <td>Radford</td>
+                    </tr>
+                    <tr>
+                        <td class="name">w l</td>
+                        <td class="born">1973</td>
+                        <td>Memphis</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="pagination"></ul>
+        </div>
+    </main>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+    <script src="javascripts/filtered-table.js"></script>
+</body>
+
+</html>
